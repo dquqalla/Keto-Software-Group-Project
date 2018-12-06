@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+	<script src='js/superslide-std.min.js'></script>
 	<title></title>
 	<style>
 		* {
@@ -160,11 +163,95 @@
 				width: 90%;
 			}
 		}
+		#menu {
+			background-color: #fff;
+		}
+		.navlink {
+			padding: 20px 30px;
+			color: #333333;
+			font-size: 15px;
+			font-weight: 400;
+			font-family: 'Open Sans', sans-serif;
+		}
+		.navlink:hover {
+			background-color: #eee;
+			webkit-transition: all 0.3s ease-out; 
+			-moz-transition: all 0.3s ease-out; 
+			-o-transition: all 0.3s ease-out; 
+			-ms-transition: all 0.3s ease-out; 
+			transition: all 0.3s ease-out;
+		}
+		/*
+		.navlink i {
+			color: #26AA9C;
+			width: 1.7em;
+			font-size: 17px;
+			
+		}*/
+		.mobileMenuProfile {
+			padding: 30px 15px;
+			padding-bottom: 28px;
+			background:#fff;
+			color: #26AA9C;
+		}
+		.borderBreak {
+			background-color: #eee;
+			width: 86%;
+			height: 1px;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+		.menuProfileText {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.menuProfileText p {
+			color: #333;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 14px;
+			font-weight: 300;
+		}
+		.menuProfileText p:nth-child(1) {
+			font-weight: 600;
+		}
+		.menuProfileText p:nth-child(2) {
+			color: #26AA9C;
+		}
+
+		.profileImage p {
+			font-size: 22px;
+			text-align: center;
+			color: #fff;
+			font-weight: 600;
+			padding-top: 5px;
+		}
 	</style>
 </head>
 
 <body>
-<div class="mainContainer">
+<div id="menu">
+	<div>
+		<div class="mobileMenuProfile">
+			<div class="profileImageContainer">
+				<div class="profileImage">
+					<p id="nameLetterM"></p>
+
+				</div>
+			</div>
+			<div class="menuProfileText">
+				<p>Mizna Uppal</p>
+				<p>Free Membership</p>
+			</div>
+		</div>
+		<div class="borderBreak"></div>
+		<div class="navlink">Logout</div>
+		<div class="navlink">Settings</div>
+		<div class="navlink">Account Upgrade</div>
+		<div class="navlink">Getting Started Guide</div>
+		<div class="navlink">FAQ</div>
+	</div>
+</div>
+<div id="mainContainer" class="mainContainer">
 	<div class="header">
 		<div class="headInner">
 			<div class="logo">
@@ -176,12 +263,11 @@
 				<div class="profileInfo">
 					<div class="profileImageContainer">
 						<div class="profileImage">
-							<img src="images/icons/defaultProfilePicture.png" alt="">
-
+							<p id="nameLetter"></p>
 						</div>
 					</div>
 					<div class="profileText">
-						<p>Mizna Uppal</p>
+						<p id="name">Mizna Uppal</p>
 						<p>Free Membership</p>
 					</div>
 				</div>
@@ -195,7 +281,7 @@
 					<div class="logout">
 						<a href="#"><img src="images/icons/logoutIcon.png" alt=""></a>
 					</div>
-					<div class="menuTrigger">
+					<div class="menuTrigger" onclick="openMenu()">
 						<a href="#"><img src="images/icons/menuIcon.png" alt=""></a>
 					</div>
 				</div>
@@ -209,13 +295,42 @@
 		
 	</div>
 
-
+	<div class="mainBody">
+		
+	</div>
 
 
 
 
 
 </div>
+
+<script>
+
+var myMenu = new OSREC.superslide
+({
+    slider: document.getElementById('menu'),
+    content: document.getElementById('mainContainer'),
+    animation: 'slideLeft',
+    allowDrag: true,
+    slideContent: true,
+    allowContentInteraction: false,
+    closeOnBlur: true
+});
+
+function openMenu() {
+	var openPromise = myMenu.open();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+	var firstLetterOfName = document.getElementById("name").innerHTML;
+	//console.log(firstLetterOfName.charAt(0));
+	document.getElementById("nameLetter").innerHTML = firstLetterOfName.charAt(0);
+	document.getElementById("nameLetterM").innerHTML = firstLetterOfName.charAt(0);
+});
+
+
+</script>
 </body>
 
 </html>
