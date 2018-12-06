@@ -126,7 +126,7 @@
     		padding-right: 20px;
 		}
 		.navigation {
-			height: 75px;
+			height: 86px;
 			width: 100%;
 			background-color: #fff;
 			-webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
@@ -196,7 +196,7 @@
 			text-align: center;
 			color: #fff;
 			font-weight: 600;
-			padding-top: 5px;
+			padding-top: 6px;
 		}
 		.scrolling-wrapper-flexbox {
 			display: flex;
@@ -208,7 +208,7 @@
 		    flex: 0 0 auto;
 		    width: 150px;
 		    /*background: red;*/
-			height: 75px;
+			height: 86px;
 			cursor: pointer;
 		}
 		.navMainText, .navSubText {
@@ -220,14 +220,76 @@
 			font-weight: 600;
 			padding-top: 17px;
 			letter-spacing: 1px;
-			color: #878787;
+			color: #777777;
 		}
 		.navSubText {
 			font-size: 13px;
 			font-weight: 300;
 			color: #AAAAAA;
 		}
-				@media only screen and (max-width: 600px) {
+		.scrollContainer {
+			float: left;
+		}
+		.addContainer {
+			float: right;
+			/*background-color: black;*/
+		    width: 308px;
+		    height: 86px;
+		}
+		.addButtons {
+		    width: 92px;
+		    height: inherit;
+		    /*background: blue;*/
+		    text-align: center;
+		    float: left;
+		    padding-top: 9px;
+		}
+		.addButtons p {
+			color: #777777;
+			font-size: 13px;
+    		padding-top: 4px;
+		}
+		.addWaterI, .addFoodI, .addWeightI {
+			border: 2px solid #24B298;
+		    width: 46px;
+		    height: 46px;
+		    /* position: relative; */
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    margin: 0 auto;
+		    border-radius: 100px;
+		    background-repeat: no-repeat;
+		}
+		.addWaterI {
+			background-image: url(images/icons/waterIcon.png);
+			background-position: center; 
+		}
+		.addFoodI {
+			background-image: url(images/icons/foodIcon.png);
+			background-position: 50% 45%;
+		}
+		.addWeightI {
+			background-image: url(images/icons/weightIcon.png);
+			background-position: 50% 42%;
+		}
+		.addWater, .addFood, .addWeight {
+			cursor: pointer;
+			webkit-transition: all 0.3s ease-in; 
+			-moz-transition: all 0.3s ease-in; 
+			-o-transition: all 0.3s ease-in; 
+			-ms-transition: all 0.3s ease-in; 
+			transition: all 0.3s ease-in;
+			webkit-transition: all 0.3s ease-out; 
+			-moz-transition: all 0.3s ease-out; 
+			-o-transition: all 0.3s ease-out; 
+			-ms-transition: all 0.3s ease-out; 
+			transition: all 0.3s ease-out;
+		}
+		.addWater:hover, .addFood:hover, .addWeight:hover {
+			background-color: #F7F7F7;
+		}
+		@media only screen and (max-width: 600px) {
 
 		    .logo img {
 		        width: 86%;
@@ -267,6 +329,12 @@
 			}
 			.navMainText {
 				padding-top: 19px;
+			}
+			.addContainer {
+				display: none;
+			}
+			.scrollContainer {
+				float: none;
 			}
 		}
 	</style>
@@ -336,6 +404,7 @@
 	</div>
 
 	<div class="navigation">
+		<div class="scrollContainer">
 		<div class="scrolling-wrapper-flexbox">
 		  <div class="navItem">
 		  	<p class="navMainText">Dashboard</p>
@@ -354,6 +423,26 @@
 		  	<p class="navMainText">Statistics</p>
 		  	<p class="navSubText">A Detailed View</p>
 		  </div>
+		</div>
+		</div>
+
+		<div class="addContainer">
+			<div class="addButtons addWater">
+				<div class="addWaterI">
+					
+				</div>
+				<p>Add Water</p>
+			</div>
+			<div class="addButtons addFood">
+				<div class="addFoodI">
+				</div>
+				<p>Add Food</p>
+			</div>
+			<div class="addButtons addWeight">
+				<div class="addWeightI">
+				</div>
+				<p>Add Weight</p>
+			</div>
 		</div>
 	</div>
 
