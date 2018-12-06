@@ -136,33 +136,6 @@
 		.menuTrigger {
 			display: none;
 		}
-		@media only screen and (max-width: 600px) {
-
-		    .logo img {
-		        width: 86%;
-		    }
-		    .headerInner {
-		    	width: 100%;
-		    }
-			.profileText, .logout, .settings {
-				display: none;
-			}
-			.iconContainer {
-				padding: 0px 4px;
-			}
-			.settings, .notifications, .logout, .menuTrigger {
-				padding: 0px 4px;
-			}
-			.profileImage {
-				margin: 0px 6px;
-			}
-			.menuTrigger {
-				display: inline-block;
-			}
-			.menuTrigger img {
-				width: 90%;
-			}
-		}
 		#menu {
 			background-color: #fff;
 		}
@@ -224,6 +197,77 @@
 			color: #fff;
 			font-weight: 600;
 			padding-top: 5px;
+		}
+		.scrolling-wrapper-flexbox {
+			display: flex;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+		.navItem {
+		    flex: 0 0 auto;
+		    width: 150px;
+		    /*background: red;*/
+			height: 75px;
+			cursor: pointer;
+		}
+		.navMainText, .navSubText {
+			text-align: center;
+		}
+		.navMainText {
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: 600;
+			padding-top: 17px;
+			letter-spacing: 1px;
+			color: #878787;
+		}
+		.navSubText {
+			font-size: 13px;
+			font-weight: 300;
+			color: #AAAAAA;
+		}
+				@media only screen and (max-width: 600px) {
+
+		    .logo img {
+		        width: 86%;
+		    }
+		    .headerInner {
+		    	width: 100%;
+		    }
+			.profileText, .logout, .settings {
+				display: none;
+			}
+			.iconContainer {
+				padding: 0px 4px;
+			}
+			.settings, .notifications, .logout, .menuTrigger {
+				padding: 0px 4px;
+			}
+			.profileImage {
+				margin: 0px 6px;
+			}
+			.menuTrigger {
+				display: inline-block;
+			}
+			.menuTrigger img {
+				width: 90%;
+			}
+			.navSubText {
+				display: none;
+			}
+			.navigation, .navItem {
+				height: 60px;
+			}
+			.navItem {
+				width: 128px;
+			}
+			.navItem:nth-child(1) {
+				margin-left: 10px;
+			}
+			.navMainText {
+				padding-top: 19px;
+			}
 		}
 	</style>
 </head>
@@ -292,10 +336,28 @@
 	</div>
 
 	<div class="navigation">
-		
+		<div class="scrolling-wrapper-flexbox">
+		  <div class="navItem">
+		  	<p class="navMainText">Dashboard</p>
+		  	<p class="navSubText">Overview</p>
+		  </div>
+		  <div></div>
+		  <div class="navItem">
+		  	<p class="navMainText">Daily Log</p>
+		  	<p class="navSubText">Your Daily Tracking</p>
+		  </div>
+		  <div class="navItem">
+		  	<p class="navMainText">Diet Planning</p>
+		  	<p class="navSubText">Meal Inspiration</p>
+		  </div>
+		  <div class="navItem">
+		  	<p class="navMainText">Statistics</p>
+		  	<p class="navSubText">A Detailed View</p>
+		  </div>
+		</div>
 	</div>
 
-	<div class="mainBody">
+	<div class="mainBody" style="height: 1000px;">
 		
 	</div>
 
