@@ -2,9 +2,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="robots" content="noarchive">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
 	<script src='js/superslide-std.min.js'></script>
 	<title></title>
@@ -84,6 +85,7 @@
 			border-radius: 100%;
 			margin: 0px 10px;
 			border: 3px solid #fff;
+			cursor: pointer;
 		}
 		.profileImage img {
 			max-width: 100%;
@@ -374,7 +376,7 @@
 				<div class="rightInner">
 				<div class="profileInfo">
 					<div class="profileImageContainer">
-						<div class="profileImage">
+						<div class="profileImage tooltip" title="This is you!">
 							<p id="nameLetter"></p>
 						</div>
 					</div>
@@ -384,13 +386,13 @@
 					</div>
 				</div>
 				<div class="iconContainer">
-					<div class="notifications">
+					<div class="notifications tooltip" title="Notifications">
 						<a href="#"><img src="images/icons/notificationIcon.png" alt=""></a>
 					</div>
-					<div class="settings">
+					<div class="settings tooltip" title="Settings">
 						<a href="#"><img src="images/icons/settingsIcon.png" alt=""></a>
 					</div>
-					<div class="logout">
+					<div class="logout tooltip" title="Logout">
 						<a href="#"><img src="images/icons/logoutIcon.png" alt=""></a>
 					</div>
 					<div class="menuTrigger" onclick="openMenu()">
@@ -427,18 +429,16 @@
 		</div>
 
 		<div class="addContainer">
-			<div class="addButtons addWater">
-				<div class="addWaterI">
-					
-				</div>
+			<div class="addButtons addWater tooltip" title="Quick Add">
+				<div class="addWaterI"></div>
 				<p>Add Water</p>
 			</div>
-			<div class="addButtons addFood">
+			<div class="addButtons addFood tooltip" title="Quick Add">
 				<div class="addFoodI">
 				</div>
 				<p>Add Food</p>
 			</div>
-			<div class="addButtons addWeight">
+			<div class="addButtons addWeight tooltip" title="Quick Add">
 				<div class="addWeightI">
 				</div>
 				<p>Add Weight</p>
@@ -451,11 +451,9 @@
 	</div>
 
 
-
-
-
 </div>
 
+</body>
 <script>
 
 var myMenu = new OSREC.superslide
@@ -482,6 +480,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 </script>
-</body>
+<script type="text/javascript" src="js/tooltipster.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tooltipster.css">
+<script>
+    $(document).ready(function() {
+        $('.tooltip').tooltipster();
+    });
+</script>
 
 </html>
