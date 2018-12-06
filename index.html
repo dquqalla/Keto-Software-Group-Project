@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<title></title>
+	<style>
+		* {
+		    padding: 0;
+		    margin: 0;
+		    border: 0;
+		    font-family: 'Open Sans', sans-serif;
+		    font-size: 14px;
+			-webkit-box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		}
+		ol, ul {
+		    list-style: none;
+		    margin: 0;
+		    padding: 0;
+		}
+		a {
+			margin: 0;
+		    padding: 0;
+		    border: 0;
+		    font-size: 100%;
+		    font: inherit;
+		    vertical-align: baseline;
+		    text-decoration: none !important;
+		}
+		img {
+			-webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;
+		}
+		img {
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		body {
+			background-color: #f0f0f0;
+		}
+		.header {
+			height: 90px;
+			width: 100%:;
+			background: rgba(46,133,173,1);
+			background: -moz-linear-gradient(left, rgba(46,133,173,1) 0%, rgba(34,179,150,1) 100%);
+			background: -webkit-gradient(left top, right top, color-stop(0%, rgba(46,133,173,1)), color-stop(100%, rgba(34,179,150,1)));
+			background: -webkit-linear-gradient(left, rgba(46,133,173,1) 0%, rgba(34,179,150,1) 100%);
+			background: -o-linear-gradient(left, rgba(46,133,173,1) 0%, rgba(34,179,150,1) 100%);
+			background: -ms-linear-gradient(left, rgba(46,133,173,1) 0%, rgba(34,179,150,1) 100%);
+			background: linear-gradient(to right, rgba(46,133,173,1) 0%, rgba(34,179,150,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e85ad', endColorstr='#22b396', GradientType=1 );
+		}
+		.headInner {
+			max-width: 1280px;
+	    	margin: 0 auto;
+		}
+		.logo {
+			float: left;
+			line-height: 90px;
+			width: 50%;
+		}
+		.logo img {
+			padding-left: 20px;
+			vertical-align: middle;
+		}
+		.right {
+			float: right;
+			height: 90px;
+			width: 50%;
+			/*background: red;*/
+		}
+		.profileImage {
+			width: 50px;
+			height: 50px;
+			background-color: #FD809E;
+			border-radius: 100%;
+			margin: 0px 10px;
+			border: 3px solid #fff;
+		}
+		.profileImage img {
+			max-width: 100%;
+    		max-height: 100%;
+    		border-radius: 100%;
+		}
+		.profileImageContainer {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.profileText {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.profileText p {
+			color: #fff;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 14px;
+			font-weight: 300;
+		}
+		.profileText p:nth-child(1) {
+			font-weight: 600;
+		}
+		.iconContainer {
+			display: inline-block;
+    		vertical-align: middle;
+			padding: 0px 20px;
+		}
+		.profileInfo {
+			display: inline-block;
+    		vertical-align: middle;
+		}
+		.settings, .notifications, .logout, .menuTrigger {
+			display: inline-block;
+			padding: 0px 6px;
+		}
+		.rightInner {
+			padding-top: 20px;
+    		float: right;
+    		padding-right: 20px;
+		}
+		.navigation {
+			height: 75px;
+			width: 100%;
+			background-color: #fff;
+			-webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+			-moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+			box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+		}
+		.menuTrigger {
+			display: none;
+		}
+		@media only screen and (max-width: 600px) {
+
+		    .logo img {
+		        width: 86%;
+		    }
+		    .headerInner {
+		    	width: 100%;
+		    }
+			.profileText, .logout, .settings {
+				display: none;
+			}
+			.iconContainer {
+				padding: 0px 4px;
+			}
+			.settings, .notifications, .logout, .menuTrigger {
+				padding: 0px 4px;
+			}
+			.profileImage {
+				margin: 0px 6px;
+			}
+			.menuTrigger {
+				display: inline-block;
+			}
+			.menuTrigger img {
+				width: 90%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+<div class="mainContainer">
+	<div class="header">
+		<div class="headInner">
+			<div class="logo">
+				<a href="#"><img src="images/logoHolder.png" alt=""></a>
+			</div>
+
+			<div class="right">
+				<div class="rightInner">
+				<div class="profileInfo">
+					<div class="profileImageContainer">
+						<div class="profileImage">
+							<img src="images/icons/defaultProfilePicture.png" alt="">
+
+						</div>
+					</div>
+					<div class="profileText">
+						<p>Mizna Uppal</p>
+						<p>Free Membership</p>
+					</div>
+				</div>
+				<div class="iconContainer">
+					<div class="notifications">
+						<a href="#"><img src="images/icons/notificationIcon.png" alt=""></a>
+					</div>
+					<div class="settings">
+						<a href="#"><img src="images/icons/settingsIcon.png" alt=""></a>
+					</div>
+					<div class="logout">
+						<a href="#"><img src="images/icons/logoutIcon.png" alt=""></a>
+					</div>
+					<div class="menuTrigger">
+						<a href="#"><img src="images/icons/menuIcon.png" alt=""></a>
+					</div>
+				</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="navigation">
+		
+	</div>
+
+
+
+
+
+
+
+</div>
+</body>
+
+</html>
