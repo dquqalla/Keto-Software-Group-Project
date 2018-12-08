@@ -417,13 +417,24 @@
 		}
 
 		.item {
-		   position: relative;
-		   padding: 15px;
-		   background: #fff;
-		   margin: 18px;
-		   border-radius: 6px;
+			position: relative;
+			padding: 15px;
+			background: #fff;
+			margin: 18px;
+			border-radius: 6px;
+			box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+			-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+			box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+			margin: 30px 18px;
 		}
-
+		.item p {
+			color: #999;
+		}
+		.itemTitle {
+			font-size: 16px;
+			font-weight: 700;
+			color: #535353 !important;
+		}
 		.item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
 			margin-top: 4px;
 		} 
@@ -601,42 +612,47 @@
 		</div>
    <div id="grid" data-columns>
             <div class="item">            
-				<h4>test1</h4>
+				<p class="itemTitle">Overview</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
             </div>  
 
             <div class="item"> 
-				<h4>test2</h4>
+				<p class="itemTitle">Water Intake Today</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.</p>
             </div>   
 
             <div class="item"> 
-				<h4>test3</h4>
+				<p class="itemTitle">Last Week Summary</p>
 				<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
-
+				<br><br>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
 				</p>
             </div> 
 
 			<div class="item"> 
-				<h4>test4</h4>
+				<p class="itemTitle">Tip of the day</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus.</p>
 			</div>   
 
             <div class="item"> 
-				<h4>test5</h4>
+				<p class="itemTitle">Things You’re Doing Well</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
-
+				<br><br>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. </p>
             </div>  
 
               <div class="item"> 
-				<h4>test6</h4>
+				<p class="itemTitle">Macros</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
-
+				<br><br>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
+            </div>  
+
+            <div class="item"> 
+				<p class="itemTitle">Recipe of the day</p>
+
             </div>  
 
         </div>
