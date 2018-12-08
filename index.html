@@ -291,7 +291,7 @@
 		.addWater:hover, .addFood:hover, .addWeight:hover {
 			background-color: #F7F7F7;
 		}
-		@media only screen and (max-width: 600px) {
+		@media only screen and (max-width: 750px) {
 
 		    .logo img {
 		        width: 86%;
@@ -338,6 +338,76 @@
 			.scrollContainer {
 				float: none;
 			}
+		}
+		.titleCon {
+			padding: 40px;
+		}
+		.pageTitle {
+			float: left;
+			/*width: 30%;*/
+			width: 400px;
+
+		}
+		.pageTitle p, .pageTitle span {
+			font-size: 18px;
+			font-weight: 600;
+			color: #545454;
+		}
+		.line {
+			float: left;
+			height: 1px;
+			/*width: 58%;*/
+			width: -webkit-calc(100% - 544px);
+			width:    -moz-calc(100% - 544px);
+			width:         calc(100% - 544px);
+			background: #CCCCCC;
+			margin-top: 13px;
+		}
+		.date {
+			float: left;
+			/*width: 140px;*/
+			    padding-left: 16px;
+			    cursor: pointer;
+		}
+		.date p, .date span {
+			font-size: 13px;
+
+		}
+		.date p {
+			text-align: right;
+background: rgba(44,150,199,1);
+background: -moz-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(44,150,199,1)), color-stop(100%, rgba(40,170,157,1)));
+background: -webkit-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+background: -o-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+background: -ms-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+background: linear-gradient(to right, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', endColorstr='#28aa9d', GradientType=1 );
+		    border-radius: 100px;
+		    /* padding: 2px; */
+		    font-size: 13px;
+		    color: #fff;
+		    padding: 8px 15px;
+		}
+		@media only screen and (max-width: 910px) {
+			.addContainer {
+				display: none;
+			}
+		}
+		@media only screen and (max-width: 740px) {
+			.line, .date {
+				display: none;
+			}
+			.pageTitle {
+				width: 100%;
+			}
+			.titleCon {
+			    padding: 30px;
+			}
+			.pageTitle p, .pageTitle span {
+			    font-size: 16px;
+			}
+			
 		}
 	</style>
 </head>
@@ -447,7 +517,15 @@
 	</div>
 
 	<div class="mainBody" style="height: 1000px;">
-		
+		<div class="titleCon">
+			<div class="pageTitle">
+				<p>Welcome back to your dashboard, <span>Mizna</span>.</p>
+			</div>
+			<hr class="line">
+			<div class="date">
+				<p>Today: <span id="currentDate"></span></p>
+			</div>
+		</div>
 	</div>
 
 
@@ -476,16 +554,24 @@ document.addEventListener("DOMContentLoaded", function() {
 	//console.log(firstLetterOfName.charAt(0));
 	document.getElementById("nameLetter").innerHTML = firstLetterOfName.charAt(0);
 	document.getElementById("nameLetterM").innerHTML = firstLetterOfName.charAt(0);
-});
 
+	var objToday = new Date(),
+	domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
+	dayOfMonth = today + ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
+	months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'),
+	curMonth = months[objToday.getMonth()],
+	curYear = objToday.getFullYear()
+	var today = dayOfMonth + " " + curMonth;
+	document.getElementById("currentDate").innerHTML = today;
+});
 
 </script>
 <script type="text/javascript" src="js/tooltipster.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/tooltipster.css">
 <script>
-    $(document).ready(function() {
-        $('.tooltip').tooltipster();
-    });
+$(document).ready(function() {
+    $('.tooltip').tooltipster();
+});
 </script>
 
 </html>
