@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
 	<script src='js/superslide-std.min.js'></script>
+
 	<title></title>
 	<style>
 		* {
@@ -375,14 +376,14 @@
 		}
 		.date p {
 			text-align: right;
-background: rgba(44,150,199,1);
-background: -moz-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(44,150,199,1)), color-stop(100%, rgba(40,170,157,1)));
-background: -webkit-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-background: -o-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-background: -ms-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-background: linear-gradient(to right, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', endColorstr='#28aa9d', GradientType=1 );
+			background: rgba(44,150,199,1);
+			background: -moz-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+			background: -webkit-gradient(left top, right top, color-stop(0%, rgba(44,150,199,1)), color-stop(100%, rgba(40,170,157,1)));
+			background: -webkit-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+			background: -o-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+			background: -ms-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+			background: linear-gradient(to right, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', endColorstr='#28aa9d', GradientType=1 );
 		    border-radius: 100px;
 		    /* padding: 2px; */
 		    font-size: 13px;
@@ -409,6 +410,78 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', end
 			}
 			
 		}
+
+		#grid {
+		    overflow: hidden;
+			padding: 0px 18px;
+		}
+
+		.item {
+		   position: relative;
+		   padding: 15px;
+		   background: #fff;
+		   margin: 18px;
+		   border-radius: 6px;
+		}
+
+		.item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
+			margin-top: 4px;
+		} 
+
+		.column {
+		    float: left;
+		}
+
+		.size-1of3 {
+		    width: 30%;
+		}
+		.size-2of3 {
+			width: 30%;
+		}
+		.size-3of3 {
+			width: 40%;
+		}
+		.size-1of2 {
+		    width: 50%;
+		}
+		.size-1of1 {
+		    width: 100%;
+		}
+
+		.column:nth-child(1) {
+			width: 30%;
+		}
+		.column:nth-child(2) {
+			width: 30%;
+		}
+		.column:nth-child(3) {
+			width: 40%;
+		}
+
+		@media only screen and (max-width: 767px) {
+		   #grid[data-columns]::before {
+		        content: '1 .column.size-1of1';
+		    }
+		    .column {
+		    	width: 100% !important;
+		    }
+		    .item:nth-child(1) {
+				margin-top: 18px;
+			} 
+		}
+
+		@media screen and (min-width: 768px) and (max-width: 991px) {
+		   #grid[data-columns]::before {
+		        content: '2 .column.size-1of2';
+		    }
+		}
+
+		@media screen and (min-width: 1200px) {
+		   #grid[data-columns]::before {
+		        content: '3 .column.size-1of3';
+		    }
+		}
+
 	</style>
 </head>
 
@@ -516,7 +589,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', end
 		</div>
 	</div>
 
-	<div class="mainBody" style="height: 1000px;">
+	<div class="mainBody">
 		<div class="titleCon">
 			<div class="pageTitle">
 				<p>Welcome back to your dashboard, <span>Mizna</span>.</p>
@@ -526,6 +599,47 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', end
 				<p>Today: <span id="currentDate"></span></p>
 			</div>
 		</div>
+   <div id="grid" data-columns>
+            <div class="item">            
+				<h4>test1</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
+            </div>  
+
+            <div class="item"> 
+				<h4>test2</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.</p>
+            </div>   
+
+            <div class="item"> 
+				<h4>test3</h4>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
+
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
+				</p>
+            </div> 
+
+			<div class="item"> 
+				<h4>test4</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus.</p>
+			</div>   
+
+            <div class="item"> 
+				<h4>test5</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
+
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. </p>
+            </div>  
+
+              <div class="item"> 
+				<h4>test6</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
+
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
+            </div>  
+
+        </div>
 	</div>
 
 
@@ -573,5 +687,5 @@ $(document).ready(function() {
     $('.tooltip').tooltipster();
 });
 </script>
-
+<script src="js/salvattore.min.js"></script>
 </html>
