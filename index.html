@@ -344,7 +344,7 @@
 			}
 		}
 		.titleCon {
-			padding: 40px;
+			padding: 40px 40px 20px 40px;
 		}
 		.pageTitle {
 			float: left;
@@ -406,7 +406,8 @@
 				width: 100%;
 			}
 			.titleCon {
-			    padding: 30px;
+			    /*padding: 30px;*/
+			    padding: 30px 29px 8px 30px;
 			}
 			.pageTitle p, .pageTitle span {
 			    font-size: 16px;
@@ -483,12 +484,18 @@
 		    }
 		    .item:nth-child(1) {
 				margin-top: 18px;
-			} 
+			}
+			#grid {
+				padding: 0px 14px;
+			}
 		}
 
 		@media screen and (min-width: 768px) and (max-width: 991px) {
 		   #grid[data-columns]::before {
 		        content: '2 .column.size-1of2';
+		    }
+		    .column {
+		    	width: 50% !important;
 		    }
 		}
 
@@ -497,7 +504,11 @@
 		        content: '3 .column.size-1of3';
 		    }
 		}
-
+		.clearfix::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
 	</style>
 </head>
 
@@ -526,13 +537,13 @@
 </div>
 <div id="mainContainer" class="mainContainer">
 	<div class="header">
-		<div class="headInner">
+		<div class="headInner clearfix">
 			<div class="logo">
 				<a href="#"><img src="images/logoHolder.png" alt=""></a>
 			</div>
 
 			<div class="right">
-				<div class="rightInner">
+				<div class="rightInner clearfix">
 				<div class="profileInfo">
 					<div class="profileImageContainer">
 						<div class="profileImage tooltip" title="This is you!">
@@ -564,7 +575,7 @@
 		</div>
 	</div>
 
-	<div class="navigation">
+	<div class="navigation clearfix">
 		<div class="scrollContainer">
 		<div class="scrolling-wrapper-flexbox">
 		  <div class="navItem">
@@ -587,7 +598,7 @@
 		</div>
 		</div>
 
-		<div class="addContainer">
+		<div class="addContainer clearfix">
 			<div class="addButtons addWater tooltip" title="Quick Add">
 				<div class="addWaterI"></div>
 				<p>Add Water</p>
@@ -606,7 +617,7 @@
 	</div>
 
 	<div class="mainBody">
-		<div class="titleCon">
+		<div class="titleCon clearfix">
 			<div class="pageTitle">
 				<p>Welcome back to your dashboard, <span>Mizna</span>.</p>
 			</div>
@@ -615,7 +626,7 @@
 				<p>Today: <span id="currentDate"></span></p>
 			</div>
 		</div>
-   <div id="grid" data-columns>
+   <div class="clearfix" id="grid" data-columns>
             <div class="item">            
 				<p class="itemTitle">Overview</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
