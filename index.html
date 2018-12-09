@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
 	<script src='js/superslide-std.min.js'></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 	<title></title>
 	<style>
@@ -213,6 +214,8 @@
 		    /*background: red;*/
 			height: 86px;
 			cursor: pointer;
+			/*animation-duration: 1.0s;
+			animation-delay: 0.1s;*/
 		}
 		.navMainText, .navSubText {
 			text-align: center;
@@ -376,14 +379,14 @@
 		}
 		.date p {
 			text-align: right;
-			background: rgba(44,150,199,1);
-			background: -moz-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-			background: -webkit-gradient(left top, right top, color-stop(0%, rgba(44,150,199,1)), color-stop(100%, rgba(40,170,157,1)));
-			background: -webkit-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-			background: -o-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-			background: -ms-linear-gradient(left, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-			background: linear-gradient(to right, rgba(44,150,199,1) 0%, rgba(40,170,157,1) 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c96c7', endColorstr='#28aa9d', GradientType=1 );
+			background: rgba(40,157,161,1);
+			background: -moz-linear-gradient(left, rgba(40,157,161,1) 0%, rgba(34,179,150,1) 100%);
+			background: -webkit-gradient(left top, right top, color-stop(0%, rgba(40,157,161,1)), color-stop(100%, rgba(34,179,150,1)));
+			background: -webkit-linear-gradient(left, rgba(40,157,161,1) 0%, rgba(34,179,150,1) 100%);
+			background: -o-linear-gradient(left, rgba(40,157,161,1) 0%, rgba(34,179,150,1) 100%);
+			background: -ms-linear-gradient(left, rgba(40,157,161,1) 0%, rgba(34,179,150,1) 100%);
+			background: linear-gradient(to right, rgba(40,157,161,1) 0%, rgba(34,179,150,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#289da1', endColorstr='#22b396', GradientType=1 );
 		    border-radius: 100px;
 		    /* padding: 2px; */
 		    font-size: 13px;
@@ -414,6 +417,8 @@
 		#grid {
 		    overflow: hidden;
 			padding: 0px 18px;
+			animation-duration: 1.5s;
+			animation-delay: 0.3s;
 		}
 
 		.item {
@@ -694,6 +699,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	var today = dayOfMonth + " " + curMonth;
 	document.getElementById("currentDate").innerHTML = today;
 });
+
+$('#grid').addClass('animated fadeIn');
+//$('.navItem').addClass('animated fadeIn');
 
 </script>
 <script type="text/javascript" src="js/tooltipster.min.js"></script>
