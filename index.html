@@ -4,48 +4,16 @@
 	<meta charset="UTF-8">
 	<meta name="robots" content="noarchive">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
 	<script src='js/superslide-std.min.js'></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/js/jquery.circliful.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
 	<title></title>
 	<style>
-		* {
-		    padding: 0;
-		    margin: 0;
-		    border: 0;
-		    font-family: 'Open Sans', sans-serif;
-		    font-size: 14px;
-			-webkit-box-sizing: border-box;
-		    -moz-box-sizing: border-box;
-		    box-sizing: border-box;
-		}
-		ol, ul {
-		    list-style: none;
-		    margin: 0;
-		    padding: 0;
-		}
-		a {
-			margin: 0;
-		    padding: 0;
-		    border: 0;
-		    font-size: 100%;
-		    font: inherit;
-		    vertical-align: baseline;
-		    text-decoration: none !important;
-		}
-		img {
-			-webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;
-		}
-		img {
-			-webkit-user-select: none;
-			-khtml-user-select: none;
-			-moz-user-select: none;
-			-o-user-select: none;
-			user-select: none;
-		}
 		body {
 			background-color: #f0f0f0;
 		}
@@ -342,6 +310,9 @@
 			.scrollContainer {
 				float: none;
 			}
+			.percentageContainer {
+				margin-left: 0px !important;
+			}
 		}
 		.titleCon {
 			padding: 40px 40px 20px 40px;
@@ -424,7 +395,8 @@
 
 		.item {
 			position: relative;
-			padding: 15px;
+			/*padding: 15px;*/
+			padding: 32px 37px;
 			background: #fff;
 			margin: 18px;
 			border-radius: 6px;
@@ -440,6 +412,12 @@
 			font-size: 16px;
 			font-weight: 700;
 			color: #535353 !important;
+			padding-bottom: 4px;
+		}
+		.itemDescription {
+			font-size: 14px;
+			font-weight: 400;
+			color: #999 !important;
 		}
 		.item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
 			margin-top: 4px;
@@ -508,6 +486,69 @@
 		  content: "";
 		  clear: both;
 		  display: table;
+		}
+		#test-circle2 {
+			width: 370px;
+		}
+		.percentageContainer {
+			width: 100%;
+			/* text-align: center; */
+			/* margin: 0 auto; */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-left: -10px;
+			margin-top: -40px;
+		}
+		.timer tspan {
+			font-size: 20px;
+    		font-weight: 600;		
+    		font-family: 'Open Sans', sans-serif;		
+    	}
+		.yWeight p, .gWeight p, .cGoal p, .yWeight span, .gWeight span, .cGoal span {
+			font-size: 14px;
+			font-weight: 400;		
+    		font-family: 'Open Sans', sans-serif;
+    		color: #999;
+		}
+		.yWeight span, .gWeight span, .cGoal span {
+			font-size: 14px;
+			font-weight: 600;		
+    		font-family: 'Open Sans', sans-serif;
+    		background-color: #27AC9D;
+    		color: #fff !important;
+    		padding: 4px 16px;
+    		border-radius: 100px;
+    		margin-left: 6px;
+		}
+		.yWeight, .gWeight, .cGoal {
+			padding: 9px 16px;
+			display: inline-block;
+		}
+		.statInfo {
+			text-align: center;
+		}
+		.yWeight span {
+			background-color: #F2C158;
+		}
+		.ghostContainer {
+			visibility: hidden;
+		}
+		.tipOfTheDayCon {
+			background: rgba(43,153,165,1);
+			background: -moz-linear-gradient(left, rgba(43,153,165,1) 0%, rgba(39,164,160,1) 100%);
+			background: -webkit-gradient(left top, right top, color-stop(0%, rgba(43,153,165,1)), color-stop(100%, rgba(39,164,160,1)));
+			background: -webkit-linear-gradient(left, rgba(43,153,165,1) 0%, rgba(39,164,160,1) 100%);
+			background: -o-linear-gradient(left, rgba(43,153,165,1) 0%, rgba(39,164,160,1) 100%);
+			background: -ms-linear-gradient(left, rgba(43,153,165,1) 0%, rgba(39,164,160,1) 100%);
+			background: linear-gradient(to right, rgba(43,153,165,1) 0%, rgba(39,164,160,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b99a5', endColorstr='#27a4a0', GradientType=1 );
+		}
+		.tipOfTheDayTitle, .tipOfTheDayDesc {
+			color: #fff !important;
+		}
+		.tipOfTheDayDesc {
+			font-weight: 300 !important;
 		}
 	</style>
 </head>
@@ -629,27 +670,40 @@
    <div class="clearfix" id="grid" data-columns>
             <div class="item">            
 				<p class="itemTitle">Overview</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
+				<p class="itemDescription">You’re <span>[ ]</span> of the way to completing your goals!</p>
+				<div class="percentageContainer">
+					<div id="test-circle2"></div>
+				</div>
+				<div class="statInfo">
+
+					<div class="yWeight">
+						<p>Your Weight: <span>NaN</span></p>
+					</div>
+					<div class="gWeight">
+						<p>Goal Weight: <span>NaN</span></p>
+					</div>
+					<div class="cGoal">
+						<p>Calorie Goal: <span>NaN</span></p>
+					</div>
+					<div class="cGoal ghostContainer">
+						<p>Calorie Goal: <span>NaN</span></p>
+					</div>
+				</div>
             </div>  
 
             <div class="item"> 
 				<p class="itemTitle">Water Intake Today</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.</p>
+				<p class="itemDescription">You have <span>[ ]</span> met your target for today.</p>
             </div>   
 
             <div class="item"> 
 				<p class="itemTitle">Last Week Summary</p>
-				<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
-				<br><br>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
-				</p>
+				<p class="itemDescription">Below is a summary of your carbohydrate vs fat intake for the past week.</p>
             </div> 
 
-			<div class="item"> 
-				<p class="itemTitle">Tip of the day</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus.</p>
+			<div class="item tipOfTheDayCon">
+				<p class="itemTitle tipOfTheDayTitle">Tip of the day</p>
+				<p class="itemDescription tipOfTheDayDesc">A growing number of studies have found that being in ketosis may be beneficial for some types of athletic performance, including endurance exercise.</p>
 			</div>   
 
             <div class="item"> 
@@ -714,6 +768,23 @@ document.addEventListener("DOMContentLoaded", function() {
 $('#grid').addClass('animated fadeIn');
 //$('.navItem').addClass('animated fadeIn');
 
+
+$("#test-circle2").circliful({
+	animationStep: 3,
+	foregroundBorderWidth: 2,
+	backgroundBorderWidth: 6,
+	backgroundColor: "#fff",
+	fillColor: '#27A59E',
+	fontColor: '#fff',
+	foregroundColor: '#27A59E',
+	percent: 80,
+	// replacePercentageByText: 'test',
+	percentageY: 108,
+	progressColor: { 50: '#23B396', 50: '#28AB9E', 70: '#2A9EA3', 90: '#2C8FA9', 100: '#2E88AC'}
+});
+
+var svgCircle = document.getElementsByClassName('circliful')[0];
+svgCircle.setAttribute("viewBox", "0 0 194 170");
 </script>
 <script type="text/javascript" src="js/tooltipster.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/tooltipster.css">
