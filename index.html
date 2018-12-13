@@ -482,6 +482,23 @@
 		        content: '3 .column.size-1of3';
 		    }
 		}
+/*		@media screen and (max-width: 515px) {
+		   .editButtonContainer {
+		   		padding: 0px 0px 4px 0px !important;
+		   }
+		}*/
+
+		/* ----------- 450 - 650px ----------- */
+		@media screen and (min-width: 766px) and (max-width: 1643px){
+			.ghostContainer {
+		   		display: none !important;
+		   }
+		}
+		@media screen and (min-width: 320px) and (max-width: 514px){
+			.ghostContainer {
+		   		display: none !important;
+		   }
+		}
 		.clearfix::after {
 		  content: "";
 		  clear: both;
@@ -520,6 +537,7 @@
     		padding: 4px 16px;
     		border-radius: 100px;
     		margin-left: 6px;
+    		cursor: pointer;
 		}
 		.yWeight, .gWeight, .cGoal {
 			padding: 9px 16px;
@@ -549,6 +567,49 @@
 		}
 		.tipOfTheDayDesc {
 			font-weight: 300 !important;
+		}
+		.editButtonContainer {
+			text-align: center;
+			padding: 30px 0px 3px 0px;
+		}
+		.editButtonContainer button {
+			background-color: #fff;
+			border: 2px solid #29A1A1;
+			padding: 10px;
+			width: 100px;
+			border-radius: 100px;
+			color: #444444;
+			font-size: 14px;
+    		font-weight: 400;
+    		cursor: pointer;	
+		}
+		.overviewCon {
+		  animation-delay: 100ms;
+		  animation-duration: 1.2s;
+		}
+		.waterCon {
+		  animation-delay: 300ms;
+		  animation-duration: 1.2s;
+		}
+		.wellCon {
+		  animation-delay: 500ms;
+		  animation-duration: 1.2s;
+		}
+		.lwSummaryCon {
+		  animation-delay: 700ms;
+		  animation-duration: 1.2s;
+		}
+		.macrosCon {
+		  animation-delay: 900ms;
+		  animation-duration: 1.2s;
+		}
+		.tipOfTheDayCon {
+		  animation-delay: 1100ms;
+		  animation-duration: 1.2s;
+		}
+		.recipeCon {
+		  animation-delay: 1300ms;
+		  animation-duration: 1.2s;
 		}
 	</style>
 </head>
@@ -668,7 +729,7 @@
 			</div>
 		</div>
    <div class="clearfix" id="grid" data-columns>
-            <div class="item">            
+            <div class="item overviewCon animated bounceIn">            
 				<p class="itemTitle">Overview</p>
 				<p class="itemDescription">You’re <span>[ ]</span> of the way to completing your goals!</p>
 				<div class="percentageContainer">
@@ -677,50 +738,55 @@
 				<div class="statInfo">
 
 					<div class="yWeight">
-						<p>Your Weight: <span>NaN</span></p>
+						<p>Your Weight: <span class="tooltip" title="Value not available yet">NaN</span></p>
 					</div>
 					<div class="gWeight">
-						<p>Goal Weight: <span>NaN</span></p>
+						<p>Goal Weight: <span class="tooltip" title="Value not available yet">NaN</span></p>
 					</div>
 					<div class="cGoal">
-						<p>Calorie Goal: <span>NaN</span></p>
+						<p>Calorie Goal: <span class="tooltip" title="Daily calorie goal">NaN</span></p>
 					</div>
 					<div class="cGoal ghostContainer">
 						<p>Calorie Goal: <span>NaN</span></p>
 					</div>
 				</div>
+				<div class="editButtonContainer">
+					<button>EDIT</button>
+				</div>
             </div>  
 
-            <div class="item"> 
+            <div class="item waterCon animated bounceIn"> 
 				<p class="itemTitle">Water Intake Today</p>
 				<p class="itemDescription">You have <span>[ ]</span> met your target for today.</p>
             </div>   
 
-            <div class="item"> 
+            <div class="item lwSummaryCon animated bounceIn"> 
 				<p class="itemTitle">Last Week Summary</p>
 				<p class="itemDescription">Below is a summary of your carbohydrate vs fat intake for the past week.</p>
             </div> 
 
-			<div class="item tipOfTheDayCon">
+			<div class="item tipOfTheDayCon animated bounceIn">
 				<p class="itemTitle tipOfTheDayTitle">Tip of the day</p>
 				<p class="itemDescription tipOfTheDayDesc">A growing number of studies have found that being in ketosis may be beneficial for some types of athletic performance, including endurance exercise.</p>
 			</div>   
 
-            <div class="item"> 
+            <div class="item wellCon animated bounceIn"> 
 				<p class="itemTitle">Things You’re Doing Well</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
 				<br><br>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. </p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
+				<br><br>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet.</p>
             </div>  
 
-              <div class="item"> 
+              <div class="item macrosCon animated bounceIn"> 
 				<p class="itemTitle">Macros</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
 				<br><br>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
             </div>  
 
-            <div class="item"> 
+            <div class="item recipeCon animated bounceIn"> 
 				<p class="itemTitle">Recipe of the day</p>
 
             </div>  
@@ -765,7 +831,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("currentDate").innerHTML = today;
 });
 
-$('#grid').addClass('animated fadeIn');
+//$('#grid').addClass('animated fadeIn');
+
 //$('.navItem').addClass('animated fadeIn');
 
 
