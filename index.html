@@ -373,6 +373,9 @@
 			.addContainer {
 				display: none;
 			}
+			.mobileMenuBall {
+				display: block !important;
+			}
 		}
 		@media only screen and (max-width: 740px) {
 			.line, .date {
@@ -688,6 +691,7 @@
 		  -moz-user-select: none;
 		  -ms-user-select: none;
 		  user-select: none;
+		  display: none;
 		}
 		.mobileMenuBall:before {
 			content: '';
@@ -724,21 +728,20 @@
 			cursor: pointer;
 		}
 		.mobileMenuBall.active .first {
-			top: 14px;
-			right: 36px;
-			opacity: 1;
+		    top: 28px;
+		    right: 10px;
+		    opacity: 1;
 		}
 		.mobileMenuBall.active .second {
-			top: 43px;
-			left: 36px;
-			opacity: 1;
+		    top: 57px;
+		    left: 50px;
+		    opacity: 1;
 		}
 		.mobileMenuBall.active .third {
-			left: 22px;
-			top: -28px;
+			left: 31px;
+			top: 0px;
 			opacity: 1;
 		}
-
 		.mobileMenuBall svg {
 			position: absolute;
 			margin: auto;
@@ -992,9 +995,9 @@
 </div>
 
 <div class="mobileMenuBall">
-	<i class="first"><img src="images/icons/weightIconWhite.png" alt="" onclick="addWeight()"></i>
-	<i class="second"><img src="images/icons/foodIconWhite.png" alt="" onclick="addFood()"></i>
-	<i class="third"><img src="images/icons/waterIconWhite.png" alt="" onclick="addWater()"></i>
+	<i class="first"><img src="images/icons/weightIconWhite.png" width="40px" alt="" onclick="addWeight()"></i>
+	<i class="second"><img src="images/icons/foodIconWhite.png" width="40px" alt="" onclick="addFood()"></i>
+	<i class="third"><img src="images/icons/waterIconWhite.png" width="34px" alt="" onclick="addWater()"></i>
 	<?xml version="1.0" encoding="utf-8"?>
 	<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
