@@ -314,6 +314,11 @@
 				margin-left: 0px !important;
 			}
 		}
+		@media only screen and (max-width: 360px) {
+			.percentageContainer {
+				padding-top: 20px !important;
+			}
+		}
 		.titleCon {
 			padding: 40px 40px 20px 40px;
 		}
@@ -383,7 +388,9 @@
 			.pageTitle p, .pageTitle span {
 			    font-size: 16px;
 			}
-			
+			.drop-content span:after {
+				left: 14% !important;
+			}
 		}
 
 		#grid {
@@ -611,6 +618,174 @@
 		  animation-delay: 1300ms;
 		  animation-duration: 1.2s;
 		}
+		.wellNumber, .improvementNumber {
+			padding: 2px 8px;
+		    color: #fff !important;
+		    margin-right: 6px;
+		    border-radius: 100px;
+		    font-size: 14px;
+		    font-weight: 700;
+		}
+		.wellNumber {
+		    background: #2ECC71;
+		}
+		.improvementNumber {
+			background: #E74C3C;
+		}
+		circle:first-child {
+			fill: url(#circle-gradient) #447799;
+		}
+		.drop { 
+			display: inline-block;
+			position: relative;
+		}
+		.drop-content { 
+			background-color: #efefef;
+			min-width: 150px;
+			position: absolute;
+			border-radius: 5px;
+			margin-top: 15px;
+			box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+			-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+			box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		}
+		.drop-content span {
+			color: #555555;
+			padding: 15px;
+			text-decoration: none;
+			display: block;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.drop-content span:hover {
+			background-color: #eaeaea;
+		}
+
+		.drop-content span:after {
+			position: absolute;
+			left: 17%;
+			margin-top: 0px;
+			top: -9px;
+			width: 0;
+			height: 0;
+			content:'';
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-bottom: 10px solid #efefef;
+		}
+		.mobileMenuBall {
+		  width: 60px;
+		  height: 60px;
+		  background: #86C559;
+		  border-radius: 50%;
+		  position: fixed;
+		  right: 20px;
+		  bottom: 20px;
+		  overflow: hidden;
+		  transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+		.mobileMenuBall:before {
+			content: '';
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 50%;
+			background: #A1D27F;
+			opacity: 0;
+			cursor: pointer;
+		}
+		.mobileMenuBall:hover {
+			cursor: pointer;
+		}
+		.mobileMenuBall.active {
+			width: 260px;
+		    height: 260px;
+		    bottom: -83px;
+		    right: -79px;
+		}
+		.mobileMenuBall.active:hover {
+			cursor: default;
+		}
+		.mobileMenuBall.active:before {
+			opacity: 1;
+		}
+		.mobileMenuBall.active svg {
+			transform: rotate(45deg);
+			cursor: pointer;
+		}
+		.mobileMenuBall.active .first {
+			top: 14px;
+			right: 36px;
+			opacity: 1;
+		}
+		.mobileMenuBall.active .second {
+			top: 43px;
+			left: 36px;
+			opacity: 1;
+		}
+		.mobileMenuBall.active .third {
+			left: 22px;
+			top: -28px;
+			opacity: 1;
+		}
+
+		.mobileMenuBall svg {
+			position: absolute;
+			margin: auto;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+		}
+
+		.mobileMenuBall i {
+			color: #fff;
+			width: 24px;
+			height: 24px;
+			position: absolute;
+			margin: auto;
+			transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+			opacity: 0;
+		}
+		.mobileMenuBall i.first {
+			top: -40px;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+		.mobileMenuBall i.second {
+			left: -25px;
+			top: -25px;
+		}
+		.mobileMenuBall i.third {
+			left: -40px;
+			top: 0;
+			bottom: 0;
+		}
+		.mobileMenuBall.expand {
+			width: 200%;
+			height: 150%;
+			bottom: -25%;
+			right: -50%;
+		}
+		.mobileMenuBall.expand:before {
+			opacity: 0;
+		}
+		.mobileMenuBall.expand > * {
+			display: none;
+		}
 	</style>
 </head>
 
@@ -647,10 +822,16 @@
 			<div class="right">
 				<div class="rightInner clearfix">
 				<div class="profileInfo">
-					<div class="profileImageContainer">
-						<div class="profileImage tooltip" title="This is you!">
+					<div class="drop"> 
+					<div class="profileImageContainer" >
+						<div class="profileImage">
 							<p id="nameLetter"></p>
 						</div>
+					</div>
+				 	<div id="drop-content" class="drop-content">
+					 	<span>Change Picture</span>
+					 	<span>Remove Picture</span>
+					</div>
 					</div>
 					<div class="profileText">
 						<p id="name">Mizna Uppal</p>
@@ -734,6 +915,12 @@
 				<p class="itemDescription">You’re <span>[ ]</span> of the way to completing your goals!</p>
 				<div class="percentageContainer">
 					<div id="test-circle2"></div>
+					<svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+					  <linearGradient id="circle-gradient" x2="1" y2="1">
+					    <stop offset="0%" stop-color="#25AE9A" />
+					    <stop offset="100%" stop-color="#2F85AD" />
+					  </linearGradient>
+					</svg>
 				</div>
 				<div class="statInfo">
 
@@ -763,6 +950,9 @@
             <div class="item lwSummaryCon animated bounceIn"> 
 				<p class="itemTitle">Last Week Summary</p>
 				<p class="itemDescription">Below is a summary of your carbohydrate vs fat intake for the past week.</p>
+				<div style="height: 310px; display: flex; justify-content: center; align-items: center;">
+					<p style="font-size: 22px; font-weight: 700; text-align: center; color: #dcdcdc;">Sorry there isn't enough data yet.</p>
+				</div>
             </div> 
 
 			<div class="item tipOfTheDayCon animated bounceIn">
@@ -771,23 +961,27 @@
 			</div>   
 
             <div class="item wellCon animated bounceIn"> 
-				<p class="itemTitle">Things You’re Doing Well</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
+				<p class="itemTitle"><span class="wellNumber">0</span>Things You’re Doing Well</p>
+				<br>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.</p>
 				<br><br>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
+				<p class="itemTitle"><span class="improvementNumber">0</span>Things To Improve</p>
+				<br>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
 				<br><br>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet.</p>
             </div>  
 
               <div class="item macrosCon animated bounceIn"> 
 				<p class="itemTitle">Macros</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.
-				<br><br>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. Morbi porta arcu at arcu bibendum, vel malesuada velit mollis. Suspendisse non dignissim mi, at ullamcorper sem. Aliquam ac ipsum dictum, vehicula orci vel, scelerisque neque. Donec quis semper mi. Nunc ipsum mi, posuere a massa ut, congue sollicitudin nulla. Duis nec elit eu mi congue posuere et luctus diam. In iaculis dui sem, non ullamcorper magna placerat nec.</p>
+				<div style="height: 310px; display: flex; justify-content: center; align-items: center;">
+					<p style="font-size: 22px; font-weight: 700; text-align: center; color: #dcdcdc;">Sorry there isn't enough data yet.</p>
+				</div>
             </div>  
 
             <div class="item recipeCon animated bounceIn"> 
 				<p class="itemTitle">Recipe of the day</p>
+				<p class="itemDescription">Hand picked by us, just for you.</p>
 
             </div>  
 
@@ -796,6 +990,17 @@
 
 
 </div>
+
+<div class="mobileMenuBall">
+	<i class="first"><img src="images/icons/weightIconWhite.png" alt="" onclick="addWeight()"></i>
+	<i class="second"><img src="images/icons/foodIconWhite.png" alt="" onclick="addFood()"></i>
+	<i class="third"><img src="images/icons/waterIconWhite.png" alt="" onclick="addWater()"></i>
+	<?xml version="1.0" encoding="utf-8"?>
+	<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
+		30,15.5 "/>
+	</svg>
+</div>	
 
 </body>
 <script>
@@ -859,6 +1064,39 @@ svgCircle.setAttribute("viewBox", "0 0 194 170");
 $(document).ready(function() {
     $('.tooltip').tooltipster();
 });
+
+
+$(document).ready(function() {
+	var x = document.getElementById("drop-content");
+	x.style.display = "none";
+
+	$(".profileImageContainer").click(function() {
+
+	if (x.style.display === "none") {
+		x.style.display = "block";
+	} else {
+		x.style.display = "none";
+	}
+	})
+});
+
+$(document).ready(function() {
+	$('.mobileMenuBall').click(function() {
+		$(this).toggleClass('active');
+	});
+});
+
+function addWater() {
+	alert("You clicked the add water button.");
+}
+
+function addFood() {
+	alert("You clicked the add food button.");
+}
+
+function addWeight() {
+	alert("You clicked the add weight button.");
+}
 </script>
 <script src="js/salvattore.min.js"></script>
 </html>
