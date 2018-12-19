@@ -12,7 +12,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/js/jquery.circliful.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
-	<title></title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.css">
+		<script href="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+
+
+	<title>Dashboard</title>
 	<style>
 		body {
 			background-color: #f0f0f0;
@@ -894,7 +900,7 @@
 				</div>
 				<p>Add Food</p>
 			</div>
-			<div class="addButtons addWeight tooltip" title="Quick Add">
+			<div class="addButtons addWeight tooltip" title="Quick Add" onclick="addWeight()">
 				<div class="addWeightI">
 				</div>
 				<p>Add Weight</p>
@@ -1098,7 +1104,27 @@ function addFood() {
 }
 
 function addWeight() {
-	var weight = prompt("Please enter the new weight:");
+	//var weight = prompt("Please enter the new weight:");
+(async function getFormValues () {
+const {value: formValues} = await swal({
+  title: 'Multiple inputs',
+  html:
+    '<input id="swal-input1" class="swal2-input">' +
+    '<input id="swal-input2" class="swal2-input">',
+  focusConfirm: false,
+  preConfirm: () => {
+    return [
+      document.getElementById('swal-input1').value,
+      document.getElementById('swal-input2').value
+    ]
+  }
+})
+
+if (formValues) {
+  swal(json.stringify(formValues))
+}
+
+})()
 }
 </script>
 <script src="js/salvattore.min.js"></script>
