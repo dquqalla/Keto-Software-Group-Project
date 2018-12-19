@@ -1,20 +1,45 @@
 <?php
 // Initialize the session
 session_start();
+require_once "includes/config.php";
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+
+// $sql = "INSERT INTO userWeight (userID,weight) VALUES ('5','99')";
+// if ($link->query($sql) === TRUE) {
+//     echo "New record created successfully";
+// } else {
+//     echo "Error: " . $sql . "<br>" . $link->error;
+// }
+
+// $link->close();
+
+// $id = $_SESSION["id"];
+
+// $sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
+// $result = $link->query($sql);
+
+// if ($result->num_rows > 0) {
+//     // output data of each row
+//     while($row = $result->fetch_assoc()) {
+//         echo "weight: " . $row["weight"] . " " . $row["timee"] . "<br>";
+//     }
+// } else {
+//     echo "0 results";
+// }
+// $link->close();
 ?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome</title>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
 
     </style>
@@ -32,8 +57,88 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h4>Goal Weight: <?php echo ($_SESSION["gWeight"]); ?></h4>
         <h4>Activity Level: <?php echo ($_SESSION["activityLevel"]); ?></h4>
     </div>
+
+    <!-- <input type="submit" class="button" name="insert" value="insert"/> -->
+    <form method="post" action="welcome.php">
+        <input type="number" name="weight" placeholder="Enter new weight">
+        <input type="submit" name="submit" value="Add Weight">
+    </form>
+    <?php
+  if(isset($_POST["weight"])){
+    $tt = $_POST["weight"];
+    $id = $_SESSION["id"];
+
+   
+$sql = "INSERT INTO userWeight (userID,weight) VALUES ($id, $tt)";
+if ($link->query($sql) === TRUE) {
+    echo "New record created successfully";
+    $_SESSION["cWeight"] = $tt;
+    $sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id";
+    
+
+if ($link->query($sql2) === TRUE) {
+    echo "Record updated successfully";
+    header("Refresh:0");
+} else {
+    echo "Error updating record: " . $link->error;
+}
+ 
+} else {
+    echo "Error: " . $sql . "<br>" . $link->error;
+}
+
+$link->close();
+  } 
+
+
+?>
+
+<?php
+$id = $_SESSION["id"];
+
+$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
+$result = $link->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    echo "<p>Your weight history:</p>";
+    while($row = $result->fetch_assoc()) {
+        
+        echo "weight: " . $row["weight"] . " " . $row["timee"] . "<br>";
+    }
+} else {
+    echo "<p>You have no weight history.</p>";
+}
+$link->close();
+?>
+
     <p>
         <a href="includes/logout.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
+
+
 </body>
+<script>
+
+// $('.button').on('click', function() {
+//     var foo = 'somename';
+// jQuery.ajax({
+//     url:'welcome.php',
+//     type: "POST",
+//     data: {'ww':foo},
+//     success: function(data)
+//         {
+//            alert('success');
+//         }
+// });
+
+
+
+
+// })
+
+</script>
+
+
+
 </html>

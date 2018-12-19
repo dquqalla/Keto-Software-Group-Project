@@ -1,0 +1,5 @@
+DirectoryIndex register.php
+AuthType Basic
+AuthName "Go away!"
+AuthUserFile "/home/urixx00qn8v7/.htpasswds/public_html/ketogenetics.co.uk/passwd"
+require valid-user
