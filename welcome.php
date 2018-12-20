@@ -32,6 +32,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 //     echo "0 results";
 // }
 // $link->close();
+
+
+if(isset($_POST['submit2'])){
+        move_uploaded_file($_FILES['file']['tmp_name'],"images/profilePictures/".$_FILES['file']['name']);
+        //$q = mysqli_query($con,"UPDATE users SET image = '".$_FILES['file']['name']."' WHERE id = '".$_SESSION['id']."'");
+
+        $sql = "UPDATE users SET profilePicture = '".$_FILES['file']['name']."' WHERE id = '".$_SESSION['id']."'";
+        if ($link->query($sql) === TRUE) {
+            echo "Profile picture uploaded successfully.";
+        } else {
+            echo "Error: " . $sql . "<br>" . $link->error;
+        }
+}
+
 ?>
  
 <!DOCTYPE html>
@@ -39,9 +53,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
-
+    .drop {
+        display: inline-block;position: relative;
+    }
+    .profileImageContainer {
+        display: inline-block;vertical-align: middle;
+    }
+    .profileImage {
+        width: 200px;height: 200px;background-color: #FD809E;border-radius: 100%;margin: 0px 10px;cursor: pointer;
+    }
+    .profileImage p {
+        font-size: 18px;text-align: center;color: #fff;font-weight: 600;padding-top: 78px;
+    }
+    .profileImage img {
+        border-radius: 100px;width: 200px; height: 200px;
+        }
+    h1 {
+        font-size: 34px;font-weight: 700;font-family: 'Open Sans', sans-serif;
+    }
+    h4 {
+        font-size: 24px;font-weight: 400;font-family: 'Open Sans', sans-serif;
+    }
+    .weight {
+        background-color: #eee;padding: 10px 20px;border: 1px solid #999;border-radius: 6px;
+    }
+    .addW, .addP {
+        background-color: #2ecc71;padding: 10px 20px;border: 1px solid #999;border-radius: 6px;color: #fff;
+    }
     </style>
 </head>
 <body>
@@ -57,11 +99,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h4>Goal Weight: <?php echo ($_SESSION["gWeight"]); ?></h4>
         <h4>Activity Level: <?php echo ($_SESSION["activityLevel"]); ?></h4>
     </div>
-
+    <h4>--------------------------------</h4>
     <!-- <input type="submit" class="button" name="insert" value="insert"/> -->
-    <form method="post" action="welcome.php">
-        <input type="number" name="weight" placeholder="Enter new weight">
-        <input type="submit" name="submit" value="Add Weight">
+    <form method="post" action="welcome.php" style="padding: 20px 0px;">
+        <input class="weight" type="number" name="weight" placeholder="Enter new weight">
+        <input class="addW" type="submit" name="submit" value="Add Weight">
     </form>
     <?php
       if(isset($_POST["weight"])){
@@ -75,20 +117,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $_SESSION["cWeight"] = $tt;
         $sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id";
         
-
-    if ($link->query($sql2) === TRUE) {
-        echo "Record updated successfully";
-        header("Refresh:0"); //refresh so weight changes can be seen
-    } else {
-        echo "Error updating record: " . $link->error;
-    }
+        if ($link->query($sql2) === TRUE) {
+            echo "Record updated successfully";
+            header("Refresh:0");
+        } else {
+            echo "Error updating record: " . $link->error;
+        }
      
     } else {
         echo "Error: " . $sql . "<br>" . $link->error;
     }
 
     $link->close();
-      } 
+    
+    } 
 
 
     ?>
@@ -102,7 +144,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
     if ($result->num_rows > 0) {
         // output data of each row
-        echo "<p>Your weight history for today only:</p>";
+        echo "<p style=\"font-weight: bold;\">Your weight history for today only:</p>";
         while($row = $result->fetch_assoc()) {
             
             echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
@@ -118,7 +160,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
     if ($result->num_rows > 0) {
         // output data of each row
-        echo "<p>All time weight history:</p>";
+        echo "<br>";
+        echo "<p style=\"font-weight: bold;\">All time weight history:</p>";
         while($row = $result->fetch_assoc()) {
             
             echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
@@ -127,15 +170,60 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     } else {
         echo "<p>You have no all time weight history.</p>";
     }
-    $link->close();
+    
 
     ?>
+<h4>--------------------------------</h4>
 
 
+                 <?php
 
+                    $sql = "SELECT profilePicture FROM users WHERE id = $id";
+                    $result = $link->query($sql);
+   
+                        while($row = $result->fetch_assoc()){
+                                echo $row['id'];
+                                if($row['profilePicture'] == ""){
+                                        echo "
 
-    <p>
-        <a href="includes/logout.php" class="btn btn-danger">Sign Out of Your Account</a>
+                                        <div class=\"drop\"> 
+                                        <div class=\"profileImageContainer\">
+                                        <div class=\"profileImage\">
+                                        <p id=\"nameLetter\">You got no profile image!</p>
+                                        </div>
+                                        </div>
+                                        <div id=\"drop-content\" class=\"drop-content\" style=\"display: none;\">
+                                        <span>Change Picture</span>
+                                        <span>Remove Picture</span>
+                                        </div>
+                                        </div>
+
+                                        ";
+                                } else {
+
+                                        echo "
+
+                                        <div class=\"drop\"> 
+                                        <div class=\"profileImageContainer\">
+                                        <div class=\"profileImage\">
+                                        <img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
+                                        </div>
+                                        </div>
+                                        </div>
+
+                                        ";
+                                }
+                                echo "<br>";
+                        }
+                            $link->close();
+                ?>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    <input class="addP" type="submit" name="submit2" value="Upload">
+                </form>
+
+    <p style="padding: 50px 0px;" >
+        <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
 
 
