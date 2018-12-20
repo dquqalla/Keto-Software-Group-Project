@@ -23,6 +23,18 @@
 		body {
 			background-color: #f0f0f0;
 		}
+		::placeholder {
+		  color: #dddddd;
+		  opacity: 1; /* Firefox */
+		}
+
+		:-ms-input-placeholder { /* Internet Explorer 10-11 */
+		 color: #dddddd;
+		}
+
+		::-ms-input-placeholder { /* Microsoft Edge */
+		 color: #dddddd;
+		}
 		.header {
 			height: 90px;
 			width: 100%:;
@@ -794,7 +806,32 @@
 		.mobileMenuBall.expand > * {
 			display: none;
 		}
-
+		.wellList, .notWellList {
+			list-style: none;
+			margin-left: 20px;
+			color: #999999;
+			font-size: 14px;
+			font-weight: 400;
+		}
+		.wellList li::before {
+			content: "\2022";
+			color: #2CCC71;
+			font-weight: 700;
+			display: inline-block; 
+			width: 1em;
+			margin-left: -1em;
+		}
+		.notWellList li::before {
+			content: "\2022";
+			color: #E54C3A;
+			font-weight: 700;
+			display: inline-block; 
+			width: 1em;
+			margin-left: -1em;
+		}
+		.wellListCon, .notWellListCon {
+			padding: 22px 0px 36px 0px;
+		}
 	</style>
 </head>
 
@@ -971,14 +1008,21 @@
 
             <div class="item wellCon animated bounceIn"> 
 				<p class="itemTitle"><span class="wellNumber">0</span>Things You’re Doing Well</p>
-				<br>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in ipsum eget dui lobortis sollicitudin vel sed orci. Nulla facilisi. Nunc pretium ex dolor, in efficitur nisi laoreet at. Vestibulum nec enim ac sapien rutrum dapibus nec ut ligula. Vestibulum non ligula tellus. Cras viverra consectetur nulla ac suscipit. Vivamus lacus felis, ultrices in risus at, dapibus pulvinar turpis. Mauris vitae lobortis turpis, eget venenatis magna. Integer blandit enim non lectus pellentesque, in venenatis magna pharetra.</p>
-				<br><br>
+				<div class="wellListCon">
+					<ul class="wellList">
+					<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt.</li>
+					<li>Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum.</li>
+					<li>In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit.</li>
+					</ul>
+				</div>
 				<p class="itemTitle"><span class="improvementNumber">0</span>Things To Improve</p>
-				<br>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit. Etiam elementum neque in nisi luctus, a bibendum enim iaculis. Sed ut ultricies massa. Etiam semper ante vel metus fringilla, in rutrum arcu pharetra. 
-				<br><br>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt. Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum. In bibendum neque a euismod aliquet.</p>
+				<div class="notWellListCon">
+					<ul class="notWellList">
+					<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id dolor pharetra risus sollicitudin tincidunt.</li>
+					<li>Nullam eget nunc dolor. Etiam eget justo lobortis, blandit elit vel, accumsan ipsum.</li>
+					<li>In bibendum neque a euismod aliquet. Maecenas facilisis magna et egestas blandit.</li>
+					</ul>
+				</div>
             </div>  
 
               <div class="item macrosCon animated bounceIn"> 
@@ -1093,7 +1137,16 @@ $(document).ready(function() {
 	$('.mobileMenuBall').click(function() {
 		$(this).toggleClass('active');
 	});
+
+	$('#btnC').click(function() {
+		swal.close();
+	});
+
 });
+
+
+	swal.close();
+
 
 function addWater() {
 	var water = prompt("Please enter the number of glasses:");
@@ -1114,11 +1167,11 @@ swal({
     inputOptions: options,
     html: '<p style="font-size: 17px; font-weight:400; color:#999999;">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
     '<div style="" >' +
-    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
-    '<input style="padding: 15px 20px;border: 2px solid #ddd;border-radius: 5px;width: 90%;font-size: 16px;" class="weight" type="number" name="weight" placeholder="Enter new weight"> <br />' +
+    '<form method="post" action="" style="padding: 20px 0px;">' +
+    '<input style="padding: 15px 20px;border: 2px solid #ddd;border-radius: 5px;width: 90%;font-size: 16px;color: #777;font-weight: 600;" class="weight" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
     '<div style="padding-top:30px;"><input style="padding: 11px 40px; background-color:#2ECC71; color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;" class="addW" type="submit" name="submit" value="Add"> ' +
 
-    '<button type="button" id="btnC" style="padding: 11px 40px;background-color: #bbbbbb;color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;">Cancel</button></form></div></div>', 
+    '<input value="Cancel" type="button" id="btnC" style="padding: 11px 40px;background-color: #bbbbbb;color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;" onclick="swal.close();"></input></form></div></div>', 
 
     showConfirmButton: false,
     onOpen: function(ele) {
