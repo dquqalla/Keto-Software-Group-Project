@@ -1105,26 +1105,26 @@ function addFood() {
 
 function addWeight() {
 	//var weight = prompt("Please enter the new weight:");
-(async function getFormValues () {
-const {value: formValues} = await swal({
-  title: 'Multiple inputs',
-  html:
-    '<input id="swal-input1" class="swal2-input">' +
-    '<input id="swal-input2" class="swal2-input">',
-  focusConfirm: false,
-  preConfirm: () => {
-    return [
-      document.getElementById('swal-input1').value,
-      document.getElementById('swal-input2').value
-    ]
-  }
-})
 
-if (formValues) {
-  swal(json.stringify(formValues))
-}
+var options = {};
 
-})()
+swal({
+    title: "Add Weight",
+    type: 'info',
+    inputOptions: options,
+    html: '<p style="font-size: 17px; font-weight:400; color:#999999;">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
+    '<div style="" >' +
+    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
+    '<input style="padding: 15px 20px;border: 2px solid #ddd;border-radius: 5px;width: 90%;font-size: 16px;" class="weight" type="number" name="weight" placeholder="Enter new weight"> <br />' +
+    '<div style="padding-top:30px;"><input style="padding: 11px 40px; background-color:#2ECC71; color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;" class="addW" type="submit" name="submit" value="Add"> ' +
+
+    '<button type="button" id="btnC" style="padding: 11px 40px;background-color: #bbbbbb;color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;">Cancel</button></form></div></div>', 
+
+    showConfirmButton: false,
+    onOpen: function(ele) {
+        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+    }
+});
 }
 </script>
 <script src="js/salvattore.min.js"></script>
