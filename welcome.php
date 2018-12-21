@@ -9,42 +9,60 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-// $sql = "INSERT INTO userWeight (userID,weight) VALUES ('5','99')";
-// if ($link->query($sql) === TRUE) {
-//     echo "New record created successfully";
-// } else {
-//     echo "Error: " . $sql . "<br>" . $link->error;
-// }
-
-// $link->close();
-
-// $id = $_SESSION["id"];
-
-// $sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
-// $result = $link->query($sql);
-
-// if ($result->num_rows > 0) {
-//     // output data of each row
-//     while($row = $result->fetch_assoc()) {
-//         echo "weight: " . $row["weight"] . " " . $row["timee"] . "<br>";
-//     }
-// } else {
-//     echo "0 results";
-// }
-// $link->close();
-
-
 if(isset($_POST['submit2'])){
-        move_uploaded_file($_FILES['file']['tmp_name'],"images/profilePictures/".$_FILES['file']['name']);
-        //$q = mysqli_query($con,"UPDATE users SET image = '".$_FILES['file']['name']."' WHERE id = '".$_SESSION['id']."'");
+    move_uploaded_file($_FILES['file']['tmp_name'],"images/profilePictures/".$_FILES['file']['name']);
 
-        $sql = "UPDATE users SET profilePicture = '".$_FILES['file']['name']."' WHERE id = '".$_SESSION['id']."'";
-        if ($link->query($sql) === TRUE) {
-            echo "Profile picture uploaded successfully.";
-        } else {
-            echo "Error: " . $sql . "<br>" . $link->error;
-        }
+    $sql = "UPDATE users SET profilePicture = '".$_FILES['file']['name']."' WHERE id = '".$_SESSION['id']."'";
+	if ($link->query($sql) === TRUE) {
+	    echo "Profile picture uploaded successfully.";
+	} else {
+	    echo "Error: " . $sql . "<br>" . $link->error;
+	}
 }
+
+if(isset($_POST["weight"])){
+	$tt = $_POST["weight"];
+	$id = $_SESSION["id"];
+
+	$sql = "INSERT INTO userWeight (userID,weight) VALUES ($id, $tt)";
+
+	if ($link->query($sql) === TRUE) {
+		echo "New record created successfully";
+		$_SESSION["cWeight"] = $tt;
+		$sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id";
+
+		if ($link->query($sql2) === TRUE) {
+			echo "Record updated successfully";
+			header("Refresh:0");
+		} else {
+			echo "Error updating record: " . $link->error;
+		}
+	} else {
+		echo "Error: " . $sql . "<br>" . $link->error;
+	}
+	//$link->close();
+}
+
+if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['pro'], $_POST['fat'])) {
+	$ttn = $_POST["rName"];
+	$ttm = $_POST["mCat"];
+	$ttc = $_POST["cal"];
+	$ttcr = $_POST["car"];
+	$ttp = $_POST["pro"];
+	$ttf = $_POST["fat"];
+	$id = $_SESSION["id"];
+
+	$sqlqw = "INSERT INTO userFood (userID,rName,mCat,calories,carbs,protein,fat) VALUES ($id, '$ttn', '$ttm', $ttc, $ttcr, $ttp, $ttf)";
+
+	if ($link->query($sqlqw) === TRUE) {
+		echo "New record created successfully";
+		header("Refresh:0");
+	} else {
+		echo "Error: " . $sqlqw . "<br>" . $link->error;
+	}
+
+	//$link->close();
+}  
 
 ?>
  
@@ -55,178 +73,215 @@ if(isset($_POST['submit2'])){
     <title>Welcome</title>
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
-    .drop {
-        display: inline-block;position: relative;
-    }
-    .profileImageContainer {
-        display: inline-block;vertical-align: middle;
-    }
-    .profileImage {
-        width: 200px;height: 200px;background-color: #FD809E;border-radius: 100%;margin: 0px 10px;cursor: pointer;
-    }
-    .profileImage p {
-        font-size: 18px;text-align: center;color: #fff;font-weight: 600;padding-top: 78px;
-    }
-    .profileImage img {
-        border-radius: 100px;width: 200px; height: 200px;
-        }
-    h1 {
-        font-size: 34px;font-weight: 700;font-family: 'Open Sans', sans-serif;
-    }
-    h4 {
-        font-size: 24px;font-weight: 400;font-family: 'Open Sans', sans-serif;
-    }
-    .weight {
-        background-color: #eee;padding: 10px 20px;border: 1px solid #999;border-radius: 6px;
-    }
-    .addW, .addP {
-        background-color: #2ecc71;padding: 10px 20px;border: 1px solid #999;border-radius: 6px;color: #fff;
-    }
+	.drop {
+	    display: inline-block;position: relative;
+	}
+	.profileImageContainer {
+	    display: inline-block;vertical-align: middle;
+	}
+	.profileImage {
+		width: 200px;height: 200px;background-color: #FD809E;border-radius: 100%;margin: 0px 10px;cursor: pointer;
+	}
+	.profileImage p {
+	    font-size: 18px;text-align: center;color: #fff;font-weight: 600;padding-top: 78px;
+	}
+	.profileImage img {
+		border-radius: 100px;width: 200px; height: 200px;
+	}
+	h1 {
+		font-size: 24px;font-weight: 700;font-family: 'Open Sans', sans-serif;padding-bottom: 10px;
+	}
+	h2 {
+		font-size: 24px;font-weight: 700;font-family: 'Open Sans', sans-serif;padding-bottom: 10px;color:#ee5253;text-decoration: underline;padding-top:20px;
+	}
+	h4 {
+		font-size: 15px;font-weight: 400;font-family: 'Open Sans', sans-serif; padding: 10px 0px;
+	}
+	h4 span {
+		font-size: 15px;font-weight: 700;font-family: 'Open Sans', sans-serif; padding: 10px 0px;
+	}
+	.weight {
+		background-color: #eee;padding: 10px 20px;border: 1px solid #999;border-radius: 4px;
+	}
+	.addW, .addP {
+		background-color: #2ecc71;padding: 10px 20px;border: 1px solid #999;border-radius: 4px;color: #fff;
+	}
+	#foodTable {
+		border-collapse: collapse;
+		width: 500px;
+	}
+
+	#foodTable td, #customers th {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+
+	#foodTable tr:nth-child(even){background-color: #f2f2f2;}
+
+	#foodTable tr:hover {background-color: #ddd;}
+
+	#foodTable th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color: #4CAF50;
+		color: white;
+		padding-left: 10px;
+	}
+	.hCon {
+		/*border: 1px solid #000;*/
+	}
+	.pageCon {
+		padding: 30px;
+	}
     </style>
 </head>
 <body>
+	<div class="pageCon">
     <div class="page-header">
         <h1>Hi, <?php echo ($_SESSION["firstName"]); ?> <?php echo ($_SESSION["lastName"]); ?></h1>
-        <h4>Your email is: <?php echo ($_SESSION["email"]); ?></h4>
-        <h4>Your are: <?php echo ($_SESSION["gender"]); ?></h4>
-        <h4>Birth year: <?php echo ($_SESSION["birthYear"]); ?></h4>
-        <h4>Current weight: <?php echo ($_SESSION["cWeight"]); ?></h4>
-        <h4>Height (ft): <?php echo ($_SESSION["heightFeet"]); ?></h4>
-        <h4>Height (inch): <?php echo ($_SESSION["heightInch"]); ?></h4>
-        <h4>Body fat: <?php echo ($_SESSION["bodyFat"]); ?></h4>
-        <h4>Goal Weight: <?php echo ($_SESSION["gWeight"]); ?></h4>
-        <h4>Activity Level: <?php echo ($_SESSION["activityLevel"]); ?></h4>
+        <div class="hCon">
+        <h4><span>Email:</span> <?php echo ($_SESSION["email"]); ?></h4>
+        <h4><span>Gender:</span> <?php echo ($_SESSION["gender"]); ?></h4>
+        <h4><span>Birth Year:</span> <?php echo ($_SESSION["birthYear"]); ?></h4>
+        <h4><span>Current Weight:</span> <?php echo ($_SESSION["cWeight"]); ?>kg</h4>
+        <h4><span>Height (ft)</span> <?php echo ($_SESSION["heightFeet"]); ?></h4>
+        <h4><span>Height (inch):</span> <?php echo ($_SESSION["heightInch"]); ?></h4>
+        <h4><span>Body Fat Percentage:</span> <?php echo ($_SESSION["bodyFat"]); ?></h4>
+        <h4><span>Goal Weight:</span> <?php echo ($_SESSION["gWeight"]); ?>kg</h4>
+        <h4><span>Activity Level:</span> <?php echo ($_SESSION["activityLevel"]); ?></h4>
+        </div>
     </div>
-    <h4>--------------------------------</h4>
+
     <!-- <input type="submit" class="button" name="insert" value="insert"/> -->
+    <h2>Add Weight</h2>
     <form method="post" action="welcome.php" style="padding: 20px 0px;">
-        <input class="weight" type="number" name="weight" placeholder="Enter new weight">
-        <input class="addW" type="submit" name="submit" value="Add Weight">
-    </form>
-    <?php
-      if(isset($_POST["weight"])){
-        $tt = $_POST["weight"];
-        $id = $_SESSION["id"];
+   		<input class="weight" type="number" name="weight" placeholder="Enter New Weight">
+   		<input class="addW" type="submit" name="submit" value="Add Weight">
+	</form>
 
-       
-    $sql = "INSERT INTO userWeight (userID,weight) VALUES ($id, $tt)";
-    if ($link->query($sql) === TRUE) {
-        echo "New record created successfully";
-        $_SESSION["cWeight"] = $tt;
-        $sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id";
-        
-        if ($link->query($sql2) === TRUE) {
-            echo "Record updated successfully";
-            header("Refresh:0");
-        } else {
-            echo "Error updating record: " . $link->error;
-        }
-     
-    } else {
-        echo "Error: " . $sql . "<br>" . $link->error;
-    }
+	<?php
+	$id = $_SESSION["id"];
 
-    $link->close();
-    
-    } 
+	//gets weight entries for only TODAY - good for the add food function 
+	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id AND DATE(`timee`) = CURDATE()";
+	$result = $link->query($sql);
+
+	if ($result->num_rows > 0) {
+	    // output data of each row
+	    echo "<p style=\"font-weight: bold;\">Your weight history for today only:</p>";
+	    while($row = $result->fetch_assoc()) {
+	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
+	    }
+	} else {
+	    echo "<p>You have no weight history for today.</p>";
+	}
 
 
-    ?>
+	//gets weight entries of all time
+	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
+	$result = $link->query($sql);
 
-    <?php
-    $id = $_SESSION["id"];
+	if ($result->num_rows > 0) {
+	    // output data of each row
+	    echo "<br>";
+	    echo "<p style=\"font-weight: bold;\">All time weight history:</p>";
+	    while($row = $result->fetch_assoc()) {
+	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
+	    }
+	    echo "<br> Timezones are USA.";
+	} else {
+	    echo "<p>You have no all time weight history.</p>";
+	}
+	
+	?>
 
-    //gets weight entries for only TODAY - good for the add food function 
-    $sql = "SELECT weight, timee FROM userWeight WHERE userID = $id AND DATE(`timee`) = CURDATE()";
-    $result = $link->query($sql);
+	<h2>Change Profile Picture</h2>
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        echo "<p style=\"font-weight: bold;\">Your weight history for today only:</p>";
-        while($row = $result->fetch_assoc()) {
-            
-            echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
-        }
-    } else {
-        echo "<p>You have no weight history for today.</p>";
-    }
+	<?php
+
+	$sql = "SELECT profilePicture FROM users WHERE id = $id";
+	$result = $link->query($sql);
+
+	    while($row = $result->fetch_assoc()){
+	            if($row['profilePicture'] == ""){
+	                    echo "
+						<div class=\"drop\"> 
+						<div class=\"profileImageContainer\">
+						<div class=\"profileImage\">
+						<p id=\"nameLetter\">You got no profile image!</p>
+						</div>
+						</div>
+						<div id=\"drop-content\" class=\"drop-content\" style=\"display: none;\">
+						<span>Change Picture</span>
+						<span>Remove Picture</span>
+						</div>
+						</div>
+	                    ";
+	            } else {
+						echo "
+						<div class=\"drop\"> 
+						<div class=\"profileImageContainer\">
+						<div class=\"profileImage\">
+						<img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
+						</div>
+						</div>
+						</div>
+	                    ";
+	            }
+	            echo "<br>";
+	    }
+	    	//$link->close();
+	?>
+	<form action="" method="post" enctype="multipart/form-data">
+	<input type="file" name="file">
+	<input class="addP" type="submit" name="submit2" value="Upload">
+	</form>
+
+	<h2>Add Food</h2>
+	<form method="post" action="welcome.php" style="padding: 20px 0px;">
+		<input class="weight" type="text" name="rName" placeholder="name of recipe">
+		<input class="weight" type="text" name="mCat" placeholder="meal category">
+		<input class="weight" type="text" name="cal" placeholder="calories">
+		<input class="weight" type="text" name="car" placeholder="carbs">
+		<input class="weight" type="text" name="pro" placeholder="protine">
+		<input class="weight" type="text" name="fat" placeholder="fat">
+		<input class="addW" type="submit" name="submit" value="Add Food">
+	</form>
+
+	<?php
+
+	$id = $_SESSION["id"];
+
+	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id";
+	$result = $link->query($sql);
+
+	if ($result->num_rows > 0) {
+	    // output data of each row
+	    echo "<p style=\"font-weight: bold;\">Your food history:</p>";
+		echo "<table id=\"foodTable\">";
+		echo "<tr><th>Name:</th><th>Category</th><th>Calories</th><th>Carbs</th><th>Protein</th><th>Fat</th></tr>";
+	    while($row = $result->fetch_assoc()) {
+	        echo "<tr>" . "<td>" . $row["rName"] . "</td><td>" . $row["mCat"] . "</td><td>" . $row["calories"] . "</td><td>" . $row["carbs"] . "</td><td>" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+	    echo "<p>You haven't added any food.</p>";
+	}
+	//SELECT SUM(calories) FROM userFood WHERE userID = 5;
 
 
-    //gets weight entries of all time
-    $sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
-    $result = $link->query($sql);
+	$link->close();
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        echo "<br>";
-        echo "<p style=\"font-weight: bold;\">All time weight history:</p>";
-        while($row = $result->fetch_assoc()) {
-            
-            echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
-        }
-        echo "<br> Timezones are USA.";
-    } else {
-        echo "<p>You have no all time weight history.</p>";
-    }
-    
+	?>
 
-    ?>
-<h4>--------------------------------</h4>
-
-
-                 <?php
-
-                    $sql = "SELECT profilePicture FROM users WHERE id = $id";
-                    $result = $link->query($sql);
-   
-                        while($row = $result->fetch_assoc()){
-                                echo $row['id'];
-                                if($row['profilePicture'] == ""){
-                                        echo "
-
-                                        <div class=\"drop\"> 
-                                        <div class=\"profileImageContainer\">
-                                        <div class=\"profileImage\">
-                                        <p id=\"nameLetter\">You got no profile image!</p>
-                                        </div>
-                                        </div>
-                                        <div id=\"drop-content\" class=\"drop-content\" style=\"display: none;\">
-                                        <span>Change Picture</span>
-                                        <span>Remove Picture</span>
-                                        </div>
-                                        </div>
-
-                                        ";
-                                } else {
-
-                                        echo "
-
-                                        <div class=\"drop\"> 
-                                        <div class=\"profileImageContainer\">
-                                        <div class=\"profileImage\">
-                                        <img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
-                                        </div>
-                                        </div>
-                                        </div>
-
-                                        ";
-                                }
-                                echo "<br>";
-                        }
-                            $link->close();
-                ?>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file">
-                    <input class="addP" type="submit" name="submit2" value="Upload">
-                </form>
-
-    <p style="padding: 50px 0px;" >
+	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
 
-
+</div>
 </body>
 
 </html>
