@@ -20,7 +20,7 @@ if(isset($_POST['submit2'])){
 	}
 }
 
-if(isset($_POST["weight"])){
+if(!empty($_POST["weight"])){
 	$tt = $_POST["weight"];
 	$id = $_SESSION["id"];
 
@@ -43,7 +43,7 @@ if(isset($_POST["weight"])){
 	//$link->close();
 }
 
-if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['pro'], $_POST['fat'])) {
+if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] || $_POST['pro'] || $_POST['fat'])) {
 	$ttn = $_POST["rName"];
 	$ttm = $_POST["mCat"];
 	$ttc = $_POST["cal"];
@@ -62,7 +62,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	}
 
 	//$link->close();
-}  
+} 
 
 ?>
  
@@ -126,7 +126,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 		padding-top: 12px;
 		padding-bottom: 12px;
 		text-align: left;
-		background-color: #4CAF50;
+		background-color: #45aaf2;
 		color: white;
 		padding-left: 10px;
 	}
@@ -135,6 +135,11 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	}
 	.pageCon {
 		padding: 30px;
+	}
+	.foodForm input {
+		display: block;
+		margin: 10px 0px;
+    	width: 300px;
 	}
     </style>
 </head>
@@ -158,7 +163,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
     <!-- <input type="submit" class="button" name="insert" value="insert"/> -->
     <h2>Add Weight</h2>
     <form method="post" action="welcome.php" style="padding: 20px 0px;">
-   		<input class="weight" type="number" name="weight" placeholder="Enter New Weight">
+   		<input class="weight" type="number" name="weight" placeholder="Enter New Weight" required>
    		<input class="addW" type="submit" name="submit" value="Add Weight">
 	</form>
 
@@ -241,14 +246,14 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	</form>
 
 	<h2>Add Food</h2>
-	<form method="post" action="welcome.php" style="padding: 20px 0px;">
-		<input class="weight" type="text" name="rName" placeholder="name of recipe">
-		<input class="weight" type="text" name="mCat" placeholder="meal category">
-		<input class="weight" type="text" name="cal" placeholder="calories">
-		<input class="weight" type="text" name="car" placeholder="carbs">
-		<input class="weight" type="text" name="pro" placeholder="protine">
-		<input class="weight" type="text" name="fat" placeholder="fat">
-		<input class="addW" type="submit" name="submit" value="Add Food">
+	<form method="post" action="welcome.php" class="foodForm" style="padding: 20px 0px;">
+		<input class="weight" type="text" name="rName" placeholder="name of recipe" required>
+		<input class="weight" type="text" name="mCat" placeholder="meal category" required>
+		<input class="weight" type="text" name="cal" placeholder="calories" required>
+		<input class="weight" type="text" name="car" placeholder="carbs" required>
+		<input class="weight" type="text" name="pro" placeholder="protine" required>
+		<input class="weight" type="text" name="fat" placeholder="fat" required>
+		<input class="addW" type="submit" name="submit" value="Add Food" required>
 	</form>
 
 	<?php
@@ -260,7 +265,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 
 	if ($result->num_rows > 0) {
 	    // output data of each row
-	    echo "<p style=\"font-weight: bold;\">Your food history:</p>";
+	    echo "<p style=\"font-weight: bold; padding-bottom: 14px;\">Your food history:</p>";
 		echo "<table id=\"foodTable\">";
 		echo "<tr><th>Name:</th><th>Category</th><th>Calories</th><th>Carbs</th><th>Protein</th><th>Fat</th></tr>";
 	    while($row = $result->fetch_assoc()) {
