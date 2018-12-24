@@ -27,12 +27,12 @@ if(!empty($_POST["weight"])){
 	$sql = "INSERT INTO userWeight (userID,weight) VALUES ($id, $tt)";
 
 	if ($link->query($sql) === TRUE) {
-		echo "New record created successfully";
+		//echo "New record created successfully";
 		$_SESSION["cWeight"] = $tt;
 		$sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id";
 
 		if ($link->query($sql2) === TRUE) {
-			echo "Record updated successfully";
+			//echo "Record updated successfully";
 			header("Refresh:0");
 		} else {
 			echo "Error updating record: " . $link->error;
@@ -55,7 +55,7 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
 	$sqlqw = "INSERT INTO userFood (userID,rName,mCat,calories,carbs,protein,fat) VALUES ($id, '$ttn', '$ttm', $ttc, $ttcr, $ttp, $ttf)";
 
 	if ($link->query($sqlqw) === TRUE) {
-		echo "New record created successfully";
+		//echo "New record created successfully";
 		header("Refresh:0");
 	} else {
 		echo "Error: " . $sqlqw . "<br>" . $link->error;
@@ -203,6 +203,19 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
 	
 	?>
 
+		<?php
+		$id = $_SESSION["id"];
+
+		//gets weight entries for only TODAY - good for the add food function 
+		$sql = "SELECT weight FROM userWeight WHERE userID = $id AND DATE(`timee`) = CURDATE() LIMIT 1";
+		$result = $link->query($sql);
+
+		if ($result->num_rows > 0) {
+		    $row = $result->fetch_assoc();
+		    $oldestWeight = $row["weight"];
+		} 
+		?>
+
 	<h2>Change Profile Picture</h2>
 
 	<?php
@@ -260,12 +273,12 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
 
 	$id = $_SESSION["id"];
 
-	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id";
+	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
 	$result = $link->query($sql);
 
 	if ($result->num_rows > 0) {
 	    // output data of each row
-	    echo "<p style=\"font-weight: bold; padding-bottom: 14px;\">Your food history:</p>";
+	    echo "<p style=\"font-weight: bold; padding-bottom: 14px;\">Your food history for today:</p>";
 		echo "<table id=\"foodTable\">";
 		echo "<tr><th>Name:</th><th>Category</th><th>Calories</th><th>Carbs</th><th>Protein</th><th>Fat</th></tr>";
 	    while($row = $result->fetch_assoc()) {
@@ -275,17 +288,78 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
 	} else {
 	    echo "<p>You haven't added any food.</p>";
 	}
-	//SELECT SUM(calories) FROM userFood WHERE userID = 5;
+
+	if ($result->num_rows > 0) {
+	//Add the total carbs for today for user and display it
+	$sql2 = "SELECT SUM(carbs) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$result2 = $link->query($sql2);
+	$row = mysqli_fetch_assoc($result2); 
+	$sum = $row['total_value'];
+	echo "Total carbs today: " . $sum . "<br>";
+
+	//Add the total protein for today for user and display it
+	$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$result3 = $link->query($sql3);
+	$row1 = mysqli_fetch_assoc($result3); 
+	$sum1 = $row1['total_value'];
+	echo "Total protein today: " . $sum1 . "<br>";
+
+	//Add the total fat for today for user and display it
+	$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$result4 = $link->query($sql4);
+	$row2 = mysqli_fetch_assoc($result4); 
+	$sum2 = $row2['total_value'];
+	echo "Total fats today: " . $sum2 . "<br>";
+
+	//Add the total calories for today for user and display it
+	$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$result5 = $link->query($sql5);
+	$row3 = mysqli_fetch_assoc($result5); 
+	$sum3 = $row3['total_value'];
+	echo "Total calories today: " . $sum3 . "<br>";
+	}
 
 
 	$link->close();
 
 	?>
+	<p id="calories"></p>
 
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
+<script>
+	 var oldestWeight = "<?php echo($oldestWeight); ?>";
+	 console.log(oldestWeight);
 
+	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
+	 console.log(latestWeight);
+
+	 console.log(Math.round(((latestWeight/oldestWeight)-1)*100));
+
+	 var gender = "<?php echo($_SESSION["gender"]); ?>";
+	 var heightFeet = "<?php echo($_SESSION["heightFeet"]); ?>";
+	 var heightInch = "<?php echo($_SESSION["heightInch"]); ?>";
+	 var age = "<?php echo($_SESSION["age"]); ?>";
+	 var weightInPounds = latestWeight*2.205;
+
+	 var totalHeight = (heightFeet/1) + (heightInch/10);
+
+	 var heightInInches = totalHeight*12;
+
+	 if (gender == "Male") {
+	 	console.log("Male");
+	 	var calorieGoal = (66 + ( 6.23 * weightInPounds ) + ( 12.7 * heightInInches ) - ( 6.8 * age ));
+	 	console.log((66 + ( 6.23 * weightInPounds ) + ( 12.7 * heightInInches ) - ( 6.8 * age )));
+	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
+	 } else {
+	 	console.log("Female");
+	 	//formula for female goes here
+	 	var calorieGoal = (655 + ( 4.35 * weightInPounds ) + ( 4.7 * heightInInches ) - ( 4.7 * age ));
+	 	console.log((655 + ( 4.35 * weightInPounds ) + ( 4.7 * heightInInches ) - ( 4.7 * age )));
+	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
+	 }
+</script>
 </div>
 </body>
 
