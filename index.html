@@ -37,7 +37,7 @@
 		}
 		.header {
 			height: 90px;
-			width: 100%:;
+			width: 100%;
 			background: rgba(46,133,173,1);
 			background: -moz-linear-gradient(left, rgba(46,133,173,1) 0%, rgba(34,179,150,1) 100%);
 			background: -webkit-gradient(left top, right top, color-stop(0%, rgba(46,133,173,1)), color-stop(100%, rgba(34,179,150,1)));
@@ -281,62 +281,6 @@
 		.addWater:hover, .addFood:hover, .addWeight:hover {
 			background-color: #F7F7F7;
 		}
-		@media only screen and (max-width: 750px) {
-
-		    .logo img {
-		        width: 86%;
-		    }
-		    .headerInner {
-		    	width: 100%;
-		    }
-			.profileText, .logout, .settings {
-				display: none;
-			}
-			.iconContainer {
-				padding: 0px 4px;
-			}
-			.settings, .notifications, .logout, .menuTrigger {
-				padding: 0px 4px;
-			}
-			.profileImage {
-				margin: 0px 6px;
-			}
-			.menuTrigger {
-				display: inline-block;
-			}
-			.menuTrigger img {
-				width: 90%;
-			}
-			.navSubText {
-				display: none;
-			}
-			.navigation, .navItem {
-				height: 60px;
-			}
-			.navItem {
-				width: 128px;
-			}
-			.navItem:nth-child(1) {
-				margin-left: 10px;
-			}
-			.navMainText {
-				padding-top: 19px;
-			}
-			.addContainer {
-				display: none;
-			}
-			.scrollContainer {
-				float: none;
-			}
-			.percentageContainer {
-				margin-left: 0px !important;
-			}
-		}
-		@media only screen and (max-width: 360px) {
-			.percentageContainer {
-				padding-top: 20px !important;
-			}
-		}
 		.titleCon {
 			padding: 40px 40px 20px 40px;
 		}
@@ -387,40 +331,12 @@
 		    color: #fff;
 		    padding: 8px 15px;
 		}
-		@media only screen and (max-width: 910px) {
-			.addContainer {
-				display: none;
-			}
-			.mobileMenuBall {
-				display: block !important;
-			}
-		}
-		@media only screen and (max-width: 740px) {
-			.line, .date {
-				display: none;
-			}
-			.pageTitle {
-				width: 100%;
-			}
-			.titleCon {
-			    /*padding: 30px;*/
-			    padding: 30px 29px 8px 30px;
-			}
-			.pageTitle p, .pageTitle span {
-			    font-size: 16px;
-			}
-			.drop-content span:after {
-				left: 14% !important;
-			}
-		}
-
 		#grid {
 		    overflow: hidden;
 			padding: 0px 18px;
 			animation-duration: 1.5s;
 			animation-delay: 0.3s;
 		}
-
 		.item {
 			position: relative;
 			/*padding: 15px;*/
@@ -479,53 +395,6 @@
 		}
 		.column:nth-child(3) {
 			width: 40%;
-		}
-
-		@media only screen and (max-width: 767px) {
-		   #grid[data-columns]::before {
-		        content: '1 .column.size-1of1';
-		    }
-		    .column {
-		    	width: 100% !important;
-		    }
-		    .item:nth-child(1) {
-				margin-top: 18px;
-			}
-			#grid {
-				padding: 0px 14px;
-			}
-		}
-
-		@media screen and (min-width: 768px) and (max-width: 991px) {
-		   #grid[data-columns]::before {
-		        content: '2 .column.size-1of2';
-		    }
-		    .column {
-		    	width: 50% !important;
-		    }
-		}
-
-		@media screen and (min-width: 1200px) {
-		   #grid[data-columns]::before {
-		        content: '3 .column.size-1of3';
-		    }
-		}
-/*		@media screen and (max-width: 515px) {
-		   .editButtonContainer {
-		   		padding: 0px 0px 4px 0px !important;
-		   }
-		}*/
-
-		/* ----------- 450 - 650px ----------- */
-		@media screen and (min-width: 766px) and (max-width: 1643px){
-			.ghostContainer {
-		   		display: none !important;
-		   }
-		}
-		@media screen and (min-width: 320px) and (max-width: 514px){
-			.ghostContainer {
-		   		display: none !important;
-		   }
 		}
 		.clearfix::after {
 		  content: "";
@@ -832,6 +701,173 @@
 		.wellListCon, .notWellListCon {
 			padding: 22px 0px 36px 0px;
 		}
+		.glassesContainer {
+			overflow:hidden;
+			text-align: center;
+			padding: 28px 0px 12px 0px;
+		}
+		.gC {
+			display: inline-block; 
+			/*background-color: red; */
+			padding: 0px 28px;
+
+		}
+		.relCon {
+			position: relative;
+		}
+		.relCon p {
+			position: absolute;
+		    top: 34%;
+		    left: 43%;
+		    font-size: 22px;
+		    color: #fff;
+		    font-weight: 600;
+		}
+		.relCon img {
+			padding: 4px;
+		}
+		.glassSText {
+			font-size: 14px;
+			font-weight: 500;
+			color: #999999;
+
+		}
+		@media only screen and (max-width: 750px) {
+
+		    .logo img {
+		        width: 86%;
+		    }
+		    .headerInner {
+		    	width: 100%;
+		    }
+			.profileText, .logout, .settings {
+				display: none;
+			}
+			.iconContainer {
+				padding: 0px 4px;
+			}
+			.settings, .notifications, .logout, .menuTrigger {
+				padding: 0px 4px;
+			}
+			.profileImage {
+				margin: 0px 6px;
+			}
+			.menuTrigger {
+				display: inline-block;
+			}
+			.menuTrigger img {
+				width: 90%;
+			}
+			.navSubText {
+				display: none;
+			}
+			.navigation, .navItem {
+				height: 60px;
+			}
+			.navItem {
+				width: 128px;
+			}
+			.navItem:nth-child(1) {
+				margin-left: 10px;
+			}
+			.navMainText {
+				padding-top: 19px;
+			}
+			.addContainer {
+				display: none;
+			}
+			.scrollContainer {
+				float: none;
+			}
+			.percentageContainer {
+				margin-left: 0px !important;
+			}
+		}
+		@media only screen and (max-width: 360px) {
+			.percentageContainer {
+				padding-top: 20px !important;
+			}
+		}
+				@media only screen and (max-width: 767px) {
+		   #grid[data-columns]::before {
+		        content: '1 .column.size-1of1';
+		    }
+		    .column {
+		    	width: 100% !important;
+		    }
+		    .item:nth-child(1) {
+				margin-top: 18px;
+			}
+			#grid {
+				padding: 0px 14px;
+			}
+		}
+
+		@media screen and (min-width: 768px) and (max-width: 991px) {
+		   #grid[data-columns]::before {
+		        content: '2 .column.size-1of2';
+		    }
+		    .column {
+		    	width: 50% !important;
+		    }
+		}
+
+		@media screen and (min-width: 1200px) {
+		   #grid[data-columns]::before {
+		        content: '3 .column.size-1of3';
+		    }
+		}
+	  /*@media screen and (max-width: 515px) {
+		   .editButtonContainer {
+		   		padding: 0px 0px 4px 0px !important;
+		   }
+		}*/
+		/* ----------- 450 - 650px ----------- */
+		@media screen and (min-width: 766px) and (max-width: 1643px){
+			.ghostContainer {
+		   		display: none !important;
+		   }
+		}
+		@media screen and (min-width: 320px) and (max-width: 514px){
+			.ghostContainer {
+		   		display: none !important;
+		   }
+		}
+		@media only screen and (max-width: 910px) {
+			.addContainer {
+				display: none;
+			}
+			.mobileMenuBall {
+				display: block !important;
+			}
+		}
+		@media only screen and (max-width: 740px) {
+			.line, .date {
+				display: none;
+			}
+			.pageTitle {
+				width: 100%;
+			}
+			.titleCon {
+			    /*padding: 30px;*/
+			    padding: 30px 29px 8px 30px;
+			}
+			.pageTitle p, .pageTitle span {
+			    font-size: 16px;
+			}
+			.drop-content span:after {
+				left: 14% !important;
+			}
+		}
+		@media only screen and (max-width: 450px) {
+			.gC {
+				padding: 10px 10px;
+			}
+			.glassesContainer {
+			    padding: 18px 0px 12px 0px;
+			}
+		}
+
 	</style>
 </head>
 
@@ -991,6 +1027,25 @@
             <div class="item waterCon animated bounceIn"> 
 				<p class="itemTitle">Water Intake Today</p>
 				<p class="itemDescription">You have <span>[ ]</span> met your target for today.</p>
+				<div class="glassesContainer">
+					<div class="gC">
+						<p class="glassSText">You've drank</p>
+						<div class="relCon">
+						<img src="images/orangeGlass.png" alt="">
+						<p class="numberOfGlasses" id="numberOfGlasses">0</p>
+						</div>
+						<p class="glassSText">glasses today</p>
+					</div>
+					<div class="gC">
+						<p class="glassSText">You've drank</p>
+						<div class="relCon">
+						<img src="images/greenGlass.png" alt="">
+						<p class="numberOfGlasses2" id="numberOfGlasses2">5</p>
+						</div>
+						<p class="glassSText">glasses in a day</p>
+					</div>
+					
+				</div>
             </div>   
 
             <div class="item lwSummaryCon animated bounceIn"> 
@@ -1144,10 +1199,6 @@ $(document).ready(function() {
 
 });
 
-
-	swal.close();
-
-
 function addWater() {
 	var water = prompt("Please enter the number of glasses:");
 }
@@ -1179,6 +1230,21 @@ swal({
     }
 });
 }
+
+
+$(document).ready(function() {
+var str = document.getElementById("numberOfGlasses").innerHTML;
+var strLength = str.length;
+if(strLength > 1) {
+	document.getElementById("numberOfGlasses").style.left = "36%";
+}
+
+var str2 = document.getElementById("numberOfGlasses2").innerHTML;
+var strLength2 = str2.length;
+if(strLength2 > 1) {
+	document.getElementById("numberOfGlasses2").style.left = "36%";
+}
+});
 </script>
 <script src="js/salvattore.min.js"></script>
 </html>
