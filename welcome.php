@@ -324,6 +324,9 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 
 	?>
 	<p id="calories"></p>
+<!-- 	<p id="caloriesfromfats"></p>
+	<p id="caloriesfromcarbs"></p>
+	<p id="caloriesfromprotien"></p> -->
 
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
@@ -333,7 +336,6 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 console.log(oldestWeight);
 
 	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
-
 	 console.log(latestWeight);
 
 	 console.log(Math.round(((latestWeight/oldestWeight)-1)*100));
@@ -344,24 +346,22 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 var ageCalc = "<?php echo($_SESSION["birthYear"]); ?>";
 	 var currentYear = (new Date()).getFullYear();
 	 var age = currentYear - ageCalc;
-	 var weightInPounds = latestWeight*2.205;
-
+	 //var weightInPounds = latestWeight*2.205;
 	 var totalHeight = (heightFeet/1) + (heightInch/10);
-
 	 var heightInInches = totalHeight*12;
+	 var heightInCM = heightInInches*2.54;
 
-	 //There is something dodgy about this fomula and needs work
-	 //Currently using Harris-Benedict formula
+	 //Currently using Mifflin St Jeor Equation
 	 if (gender == "Male") {
 	 	console.log("Male");
-	 	var calorieGoal = (66 + ( 6.23 * weightInPounds ) + ( 12.7 * heightInInches ) - ( 6.8 * age ));
-	 	console.log((66 + ( 6.23 * weightInPounds ) + ( 12.7 * heightInInches ) - ( 6.8 * age )));
+	 	var calorieGoal = (10 * (latestWeight)) + (6.25 * (heightInCM)) - (5 * age) + 5;
+	 	console.log(10 * (latestWeight)) + (6.25 * (heightInCM)) - (5 * age) + 5;
 	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
+
 	 } else {
 	 	console.log("Female");
-	 	//formula for female goes here
-	 	var calorieGoal = (655 + ( 4.35 * weightInPounds ) + ( 4.7 * heightInInches ) - ( 4.7 * age ));
-	 	console.log((655 + ( 4.35 * weightInPounds ) + ( 4.7 * heightInInches ) - ( 4.7 * age )));
+	 	var calorieGoal = 10 * (latestWeight) + 6.25 * (heightInCM) - 5 * age - 161;
+	 	console.log(10 * (latestWeight) + 6.25 * (heightInCM) - 5 * age - 161);
 	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
 	 }
 </script>

@@ -235,7 +235,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		    font-size: 15px;
 		}
 		.signInText {
-			padding: 28px 16px;
+			padding: 32px 16px;
 		}
 		.imageCon img {
 			width: 150px;
