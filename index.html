@@ -870,6 +870,31 @@
 		g[class$='creditgroup'] {
 			display:none !important;
 		}
+		.waterASButton {
+			width: 40px; 
+			height: 40px; 
+			background-color: #2ECC71; 
+			border-radius: 100px; 
+			font-size: 28px; 
+			color: #fff; 
+			font-weight: 400;    
+			box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		    -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05); 
+		    outline: 0; 
+		    cursor: pointer;
+		}
+		.waterSub {
+			background-color: #F25661; 
+		}
+		.addButtonContainer {
+			text-align: right;
+    		margin: 15px;
+		}
+		.buttonMar {
+			padding: 0px 5px;
+    		display: inline-block;
+		}
 	</style>
 </head>
 
@@ -1046,7 +1071,14 @@
 						</div>
 						<p class="glassSText">glasses in a day</p>
 					</div>
-					
+				</div>
+				<div class="addButtonContainer">
+					<div class="buttonMar">
+						<input type="submit" value="+" class="waterASButton waterAdd tooltip" title="Add a glass of water">
+					</div>
+					<div class="buttonMar">
+						<input type="submit" value="-" class="waterASButton waterSub tooltip" title="Remove a glass of water">
+					</div>
 				</div>
             </div>   
 
@@ -1275,7 +1307,8 @@ if(strLength2 > 1) {
 			"divLineColor": "#6699cc",
 			"numVDivLines": "4",
 			"plotHighlightEffect": "fadeout|color=#000, alpha=15",
-			"legendIconScale": "1.5"
+			"legendIconScale": "1.5",
+			"plotToolText": "Day: $label <br> $seriesname: $dataValue <br>"
         },
         "categories": [{
             "category": [{
