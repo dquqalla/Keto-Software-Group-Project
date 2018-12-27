@@ -20,7 +20,7 @@ if(isset($_POST['submit2'])){
 	}
 }
 
-if(!empty($_POST["weight"])){
+if(isset($_POST["weight"])){
 	$tt = $_POST["weight"];
 	$id = $_SESSION["id"];
 
@@ -43,7 +43,7 @@ if(!empty($_POST["weight"])){
 	//$link->close();
 }
 
-if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] || $_POST['pro'] || $_POST['fat'])) {
+if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['pro'], $_POST['fat'])) {
 	$ttn = $_POST["rName"];
 	$ttm = $_POST["mCat"];
 	$ttc = $_POST["cal"];
@@ -207,7 +207,7 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
 		$id = $_SESSION["id"];
 
 		//gets weight entries for only TODAY - good for the add food function 
-		$sql = "SELECT weight FROM userWeight WHERE userID = $id AND DATE(`timee`) = CURDATE() LIMIT 1";
+		$sql = "SELECT weight FROM userWeight WHERE userID = $id LIMIT 1";
 		$result = $link->query($sql);
 
 		if ($result->num_rows > 0) {
@@ -329,10 +329,11 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
 <script>
-	 var oldestWeight = "<?php echo($oldestWeight); ?>";
+	 var oldestWeight = "<?php if(isset($oldestWeight)) {echo($oldestWeight);} ?>";
 	 console.log(oldestWeight);
 
 	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
+
 	 console.log(latestWeight);
 
 	 console.log(Math.round(((latestWeight/oldestWeight)-1)*100));
@@ -340,13 +341,17 @@ if(!empty($_POST['rName'] || $_POST['mCat'] || $_POST['cal'] || $_POST['car'] ||
 	 var gender = "<?php echo($_SESSION["gender"]); ?>";
 	 var heightFeet = "<?php echo($_SESSION["heightFeet"]); ?>";
 	 var heightInch = "<?php echo($_SESSION["heightInch"]); ?>";
-	 var age = "<?php echo($_SESSION["age"]); ?>";
+	 var ageCalc = "<?php echo($_SESSION["birthYear"]); ?>";
+	 var currentYear = (new Date()).getFullYear();
+	 var age = currentYear - ageCalc;
 	 var weightInPounds = latestWeight*2.205;
 
 	 var totalHeight = (heightFeet/1) + (heightInch/10);
 
 	 var heightInInches = totalHeight*12;
 
+	 //There is something dodgy about this fomula and needs work
+	 //Currently using Harris-Benedict formula
 	 if (gender == "Male") {
 	 	console.log("Male");
 	 	var calorieGoal = (66 + ( 6.23 * weightInPounds ) + ( 12.7 * heightInInches ) - ( 6.8 * age ));
