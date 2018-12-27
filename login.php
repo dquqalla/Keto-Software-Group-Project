@@ -139,6 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
 		-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
 		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		border-radius: 7px;
 	}
 	.imageCon {
 		text-align: center;
@@ -213,15 +214,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	.errorMessages {
 		padding-top: 22px;
 	}
+	.empy {
+		height: 80px;
+	}
 	@media only screen and (max-width: 440px) {
 		.mainContainerL {
 			width: 90%;
 		}
 		.loginFormCon form input {
 			width: 90%;
+			padding: 14px 20px;
 		}
 		.oCon {
 			width: 100%;
+		}
+		.imageCon {
+			padding-top: 45px;
+		}
+		.signInText p {
+		    font-size: 15px;
+		}
+		.signInText {
+			padding: 28px 16px;
+		}
+		.imageCon img {
+			width: 150px;
 		}
 	}
 </style>
@@ -245,7 +262,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         				<span class="help-block"><?php echo $password_err; ?></span>
 					</div>
 					<div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-						<input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Email" style="margin-top: 30px;">
+						<input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Email" style="margin-top: 10px;">
 					</div>    
 					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
 						<input type="password" name="password" class="form-control" placeholder="Password">
@@ -257,6 +274,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</form>
 			</div>
 		</div>
+
+		<div class="empy"></div>
 	</div>
 
 </div>
