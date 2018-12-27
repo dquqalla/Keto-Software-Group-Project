@@ -12,11 +12,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/js/jquery.circliful.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.css">
-		<script href="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
-
+	<script href="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
 
 	<title>Dashboard</title>
 	<style>
@@ -867,7 +867,9 @@
 			    padding: 18px 0px 12px 0px;
 			}
 		}
-
+		g[class$='creditgroup'] {
+			display:none !important;
+		}
 	</style>
 </head>
 
@@ -1051,8 +1053,11 @@
             <div class="item lwSummaryCon animated bounceIn"> 
 				<p class="itemTitle">Last Week Summary</p>
 				<p class="itemDescription">Below is a summary of your carbohydrate vs fat intake for the past week.</p>
-				<div style="height: 310px; display: flex; justify-content: center; align-items: center;">
+				<!-- <div style="height: 310px; display: flex; justify-content: center; align-items: center;">
 					<p style="font-size: 22px; font-weight: 700; text-align: center; color: #dcdcdc;">Sorry there isn't enough data yet.</p>
+				</div> -->
+				<div style="width:100%;">
+					<div id="chart-container">FusionCharts XT will load here!</div>
 				</div>
             </div> 
 
@@ -1244,6 +1249,78 @@ var strLength2 = str2.length;
 if(strLength2 > 1) {
 	document.getElementById("numberOfGlasses2").style.left = "36%";
 }
+});
+</script>
+<script type="text/javascript">
+    FusionCharts.ready(function(){
+    var fusioncharts = new FusionCharts({
+    type: 'mscolumn2d',
+    renderAt: 'chart-container',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "caption": " ",
+            "xAxisname": "Date",
+            "yAxisName": "Grams (g)",
+            "plotFillAlpha": "80",
+            "divLineIsDashed": "1",
+            "divLineDashLen": "1",
+            "divLineGapLen": "1",
+             "palettecolors":"F25661,F2C158",
+			"adjustDiv": "0",
+			"numDivLines": "5",
+			"divLineColor": "#6699cc",
+			"numVDivLines": "4",
+			"plotHighlightEffect": "fadeout|color=#000, alpha=15",
+			"legendIconScale": "1.5"
+        },
+        "categories": [{
+            "category": [{
+                "label": "Mon"
+            }, {
+                "label": "Tue"
+            }, {
+                "label": "Wed"
+            }, {
+            	"label": "Thur"
+            }, {
+                "label": "Fri"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Fat",
+            "data": [{
+                "value": "150"
+            }, {
+                "value": "143"
+            }, {
+            	"value": "111"
+            }, {
+                "value": "129"
+            }, {
+                "value": "119"
+
+            }]
+        }, {
+            "seriesname": "Carbs",
+            "data": [{
+                "value": "20"
+            }, {
+            	"value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "18"
+            }, {
+                "value": "25"
+            }]
+        }],
+    }
+});
+    fusioncharts.render();
 });
 </script>
 <script src="js/salvattore.min.js"></script>
