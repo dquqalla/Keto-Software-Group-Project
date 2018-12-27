@@ -99,39 +99,168 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <style type="text/css">
 
-    </style>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noarchive">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>Login</title>
+	<style>
+	/*DO NOT PUT THIS CSS WITH THE DASHBOARD CSS OR YOU WILL GET COLLISIONS AND MESS UP THE DASHBOARD*/
+	::placeholder {
+	  color: #cccccc;
+	  opacity: 1; /* Firefox */
+	}
+	:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	 color: #cccccc;
+	}
+	::-ms-input-placeholder { /* Microsoft Edge */
+	 color: #cccccc;
+	}
+	html, body {
+		height: 100%;
+		width: 100%;
+		margin: 0;
+	}
+	body {
+		display: flex;
+		background-image: url("images/bg.png");
+	}
+	.mainContainerL {
+		margin: auto;
+	}
+	.oCon {
+		width: 428px;
+		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+	}
+	.imageCon {
+		text-align: center;
+		padding-bottom: 34px;
+	}
+	.loginFormCon form input {
+		padding: 16px 20px;
+		width: 350px;
+		margin: 9px 0px;
+	}
+	.signInText {
+		background-color: #26A79C;
+		text-align: center;
+		padding: 34px;
+		-webkit-border-top-left-radius: 7px;
+		-webkit-border-top-right-radius: 7px;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-topright: 7px;
+		border-top-left-radius: 7px;
+		border-top-right-radius: 7px;
+	}
+	.signInText p {
+		font-size: 17px;
+		font-weight: 600;
+		text-transform: uppercase;
+		color: #fff;
+		letter-spacing: 2px;
+	}
+	.loginFormCon {
+		text-align: center;
+		background-color: #f3f3f3;
+		-webkit-border-bottom-right-radius: 7px;
+		-webkit-border-bottom-left-radius: 7px;
+		-moz-border-radius-bottomright: 7px;
+		-moz-border-radius-bottomleft: 7px;
+		border-bottom-right-radius: 7px;
+		border-bottom-left-radius: 7px;
+	}
+	.loginFormCon form p {
+		font-size: 15px;
+		color: #999;
+		font-weight: 400;
+		padding: 20px 0px 60px 0px;
+	}
+	.loginFormCon form span {
+		font-size: 15px;
+		color: #999;
+		font-weight: 400;
+		text-decoration: underline;
+	}
+	.loginbtn {
+		background-color: #86C559;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	.loginFormCon form input {
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		border: 2px solid #eee;
+	}
+	.help-block {
+		font-size: 15px !important;
+		color: #ee5253 !important;
+		font-weight: 600 !important;
+		text-decoration: underline !important;
+	}
+	.errorMessages {
+		padding-top: 22px;
+	}
+	@media only screen and (max-width: 440px) {
+		.mainContainerL {
+			width: 90%;
+		}
+		.loginFormCon form input {
+			width: 90%;
+		}
+		.oCon {
+			width: 100%;
+		}
+	}
+</style>
 </head>
+
 <body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        	<div>
-        		<span class="help-block"><?php echo $email_err; ?></span>
-        		<span class="help-block"><?php echo $password_err; ?></span>
-        	</div>
-            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-        </form>
-    </div>    
+<div id="mainContainerL" class="mainContainerL">
+	<div class="con">
+		<div class="imageCon">
+			<img src="images/logoPlaceholder.png" alt="">
+		</div>
+
+		<div class="oCon">
+			<div class="signInText">
+				<p>Sign into Ketogenetics</p>
+			</div>
+			<div class="loginFormCon">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+					<div class="errorMessages">
+						<span class="help-block"><?php echo $email_err; ?></span>
+        				<span class="help-block"><?php echo $password_err; ?></span>
+					</div>
+					<div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+						<input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Email" style="margin-top: 30px;">
+					</div>    
+					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+						<input type="password" name="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<input type="submit" class="loginbtn" value="Login">
+					</div>
+					<p>Don't have an account? <span><a href="register.php" style="color: #0abde3">Sign Up</a></span></p>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+
 </body>
+
 </html>
