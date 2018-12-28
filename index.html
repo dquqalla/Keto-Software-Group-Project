@@ -497,6 +497,8 @@
 		.macrosCon {
 		  animation-delay: 900ms;
 		  animation-duration: 1.2s;
+		  padding: 0px !important;
+		  overflow: hidden;
 		}
 		.tipOfTheDayCon {
 		  animation-delay: 1100ms;
@@ -870,6 +872,14 @@
 		g[class$='creditgroup'] {
 			display:none !important;
 		}
+		.raphael-group-161-plots text tspan {
+			font-size: 16px !important;
+			font-weight: 300 !important;
+		}
+		.raphael-group-161-plots text tspan:nth-child(2) {
+			font-size: 22px !important;
+			font-weight: 600 !important;
+		}
 		.waterASButton {
 			width: 40px; 
 			height: 40px; 
@@ -895,6 +905,15 @@
 			padding: 0px 5px;
     		display: inline-block;
 		}
+		.pieChartContainer {
+			width: 100%;
+		}
+    	@media only screen and (max-width: 360px) {
+    		.pieChartContainer {
+    			width: 112%;
+   				margin-left: -6%;
+   			}
+    	}
 	</style>
 </head>
 
@@ -1117,10 +1136,16 @@
 				</div>
             </div>  
 
-              <div class="item macrosCon animated bounceIn"> 
-				<p class="itemTitle">Macros</p>
-				<div style="height: 310px; display: flex; justify-content: center; align-items: center;">
+              <div class="item macrosCon animated bounceIn">
+              	<div style="padding: 32px 37px 0px 37px;">
+					<p class="itemTitle">Macros</p>
+					<p class="itemDescription">Below is a pie chart of your macros for today.</p>
+				</div>
+				<!-- <div style="height: 310px; display: flex; justify-content: center; align-items: center;">
 					<p style="font-size: 22px; font-weight: 700; text-align: center; color: #dcdcdc;">Sorry there isn't enough data yet.</p>
+				</div> -->
+				<div class="pieChartContainer">
+					<div id="chart-container2">FusionCharts XT will load here!</div>
 				</div>
             </div>  
 
@@ -1285,7 +1310,7 @@ if(strLength2 > 1) {
 </script>
 <script type="text/javascript">
     FusionCharts.ready(function(){
-    var fusioncharts = new FusionCharts({
+    var fusioncharts1 = new FusionCharts({
     type: 'mscolumn2d',
     renderAt: 'chart-container',
     width: '100%',
@@ -1353,7 +1378,54 @@ if(strLength2 > 1) {
         }],
     }
 });
-    fusioncharts.render();
+    fusioncharts1.render();
+});
+
+FusionCharts.ready(function() {
+  var fusioncharts2 = new FusionCharts({
+    type: 'doughnut2d',
+    renderAt: 'chart-container2',
+    width: '100%',
+    height: '340',
+    dataFormat: 'json',
+    dataSource: {
+      "chart": {
+        "startingAngle": "310",
+        "showLegend": "1",
+        "defaultCenterLabel": "Total<br>2200<br>Calories",
+        "centerLabel": "$label: $value(g)",
+        "centerLabelBold": "0",
+        "centerLabelColor": "#AAAAAA",
+        "centerLabelFontSize": "18",
+        "showTooltip": "0",
+        "decimals": "0",
+        "enableSmartLabels": "0",
+        "showLabels": "0",
+        "showValues": "0",
+        "doughnutRadius": "80",
+        "plotFillAlpha": "90",
+        "showLegend": "0",
+        "theme": "fusion"
+      },
+      "data": [{
+          "label": "Fat",
+          "value": "70",
+          "color": "#34495E"
+        },
+        {
+          "label": "Carbs",
+          "value": "10",
+          "color": "#F2C158"
+        },
+        {
+          "label": "Protein",
+          "value": "50",
+          "color": "#F25661"
+        }
+      ]
+    }
+  });
+  fusioncharts2.render();
 });
 </script>
 <script src="js/salvattore.min.js"></script>
