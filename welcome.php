@@ -170,23 +170,6 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	</form>
 
 	<?php
-	$id = $_SESSION["id"];
-
-	//gets weight entries for only TODAY - good for the add food function 
-	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id AND DATE(`timee`) = CURDATE()";
-	$result = $link->query($sql);
-
-	if ($result->num_rows > 0) {
-	    // output data of each row
-	    echo "<p style=\"font-weight: bold;\">Your weight history for today only:</p>";
-	    while($row = $result->fetch_assoc()) {
-	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
-	    }
-	} else {
-	    echo "<p>You have no weight history for today.</p>";
-	}
-
-
 	//gets weight entries of all time
 	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
 	$result = $link->query($sql);
@@ -205,18 +188,19 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	
 	?>
 
-		<?php
-		$id = $_SESSION["id"];
+	<?php
+	//This section of code gets the start weight for the user
+	$id = $_SESSION["id"];
 
-		//gets weight entries for only TODAY - good for the add food function 
-		$sql = "SELECT weight FROM userWeight WHERE userID = $id LIMIT 1";
-		$result = $link->query($sql);
+	//gets weight entries for only TODAY - good for the add food function 
+	$sql = "SELECT weight FROM userWeight WHERE userID = $id LIMIT 1";
+	$result = $link->query($sql);
 
-		if ($result->num_rows > 0) {
-		    $row = $result->fetch_assoc();
-		    $oldestWeight = $row["weight"];
-		} 
-		?>
+	if ($result->num_rows > 0) {
+	    $row = $result->fetch_assoc();
+	    $oldestWeight = $row["weight"];
+	} 
+	?>
 
 	<h2>Change Profile Picture</h2>
 
@@ -335,7 +319,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 		$link->close();
 	?>
 	
-	<div style="width:100%;">
+	<div style="width:400px;">
 		<div id="chart-container">FusionCharts XT will load here!</div>
 	</div>
 
