@@ -66,8 +66,6 @@
 	$fatFrom2DaysAgoRow = mysqli_fetch_assoc($fatFrom2DaysAgoR); 
 	$fatFrom2DaysAgoTotal = $fatFrom2DaysAgoRow['total_fat'];
 
-	echo $fatFrom2DaysAgoTotal;
-
 	if (!($fatFrom2DaysAgoTotal > 0)) { 
 		$fatFrom2DaysAgoTotal = 0;
 	}
