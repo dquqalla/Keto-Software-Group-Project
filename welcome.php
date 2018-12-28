@@ -264,10 +264,10 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	<form method="post" action="welcome.php" class="foodForm" style="padding: 20px 0px;">
 		<input class="weight" type="text" name="rName" placeholder="name of recipe" required>
 		<input class="weight" type="text" name="mCat" placeholder="meal category" required>
-		<input class="weight" type="text" name="cal" placeholder="calories" required>
-		<input class="weight" type="text" name="car" placeholder="carbs" required>
-		<input class="weight" type="text" name="pro" placeholder="protine" required>
-		<input class="weight" type="text" name="fat" placeholder="fat" required>
+		<input class="weight" type="number" name="cal" placeholder="calories" required>
+		<input class="weight" type="number" name="car" placeholder="carbs" required>
+		<input class="weight" type="number" name="pro" placeholder="protine" required>
+		<input class="weight" type="number" name="fat" placeholder="fat" required>
 		<input class="addW" type="submit" name="submit" value="Add Food" required>
 	</form>
 
