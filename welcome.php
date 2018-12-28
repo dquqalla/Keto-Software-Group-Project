@@ -170,6 +170,8 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	</form>
 
 	<?php
+	$id = $_SESSION["id"];
+	
 	//gets weight entries of all time
 	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
 	$result = $link->query($sql);
