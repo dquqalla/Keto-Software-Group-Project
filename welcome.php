@@ -74,6 +74,8 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
     <style type="text/css">
 	.drop {
 	    display: inline-block;position: relative;
@@ -320,13 +322,22 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	}
 
 
-	$link->close();
+	//$link->close();
 
 	?>
 	<p id="calories"></p>
 <!-- 	<p id="caloriesfromfats"></p>
 	<p id="caloriesfromcarbs"></p>
 	<p id="caloriesfromprotien"></p> -->
+	<?php include 'includes/graphQueries.php';?>
+
+	<?php
+		$link->close();
+	?>
+	
+	<div style="width:100%;">
+		<div id="chart-container">FusionCharts XT will load here!</div>
+	</div>
 
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
@@ -364,6 +375,94 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 	console.log(10 * (latestWeight) + 6.25 * (heightInCM) - 5 * age - 161);
 	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
 	 }
+</script>
+
+<script>
+    FusionCharts.ready(function(){
+    var fusioncharts = new FusionCharts({
+    type: 'mscolumn2d',
+    renderAt: 'chart-container',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "caption": " ",
+            "xAxisname": "Date",
+            "yAxisName": "Grams (g)",
+            "plotFillAlpha": "80",
+            "divLineIsDashed": "1",
+            "divLineDashLen": "1",
+            "divLineGapLen": "1",
+             "palettecolors":"F25661,F2C158",
+			"adjustDiv": "0",
+			"numDivLines": "5",
+			"divLineColor": "#6699cc",
+			"numVDivLines": "4",
+			"plotHighlightEffect": "fadeout|color=#000, alpha=15",
+			"legendIconScale": "1.5",
+			"plotToolText": "Day: $label <br> $seriesname: $dataValue <br>"
+        },
+        "categories": [{
+            "category": [{
+            	"label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-7)); echo $yesterday; ?>"
+            }, {
+            	"label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-6)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-5)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-4)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-3)); echo $yesterday; ?>"
+            }, {
+            	"label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-2)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-1)); echo $yesterday; ?>"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Fat",
+            "data": [{
+            	"value": "<?php if(isset($fatFrom7DaysAgoTotal)) {echo($fatFrom7DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($fatFrom6DaysAgoTotal)) {echo($fatFrom6DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom5DaysAgoTotal)) {echo($fatFrom5DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom4DaysAgoTotal)) {echo($fatFrom4DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($fatFrom3DaysAgoTotal)) {echo($fatFrom3DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom2DaysAgoTotal)) {echo($fatFrom2DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom1DaysAgoTotal)) {echo($fatFrom1DaysAgoTotal);} ?>"
+
+            }]
+        }, {
+            "seriesname": "Carbs",
+            "data": [{
+            	"value": "<?php if(isset($carbsFrom7DaysAgoTotal)) {echo($carbsFrom7DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($carbsFrom6DaysAgoTotal)) {echo($carbsFrom6DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom5DaysAgoTotal)) {echo($carbsFrom5DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($carbsFrom4DaysAgoTotal)) {echo($carbsFrom4DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom3DaysAgoTotal)) {echo($carbsFrom3DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom2DaysAgoTotal)) {echo($carbsFrom2DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom1DaysAgoTotal)) {echo($carbsFrom1DaysAgoTotal);} ?>"
+            }]
+        }],
+    }
+});
+    fusioncharts.render();
+});
+
+
 </script>
 </div>
 </body>
