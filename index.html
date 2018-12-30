@@ -914,6 +914,73 @@
    				margin-left: -6%;
    			}
     	}
+    	.foodInputs {
+    		margin: 6px 0px;
+    		padding: 15px 20px 15px 42px;
+    		border: 2px solid #ddd;
+    		border-radius: 5px;
+    		width: 90%;
+    		font-size: 16px;
+    		color: #777;
+    		font-weight: 500;
+    		outline: 0;
+    	}
+    	.weightInputs {
+    		padding: 15px 20px 15px 20px !important;
+    	}
+    	.foodFloatInputs {
+    		width: 44%;
+    		display: inline-block;
+    		margin: 6px 5px;
+    	}
+    	.foodInputBreak {
+    		font-size: 22px;
+		    font-style: italic;
+		    font-weight: 400;
+		    text-align: center;
+    	}
+    	.addBut {
+    		padding: 11px 40px;
+    		background-color:#2ECC71;
+    		color: #fff;
+    		font-size: 15px;
+    		border-radius: 4px;
+    		cursor:pointer;
+    	}
+    	.cancelBut {
+    		padding: 11px 40px;
+    		background-color: #bbbbbb;
+    		color: #fff;
+    		font-size: 15px;
+    		border-radius: 4px;
+    		cursor:pointer;
+    	}
+    	.modalHeader {
+    		font-size: 17px;
+    		font-weight:400;
+    		color:#999999;
+    	}
+    	.addFoodForm {
+    		padding: 20px 0px;
+    	}
+    	.rName, .mCat {
+    		background: #fff url(images/icons/infoIconInputBox.png) no-repeat 20px 17px;
+    	}
+		.caloriesInput {
+			background: #fff url(images/icons/caloriesIconInputBox.png) no-repeat 14px 17px;
+		}
+		.carbsInput {
+			background: #fff url(images/icons/carbsIconInputBox.png) no-repeat 14px 17px;
+		}
+		.fatsInput {
+			background: #fff url(images/icons/fatsIconInputBox.png) no-repeat 14px 16px;
+		}
+		.proteinInput {
+			background: #fff url(images/icons/proteinIconInputBox.png) no-repeat 14px 20px;
+		}
+		.foodSearchInput {
+			background: #fff url(images/icons/foodSearchInput.png) no-repeat 14px 15px;
+		}
 	</style>
 </head>
 
@@ -944,7 +1011,7 @@
 	<div class="header">
 		<div class="headInner clearfix">
 			<div class="logo">
-				<a href="#"><img src="images/logoHolder.png" alt=""></a>
+				<a href="index.html"><img src="images/logoHolder.png" alt=""></a>
 			</div>
 
 			<div class="right">
@@ -1014,7 +1081,7 @@
 				<div class="addWaterI"></div>
 				<p>Add Water</p>
 			</div>
-			<div class="addButtons addFood tooltip" title="Quick Add">
+			<div class="addButtons addFood tooltip" title="Quick Add" onclick="addFood()">
 				<div class="addFoodI">
 				</div>
 				<p>Add Food</p>
@@ -1278,13 +1345,45 @@ swal({
     title: "Add Weight",
     type: 'info',
     inputOptions: options,
-    html: '<p style="font-size: 17px; font-weight:400; color:#999999;">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
+    html: '<p class="modalHeader">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
     '<div style="" >' +
     '<form method="post" action="" style="padding: 20px 0px;">' +
-    '<input style="padding: 15px 20px;border: 2px solid #ddd;border-radius: 5px;width: 90%;font-size: 16px;color: #777;font-weight: 600;" class="weight" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
-    '<div style="padding-top:30px;"><input style="padding: 11px 40px; background-color:#2ECC71; color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;" class="addW" type="submit" name="submit" value="Add"> ' +
+    '<input class="foodInputs weightInputs" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
 
-    '<input value="Cancel" type="button" id="btnC" style="padding: 11px 40px;background-color: #bbbbbb;color: #fff;font-size: 15px;border-radius: 4px;cursor:pointer;" onclick="swal.close();"></input></form></div></div>', 
+    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
+    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
+
+    showConfirmButton: false,
+    onOpen: function(ele) {
+        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+    }
+});
+}
+
+function addFood() {
+	//var weight = prompt("Please enter the new weight:");
+
+var options = {};
+
+swal({
+    title: "Add Food",
+    type: 'info',
+    inputOptions: options,
+    html: '<p class="modalHeader">Use our search to find foods or enter food manually.</p>' +
+    '<div style="" >' +
+    '<div style="padding: 20px 0px;"><input class="foodInputs foodSearchInput" type="text" name="intelligentFoodSearch" placeholder="Search (sorry I\'m disabled for now)" disabled></div>' +
+    '<p class="foodInputBreak">- or -</p>' +
+    '<form class="addFoodForm" method="post" action="">' +
+    '<input class="foodInputs rName" type="text" name="rName" placeholder="Name of recipe/meal" autocomplete="off">' +
+    '<input class="foodInputs mCat" type="text" name="mCat" placeholder="Meal category, e.g Lunch" autocomplete="off">' +
+    '<input class="foodInputs foodFloatInputs caloriesInput" type="number" name="cal" min="0" placeholder="Calories" autocomplete="off">' +
+    '<input class="foodInputs foodFloatInputs carbsInput" type="number" name="car" min="0" placeholder="Carbs" autocomplete="off">' +
+    '<input class="foodInputs foodFloatInputs fatsInput" type="number" name="pro" min="0" placeholder="Fats" autocomplete="off">' +
+    '<input class="foodInputs foodFloatInputs proteinInput" type="number" name="fat" min="0" placeholder="Protein" autocomplete="off">' +
+
+    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
+
+    '<input value="Cancel" type="button" id="btnC" class="cancelBut" onclick="swal.close();"></input></form></div></div>', 
 
     showConfirmButton: false,
     onOpen: function(ele) {
