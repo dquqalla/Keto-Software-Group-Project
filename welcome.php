@@ -274,7 +274,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	    }
 	    echo "</table>";
 	} else {
-	    echo "<p>You haven't added any food.</p>";
+	    echo "<p style=\"font-weight:700;\">------ You haven't added any food. ------</p><br>";
 	}
 
 	if ($result->num_rows > 0) {
@@ -312,6 +312,14 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 
 	?>
 	<p id="calories"></p>
+	<p id="leanBodyMass"></p>
+	<p id="rProteinIntake"></p>
+	<p id="rCarbIntake"></p>
+	<p id="rFatIntake"></p>
+	<p id="calFromP"></p>
+	<p id="calFromC"></p>
+	<p id="calFromF"></p>
+
 <!-- 	<p id="caloriesfromfats"></p>
 	<p id="caloriesfromcarbs"></p>
 	<p id="caloriesfromprotien"></p> -->
@@ -329,13 +337,16 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
 <script>
+	//first weight signed up with
 	 var oldestWeight = "<?php if(isset($oldestWeight)) {echo($oldestWeight);} ?>";
 	 console.log(oldestWeight);
 
+	 //current weight
 	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
 	 console.log(latestWeight);
 
-	 console.log(Math.round(((latestWeight/oldestWeight)-1)*100));
+	 //Percetange diff between first weight and current weight
+	 console.log("Percentage difference between goal: "+Math.round(((latestWeight/oldestWeight)-1)*100));
 
 	 var gender = "<?php echo($_SESSION["gender"]); ?>";
 	 var heightFeet = "<?php echo($_SESSION["heightFeet"]); ?>";
@@ -347,13 +358,31 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 var totalHeight = (heightFeet/1) + (heightInch/10);
 	 var heightInInches = totalHeight*12;
 	 var heightInCM = heightInInches*2.54;
+	 var carbsGoal = 20;
 
 	 //Currently using Mifflin St Jeor Equation
 	 if (gender == "Male") {
-	 	console.log("Male");
+	 	console.log("This account is male");
 	 	var calorieGoal = (10 * (latestWeight)) + (6.25 * (heightInCM)) - (5 * age) + 5;
-	 	console.log(10 * (latestWeight)) + (6.25 * (heightInCM)) - (5 * age) + 5;
+
+	 	//Add 10% for Sedentary to Base Metabolic Rate
+	 	calorieGoal = (calorieGoal / 10) + calorieGoal;
 	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
+
+	 	var leanBodyMass = 0.407*latestWeight + 0.267*heightInCM- 19.2;
+	 	var rProteinIntake = 1.8*leanBodyMass;
+
+	 	document.getElementById("leanBodyMass").innerHTML = "Lean body mass is: " + Math.round(leanBodyMass);
+		document.getElementById("rProteinIntake").innerHTML = "Recommended protein intake: " + Math.round(rProteinIntake) + "g";
+		document.getElementById("calFromP").innerHTML = "Calories from protein: " + Math.round(rProteinIntake) * 4;
+		document.getElementById("calFromC").innerHTML = "Calories from Carbs: " + Math.round(carbsGoal) * 4;
+
+		document.getElementById("rCarbIntake").innerHTML = "Recommended carb intake: " + Math.round(carbsGoal) + "g";
+
+		var caloriesFromFat = calorieGoal - (Math.round(rProteinIntake) * 4) - (Math.round(carbsGoal) * 4);
+		document.getElementById("calFromF").innerHTML = "Calories from fat: " + Math.round(caloriesFromFat);
+
+		document.getElementById("rFatIntake").innerHTML = "Recommended fat intake: " + Math.round(caloriesFromFat/9) + "g";
 
 	 } else {
 	 	console.log("Female");
