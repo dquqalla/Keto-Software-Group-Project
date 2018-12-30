@@ -981,6 +981,30 @@
 		.foodSearchInput {
 			background: #fff url(images/icons/foodSearchInput.png) no-repeat 14px 15px;
 		}
+		.tCarbs, .tFats {
+			padding: 9px 12px;
+    		display: inline-block;
+		}
+		.tCarbs p, .tFats p, .tCarbs span, .tFats span {
+			font-size: 14px;
+			font-weight: 400;		
+    		font-family: 'Open Sans', sans-serif;
+    		color: #999;
+		}
+		.tCarbs span, .tFats span {
+			font-size: 14px;
+			font-weight: 600;		
+    		font-family: 'Open Sans', sans-serif;
+    		background-color: #34495E;
+    		color: #fff !important;
+    		padding: 4px 16px;
+    		border-radius: 100px;
+    		margin-left: 6px;
+    		cursor: pointer;
+		}
+		.statInfoTarget {
+			padding: 8px 0px 12px 0px;
+		}
 	</style>
 </head>
 
@@ -1073,6 +1097,12 @@
 		  	<p class="navMainText">Statistics</p>
 		  	<p class="navSubText">A Detailed View</p>
 		  </div>
+		  <a href="welcome.php">
+		  <div class="navItem">
+		  	<p class="navMainText" style="color: red;">Development</p>
+		  	<p class="navSubText">Dev Test Screen</p>
+		  </div>
+		  </a>
 		</div>
 		</div>
 
@@ -1176,6 +1206,15 @@
 				</div> -->
 				<div style="width:100%;">
 					<div id="chart-container">FusionCharts XT will load here!</div>
+				</div>
+				<div class="statInfo statInfoTarget">
+
+					<div class="tCarbs">
+						<p>Target Carbs: <span class="tooltip" title="Value not available yet">NaN</span></p>
+					</div>
+					<div class="tFats">
+						<p>Target Fat: <span class="tooltip" title="Value not available yet">NaN</span></p>
+					</div>
 				</div>
             </div> 
 

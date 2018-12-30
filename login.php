@@ -129,8 +129,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	}
 	body {
 		display: flex;
-		background-image: url("images/bg.png");
-	}
+		background-image: url("images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
+		background-image: url("images/bg.png"), -webkit-linear-gradient(90deg, #3682A7, #22B396);
+		background-image: url("images/bg.png"), -o-linear-gradient(90deg, #3682A7, #22B396);
+		background-image: url("images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
+	}	
 	.mainContainerL {
 		margin: auto;
 	}
@@ -151,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		margin: 9px 0px;
 	}
 	.signInText {
-		background-color: #26A79C;
+		background-color: #e4e4e4;
 		text-align: center;
 		padding: 34px;
 		-webkit-border-top-left-radius: 7px;
@@ -165,7 +168,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		font-size: 17px;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #fff;
+		color: #888888;
 		letter-spacing: 2px;
 	}
 	.loginFormCon {
@@ -248,7 +251,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div id="mainContainerL" class="mainContainerL">
 	<div class="con">
 		<div class="imageCon">
-			<img src="images/logoPlaceholder.png" alt="">
+			<img src="images/logoHolder.png" alt="">
 		</div>
 
 		<div class="oCon">
