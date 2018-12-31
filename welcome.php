@@ -310,21 +310,21 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	$result2 = $link->query($sql2);
 	$row = mysqli_fetch_assoc($result2); 
 	$sum = $row['total_value'];
-	echo "Total carbs today: " . $sum . "<br>";
+	echo "Total carbs today: " . $sum . " (<span id=\"carbPercentage\"></span>%)<br>";
 
 	//Add the total protein for today for user and display it
 	$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
 	$result3 = $link->query($sql3);
 	$row1 = mysqli_fetch_assoc($result3); 
 	$sum1 = $row1['total_value'];
-	echo "Total protein today: " . $sum1 . "<br>";
+	echo "Total protein today: " . $sum1 . " (<span id=\"proPercentage\"></span>%)<br>";
 
 	//Add the total fat for today for user and display it
 	$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
 	$result4 = $link->query($sql4);
 	$row2 = mysqli_fetch_assoc($result4); 
 	$sum2 = $row2['total_value'];
-	echo "Total fats today: " . $sum2 . "<br>";
+	echo "Total fats today: " . $sum2 . " (<span id=\"fatPercentage\"></span>%)<br>";
 
 	//Add the total calories for today for user and display it
 	$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
@@ -366,14 +366,26 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 <script>
 	//first weight signed up with
 	 var oldestWeight = "<?php if(isset($oldestWeight)) {echo($oldestWeight);} ?>";
-	 console.log(oldestWeight);
+	 console.log("First weight added to database: " + oldestWeight);
 
 	 //current weight
 	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
-	 console.log(latestWeight);
+	 console.log("Latest weight: " + latestWeight);
 
 	 //goal weight 
 	 var goalWeight = "<?php echo($_SESSION["gWeight"]); ?>";
+
+	 var totalCarb = "<?php if(isset($sum)) {echo($sum);} ?>";
+	 var totalFats = "<?php if(isset($sum2)) {echo($sum2);} ?>";
+	 var totalPro = "<?php if(isset($sum1)) {echo($sum1);} ?>";
+	 console.log("Total carbs " + totalCarb); 
+	 console.log("Total fats " + totalFats); 
+	 console.log("Total protein " + totalPro);
+	 var totalNutritionForToday = parseInt(totalCarb) + parseInt(totalFats) + parseInt(totalPro);
+	 console.log("Total total nutrition for today: " + totalNutritionForToday);
+	 document.getElementById("carbPercentage").innerHTML = Math.round((totalCarb/totalNutritionForToday)*100);
+	 document.getElementById("fatPercentage").innerHTML = Math.round((totalFats/totalNutritionForToday)*100);
+	 document.getElementById("proPercentage").innerHTML = Math.round((totalPro/totalNutritionForToday)*100);
 
 	 //Percetange diff between first weight and current weight
 	weightDiff = Math.round(((latestWeight/oldestWeight)-1)*100);
