@@ -9,6 +9,32 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+//This function check if they are logging in for the first time
+//If they are then it is essential we add their start weight to the user weight table
+//This function will only ever run once
+$id = $_SESSION["id"];
+$firstLoginCheck = "SELECT firstLogin FROM users WHERE id=$id";
+$firstLoginResult = $link->query($firstLoginCheck);
+
+if($firstLoginResult->num_rows > 0) {
+
+	$firstLoginAns = $firstLoginResult->fetch_assoc();
+
+	$firstLogin = $firstLoginAns["firstLogin"];
+
+	if ($firstLogin == 0) {
+		$cWeight = $_SESSION["cWeight"];
+		$id = $_SESSION["id"];
+
+		$addWeightOnLogin = "INSERT INTO userWeight (userID,weight) VALUES ($id, $cWeight)";
+		$link->query($addWeightOnLogin);
+
+		$updateLogin = "UPDATE users SET firstLogin=1 WHERE id=$id";
+		$link->query($updateLogin);
+	}
+}
+
+
 if(isset($_POST['submit2'])){
     move_uploaded_file($_FILES['file']['tmp_name'],"images/profilePictures/".$_FILES['file']['name']);
 
@@ -164,6 +190,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 
     <!-- <input type="submit" class="button" name="insert" value="insert"/> -->
     <h2>Add Weight</h2>
+    <p id="percentageToGoal"></p>
     <form method="post" action="welcome.php" style="padding: 20px 0px;">
    		<input class="weight" type="number" name="weight" placeholder="Enter New Weight" required>
    		<input class="addW" type="submit" name="submit" value="Add Weight">
@@ -173,7 +200,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	$id = $_SESSION["id"];
 	
 	//gets weight entries of all time
-	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id";
+	$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id ORDER BY timee DESC";
 	$result = $link->query($sql);
 
 	if ($result->num_rows > 0) {
@@ -195,7 +222,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	$id = $_SESSION["id"];
 
 	//gets weight entries for only TODAY - good for the add food function 
-	$sql = "SELECT weight FROM userWeight WHERE userID = $id LIMIT 1";
+	$sql = "SELECT weight FROM userWeight WHERE userID = $id ORDER BY timee ASC LIMIT 1";
 	$result = $link->query($sql);
 
 	if ($result->num_rows > 0) {
@@ -345,51 +372,77 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
 	 console.log(latestWeight);
 
+	 //goal weight 
+	 var goalWeight = "<?php echo($_SESSION["gWeight"]); ?>";
+
 	 //Percetange diff between first weight and current weight
-	 console.log("Percentage difference between goal: "+Math.round(((latestWeight/oldestWeight)-1)*100));
+	weightDiff = Math.round(((latestWeight/oldestWeight)-1)*100);
+
+	//CANNOT BE USED UNTIL TRELLO BUG IS FIXED
+	 achievementPercentage = ((latestWeight - oldestWeight) * 100) / (goalWeight - oldestWeight);
+	 achievementPercentageRounded = Math.round(achievementPercentage * 10) / 10;
+	 //document.getElementById("percentageToGoal").innerHTML = "That is a " + weightDiff + "% difference vs when you started.";
+
+	 document.getElementById("percentageToGoal").innerHTML = "You are " +achievementPercentageRounded + "% of your way to your goal.";
+
 
 	 var gender = "<?php echo($_SESSION["gender"]); ?>";
 	 var heightFeet = "<?php echo($_SESSION["heightFeet"]); ?>";
 	 var heightInch = "<?php echo($_SESSION["heightInch"]); ?>";
-	 var ageCalc = "<?php echo($_SESSION["birthYear"]); ?>";
+	 var birthYear = "<?php echo($_SESSION["birthYear"]); ?>";
 	 var currentYear = (new Date()).getFullYear();
-	 var age = currentYear - ageCalc;
+	 var age = currentYear - birthYear;
+	 var activityLevel = "<?php echo($_SESSION["activityLevel"]); ?>";
 	 //var weightInPounds = latestWeight*2.205;
 	 var totalHeight = (heightFeet/1) + (heightInch/10);
 	 var heightInInches = totalHeight*12;
 	 var heightInCM = heightInInches*2.54;
 	 var carbsGoal = 20;
+	 var leanBodyMass = 0.407*latestWeight + 0.267*heightInCM- 19.2;
+	 var rProteinIntake = 1.8*leanBodyMass;
 
 	 //Currently using Mifflin St Jeor Equation
 	 if (gender == "Male") {
 	 	console.log("This account is male");
+	 	//This is the base TDEE
 	 	var calorieGoal = (10 * (latestWeight)) + (6.25 * (heightInCM)) - (5 * age) + 5;
-
-	 	//Add 10% for Sedentary to Base Metabolic Rate
-	 	calorieGoal = (calorieGoal / 10) + calorieGoal;
-	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
-
-	 	var leanBodyMass = 0.407*latestWeight + 0.267*heightInCM- 19.2;
-	 	var rProteinIntake = 1.8*leanBodyMass;
-
-	 	document.getElementById("leanBodyMass").innerHTML = "Lean body mass is: " + Math.round(leanBodyMass);
-		document.getElementById("rProteinIntake").innerHTML = "Recommended protein intake: " + Math.round(rProteinIntake) + "g";
-		document.getElementById("calFromP").innerHTML = "Calories from protein: " + Math.round(rProteinIntake) * 4;
-		document.getElementById("calFromC").innerHTML = "Calories from Carbs: " + Math.round(carbsGoal) * 4;
-
-		document.getElementById("rCarbIntake").innerHTML = "Recommended carb intake: " + Math.round(carbsGoal) + "g";
-
-		var caloriesFromFat = calorieGoal - (Math.round(rProteinIntake) * 4) - (Math.round(carbsGoal) * 4);
-		document.getElementById("calFromF").innerHTML = "Calories from fat: " + Math.round(caloriesFromFat);
-
-		document.getElementById("rFatIntake").innerHTML = "Recommended fat intake: " + Math.round(caloriesFromFat/9) + "g";
-
 	 } else {
-	 	console.log("Female");
+	 	console.log("This account is female");
+	 	//This is the base TDEE
 	 	var calorieGoal = 10 * (latestWeight) + 6.25 * (heightInCM) - 5 * age - 161;
-	 	console.log(10 * (latestWeight) + 6.25 * (heightInCM) - 5 * age - 161);
-	 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
+
 	 }
+
+
+	if (activityLevel.trim() === "Sedentary") {
+		//Add 10% for Sedentary to Base Metabolic Rate
+ 		calorieGoal = (calorieGoal / 10) + calorieGoal;
+ 		console.log("Sedentary");
+	} else if (activityLevel.trim() === "Lightly Active") {
+		//Lightly active
+ 		calorieGoal = (calorieGoal / 4.2) + calorieGoal;
+ 		console.log("Lightly Active");
+	} else if (activityLevel.trim() === "Active") {
+		//Active
+ 		calorieGoal = (calorieGoal / 2.6) + calorieGoal;
+ 		console.log("Active");
+	} else {
+ 		//Very Active
+ 		calorieGoal = (calorieGoal / 1.65) + calorieGoal;
+ 		console.log("Very Active");
+	}
+ 	
+ 	document.getElementById("calories").innerHTML = "Your calorie goal is: " + Math.round(calorieGoal);
+ 	document.getElementById("leanBodyMass").innerHTML = "Lean body mass is: " + Math.round(leanBodyMass);
+
+	document.getElementById("rProteinIntake").innerHTML = "Recommended protein intake: " + Math.round(rProteinIntake) + "g";
+	document.getElementById("rCarbIntake").innerHTML = "Recommended carb intake: " + Math.round(carbsGoal) + "g";
+	document.getElementById("rFatIntake").innerHTML = "Recommended fat intake: " + Math.round(caloriesFromFat/9) + "g";
+
+	document.getElementById("calFromP").innerHTML = "Calories from protein: " + Math.round(rProteinIntake) * 4;
+	document.getElementById("calFromC").innerHTML = "Calories from Carbs: " + Math.round(carbsGoal) * 4;
+	var caloriesFromFat = calorieGoal - (Math.round(rProteinIntake) * 4) - (Math.round(carbsGoal) * 4);
+	document.getElementById("calFromF").innerHTML = "Calories from fat: " + Math.round(caloriesFromFat);
 </script>
 
 <script>
