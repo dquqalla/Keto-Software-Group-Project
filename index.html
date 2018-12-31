@@ -17,7 +17,7 @@
 	<script href="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
 	<title>Dashboard</title>
 	<style>
 		body {
@@ -478,6 +478,23 @@
     		font-weight: 400;
     		cursor: pointer;	
 		}
+		.detailButtonContainer {
+			text-align: center;
+			padding: 0px 0px 40px 0px;
+		}
+		.detailButtonContainer button {
+			background-color: #fff;
+			border: 2px solid #aaaaaa;
+			padding: 10px;
+			width: 160px;
+			border-radius: 100px;
+			color: #aaaaaa;
+			font-size: 13px;
+    		font-weight: 600;
+    		cursor: pointer;
+    		text-transform: uppercase;
+    		letter-spacing: 1px;
+		}
 		.overviewCon {
 		  animation-delay: 100ms;
 		  animation-duration: 1.2s;
@@ -907,13 +924,8 @@
 		}
 		.pieChartContainer {
 			width: 100%;
+			margin-top: -14px;
 		}
-    	@media only screen and (max-width: 360px) {
-    		.pieChartContainer {
-    			width: 112%;
-   				margin-left: -6%;
-   			}
-    	}
     	.foodInputs {
     		margin: 6px 0px;
     		padding: 15px 20px 15px 42px;
@@ -1005,6 +1017,65 @@
 		.statInfoTarget {
 			padding: 8px 0px 12px 0px;
 		}
+		.macroStatsContainer {
+			padding:2px 25px;
+		}
+		.macroStatsLeft {
+			float:left;
+		}
+		.macroStatsLeft div {
+			margin-bottom: -3px;
+			margin-right: 8px;
+			display:inline-block;
+			width: 17px;
+			height: 17px;
+			background-color: green;
+			border-radius: 4px;
+		}
+		.macroStatsLeft p {
+			display: inline-block;
+			font-size: 15px;
+			color: #525252;
+			font-weight: 400;
+		}
+		.macroStatsPercentage {
+			float: right;
+			font-size: 15px;
+			color: #525252 !important;
+			font-weight: 600;
+		}
+		.macroFatColour {
+			background-color: #495C6F !important;
+		}
+		.macroProColour {
+			background-color: #F46871 !important;
+		}
+		.macroCarbColour {
+			background-color: #F3C76A !important;
+		}
+		.macroStats {
+			margin: 0 auto;
+			width: 250px;
+			background-color: #eeeeee;
+			margin-bottom: 28px;
+			border-radius: 5px;
+			padding: 14px 0px;
+			margin-top: -20px; /*Hack because stupid svg leaves whitespace*/
+		}
+		@media only screen and (max-width: 360px) {
+			.pieChartContainer {
+				width: 112%;
+				margin-left: -6%;
+			}
+		}
+    	@media only screen and (max-width: 390px) {
+    		.macroStats {
+				width: 220px;
+			}
+    	}
+    	#chart-container2 svg {
+    		background-color: transparent !important;
+    	}
 	</style>
 </head>
 
@@ -1163,7 +1234,7 @@
 					</div>
 				</div>
 				<div class="editButtonContainer">
-					<button>EDIT</button>
+					<button type="button" class="hvr-pop">EDIT</button>
 				</div>
             </div>  
 
@@ -1252,6 +1323,32 @@
 				</div> -->
 				<div class="pieChartContainer">
 					<div id="chart-container2">FusionCharts XT will load here!</div>
+				</div>
+				<div class="macroStats">
+					<div class="macroStatsContainer clearfix">
+					<div class="macroStatsLeft">
+						<div class="macroFatColour"></div>
+						<p>Fats</p>
+					</div>
+					<p class="macroStatsPercentage">100%</p>
+					</div>
+					<div class="macroStatsContainer clearfix">
+					<div class="macroStatsLeft">
+						<div class="macroCarbColour"></div>
+						<p>Net Carbs</p>
+					</div>
+					<p class="macroStatsPercentage">100%</p>
+					</div>
+					<div class="macroStatsContainer clearfix">
+					<div class="macroStatsLeft">
+						<div class="macroProColour"></div>
+						<p>Protein</p>
+					</div>
+					<p class="macroStatsPercentage">100%</p>
+					</div>
+				</div>
+				<div class="detailButtonContainer">
+					<button type="button" class="hvr-pop">Detailed View</button>
 				</div>
             </div>  
 
@@ -1543,6 +1640,8 @@ FusionCharts.ready(function() {
         "doughnutRadius": "80",
         "plotFillAlpha": "90",
         "showLegend": "0",
+        "bgColor": "#DDDDDD",
+        "bgAlpha": "0",
         "theme": "fusion"
       },
       "data": [{
