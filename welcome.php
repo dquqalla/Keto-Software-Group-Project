@@ -375,9 +375,9 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 //goal weight 
 	 var goalWeight = "<?php echo($_SESSION["gWeight"]); ?>";
 
-	 var anyFoodAddedToday = <?php echo (isset($sum) && $sum) ? json_encode($sum) : 'null'; ?>;
+	 var anyFoodAddedToday = "<?php if(isset($sum)) {echo($sum);} ?>";
 
-	if (!(anyFoodAddedToday == null)) {
+	if (!(anyFoodAddedToday == "")) {
 		var totalCarb = "<?php if(isset($sum)) {echo($sum);} ?>";
 		var totalFats = "<?php if(isset($sum2)) {echo($sum2);} ?>";
 		var totalPro = "<?php if(isset($sum1)) {echo($sum1);} ?>";
