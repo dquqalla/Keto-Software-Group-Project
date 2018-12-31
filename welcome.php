@@ -375,17 +375,21 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	 //goal weight 
 	 var goalWeight = "<?php echo($_SESSION["gWeight"]); ?>";
 
-	 var totalCarb = "<?php if(isset($sum)) {echo($sum);} ?>";
-	 var totalFats = "<?php if(isset($sum2)) {echo($sum2);} ?>";
-	 var totalPro = "<?php if(isset($sum1)) {echo($sum1);} ?>";
-	 console.log("Total carbs " + totalCarb); 
-	 console.log("Total fats " + totalFats); 
-	 console.log("Total protein " + totalPro);
-	 var totalNutritionForToday = parseInt(totalCarb) + parseInt(totalFats) + parseInt(totalPro);
-	 console.log("Total total nutrition for today: " + totalNutritionForToday);
-	 document.getElementById("carbPercentage").innerHTML = Math.round((totalCarb/totalNutritionForToday)*100);
-	 document.getElementById("fatPercentage").innerHTML = Math.round((totalFats/totalNutritionForToday)*100);
-	 document.getElementById("proPercentage").innerHTML = Math.round((totalPro/totalNutritionForToday)*100);
+	 var anyFoodAddedToday = <?php echo (isset($sum) && $sum) ? json_encode($sum) : 'null'; ?>;
+
+	if (!(anyFoodAddedToday == null)) {
+		var totalCarb = "<?php if(isset($sum)) {echo($sum);} ?>";
+		var totalFats = "<?php if(isset($sum2)) {echo($sum2);} ?>";
+		var totalPro = "<?php if(isset($sum1)) {echo($sum1);} ?>";
+		console.log("Total carbs " + totalCarb); 
+		console.log("Total fats " + totalFats); 
+		console.log("Total protein " + totalPro);
+		var totalNutritionForToday = parseInt(totalCarb) + parseInt(totalFats) + parseInt(totalPro);
+		console.log("Total total nutrition for today: " + totalNutritionForToday);
+		document.getElementById("carbPercentage").innerHTML = Math.round((totalCarb/totalNutritionForToday)*100);
+		document.getElementById("fatPercentage").innerHTML = Math.round((totalFats/totalNutritionForToday)*100);
+		document.getElementById("proPercentage").innerHTML = Math.round((totalPro/totalNutritionForToday)*100);
+	}
 
 	 //Percetange diff between first weight and current weight
 	weightDiff = Math.round(((latestWeight/oldestWeight)-1)*100);
