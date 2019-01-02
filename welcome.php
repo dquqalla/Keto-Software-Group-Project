@@ -169,6 +169,21 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 		margin: 10px 0px;
     	width: 300px;
 	}
+	.raphael-group-11-messageGroup text {
+		font-family: 'Open Sans', sans-serif !important;
+    	font-size: 20px !important;
+	}
+	g[class$='creditgroup'] {
+		display:none !important;
+	}
+	.raphael-group-167-plots text tspan:nth-child(2) {
+		font-size: 22px !important;
+		font-weight: 600 !important;
+	}
+	.raphael-group-167-plots text tspan {
+		font-size: 15px !important;
+		font-weight: 300 !important;
+	}
     </style>
 </head>
 <body>
@@ -356,8 +371,13 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 		$link->close();
 	?>
 	
-	<div style="width:400px;">
+	<div style="width:400px; padding-top: 30px;">
+		<p style="font-style: italic;">Last week summary chart:</p>
 		<div id="chart-container">FusionCharts XT will load here!</div>
+	</div>
+	<div class="pieChartContainer" style="width:400px;">
+		<p style="font-style: italic;">Macros chart for today:</p>
+		<div id="chart-container2">FusionCharts XT will load here!</div>
 	</div>
 
 	<p style="padding: 50px 0px;" >
@@ -460,9 +480,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	document.getElementById("calFromP").innerHTML = "Calories from protein: " + Math.round(rProteinIntake) * 4;
 	document.getElementById("calFromC").innerHTML = "Calories from Carbs: " + Math.round(carbsGoal) * 4;
 	document.getElementById("calFromF").innerHTML = "Calories from fat: " + Math.round(caloriesFromFat);
-</script>
 
-<script>
     FusionCharts.ready(function(){
     var fusioncharts = new FusionCharts({
     type: 'mscolumn2d',
@@ -547,7 +565,59 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
     fusioncharts.render();
 });
 
+var totalCarb = "<?php if(isset($sum)) {echo($sum);} ?>";
+var totalFats = "<?php if(isset($sum2)) {echo($sum2);} ?>";
+var totalPro = "<?php if(isset($sum1)) {echo($sum1);} ?>";
+var totalCal = "<?php if(isset($sum3)) {echo($sum3);} ?>";
 
+FusionCharts.ready(function() {
+  var fusioncharts2 = new FusionCharts({
+    type: 'doughnut2d',
+    renderAt: 'chart-container2',
+    width: '100%',
+    height: '340',
+    dataFormat: 'json',
+    dataSource: {
+      "chart": {
+        "startingAngle": "310",
+        "showLegend": "1",
+        "defaultCenterLabel": "Total<br>"+Math.round(totalCal)+"<br>Calories",
+        "centerLabel": "$label: $value(g)",
+        "centerLabelBold": "0",
+        "centerLabelColor": "#AAAAAA",
+        "centerLabelFontSize": "18",
+        "showTooltip": "0",
+        "decimals": "0",
+        "enableSmartLabels": "0",
+        "showLabels": "0",
+        "showValues": "0",
+        "doughnutRadius": "80",
+        "plotFillAlpha": "90",
+        "showLegend": "0",
+        "bgColor": "#DDDDDD",
+        "bgAlpha": "0",
+        "theme": "fusion"
+      },
+      "data": [{
+          "label": "Fat",
+          "value": Math.round(totalFats),
+          "color": "#34495E"
+        },
+        {
+          "label": "Carbs",
+          "value": Math.round(totalCarb),
+          "color": "#F2C158"
+        },
+        {
+          "label": "Protein",
+          "value": Math.round(totalPro),
+          "color": "#F25661"
+        }
+      ]
+    }
+  });
+  fusioncharts2.render();
+});
 </script>
 </div>
 </body>
