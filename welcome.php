@@ -99,7 +99,7 @@ if(isset($_POST["water"])){
 
 	if ($link->query($sqlWater) === TRUE) { //Run the query to add to userWeight table
 		//echo "New record created successfully";
-		header("Refresh:0"); //Refresh the page
+		//header("Refresh:0");
 	} else {
 		echo "Error: " . $sql . "<br>" . $link->error;
 	}
@@ -397,6 +397,7 @@ if(isset($_POST["water"])){
    		<input class="weight" type="number" name="water" placeholder="How many glasses?" required>
    		<input class="addW" type="submit" name="submit" value="Add Water">
 	</form>
+	<p>We recommend 2000 - 2500ml of water a day. This is roughly 8 - 10 glasses.</p>
 	<?php
 	$id = $_SESSION["id"];
 
@@ -537,6 +538,7 @@ if(isset($_POST["water"])){
             "divLineDashLen": "1",
             "divLineGapLen": "1",
              "palettecolors":"F25661,F2C158",
+             "animationDuration": "3",
 			"adjustDiv": "0",
 			"numDivLines": "5",
 			"divLineColor": "#6699cc",
@@ -629,6 +631,7 @@ FusionCharts.ready(function() {
         "enableSmartLabels": "0",
         "showLabels": "0",
         "showValues": "0",
+        "animationDuration": "3",
         "doughnutRadius": "80",
         "plotFillAlpha": "90",
         "showLegend": "0",
