@@ -139,10 +139,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	}
 	.oCon {
 		width: 428px;
-		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
-		-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
-		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
-		border-radius: 7px;
 	}
 	.imageCon {
 		text-align: center;
@@ -154,9 +150,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		margin: 9px 0px;
 	}
 	.signInText {
-		background-color: #e4e4e4;
+		background-color: transparent;
 		text-align: center;
-		padding: 34px;
+		/*padding: 34px;*/
 		-webkit-border-top-left-radius: 7px;
 		-webkit-border-top-right-radius: 7px;
 		-moz-border-radius-topleft: 7px;
@@ -165,25 +161,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		border-top-right-radius: 7px;
 	}
 	.signInText p {
-		font-size: 17px;
+		font-size: 23px;
 		font-weight: 600;
-		text-transform: uppercase;
-		color: #888888;
-		letter-spacing: 2px;
+		/*text-transform: uppercase;*/
+		color: #fff;
+		/*letter-spacing: 2px;*/
 	}
 	.loginFormCon {
 		text-align: center;
-		background-color: #f3f3f3;
+		background-color: transparent;
 		-webkit-border-bottom-right-radius: 7px;
 		-webkit-border-bottom-left-radius: 7px;
 		-moz-border-radius-bottomright: 7px;
 		-moz-border-radius-bottomleft: 7px;
 		border-bottom-right-radius: 7px;
 		border-bottom-left-radius: 7px;
+		padding-top: 10px;
 	}
 	.loginFormCon form p {
 		font-size: 15px;
-		color: #999;
+		color: #fff;
 		font-weight: 400;
 		padding: 20px 0px 60px 0px;
 	}
@@ -206,11 +203,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		-webkit-border-radius: 4px;
 		-moz-border-radius: 4px;
 		border-radius: 4px;
-		border: 2px solid #eee;
 	}
 	.help-block {
 		font-size: 15px !important;
-		color: #ee5253 !important;
+		color: #F3C76A !important;
 		font-weight: 600 !important;
 		text-decoration: underline !important;
 	}
@@ -226,7 +222,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		}
 		.loginFormCon form input {
 			width: 90%;
-			padding: 14px 20px;
 		}
 		.oCon {
 			width: 100%;
@@ -235,10 +230,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			padding-top: 45px;
 		}
 		.signInText p {
-		    font-size: 15px;
-		}
-		.signInText {
-			padding: 32px 16px;
+		    font-size: 23px;
 		}
 		.imageCon img {
 			width: 150px;
@@ -265,7 +257,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         				<span class="help-block"><?php echo $password_err; ?></span>
 					</div>
 					<div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-						<input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Email" style="margin-top: 10px;">
+						<input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Email">
 					</div>    
 					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
 						<input type="password" name="password" class="form-control" placeholder="Password">
@@ -273,7 +265,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<div class="form-group">
 						<input type="submit" class="loginbtn" value="Login">
 					</div>
-					<p>Don't have an account? <span><a href="register.php" style="color: #0abde3">Sign Up</a></span></p>
+					<p>Don't have an account? <span><a href="register.php" style="color: #fff">Sign Up</a></span></p>
 				</form>
 			</div>
 		</div>
