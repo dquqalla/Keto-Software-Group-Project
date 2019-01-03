@@ -1081,6 +1081,15 @@
 			font-family: 'Open Sans', sans-serif !important;
     		font-size: 20px !important;
 		}*/
+		.waterSelect {
+			width: 200px;
+		    border: 2px solid #eee;
+		    border-radius: 4px;
+		    padding: 8px 11px;
+		    font-size: 15px;
+		    color: #333;
+		    outline: 0;
+		}
 	</style>
 </head>
 
@@ -1183,7 +1192,7 @@
 		</div>
 
 		<div class="addContainer clearfix">
-			<div class="addButtons addWater tooltip" title="Quick Add">
+			<div class="addButtons addWater tooltip" title="Quick Add" onclick="addWater()">
 				<div class="addWaterI"></div>
 				<p>Add Water</p>
 			</div>
@@ -1395,7 +1404,7 @@ var myMenu = new OSREC.superslide
 });
 
 function openMenu() {
-	var openPromise = myMenu.open();
+	myMenu.open();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -1470,15 +1479,36 @@ $(document).ready(function() {
 });
 
 function addWater() {
-	var water = prompt("Please enter the number of glasses:");
-}
+	var options = {};
 
-function addFood() {
-	var food = prompt("Please enter the food:");
+	swal({
+	    title: "Add Water",
+	    type: 'info',
+	    inputOptions: options,
+	    html: '<p class="modalHeader">How many glasses of water would you like to add? <br>We will assume a glass is 250ml.</p>' +
+	    '<div style="" >' +
+	    '<form method="post" action="" style="padding: 20px 0px;">' +
+	    '<select class="waterSelect">\
+		<option value="1">1</option>\
+		<option value="2">2</option>\
+		<option value="3">3</option>\
+		<option value="4">4</option>\
+		<option value="5">5</option>\
+		<option value="6">6</option>\
+		<option value="7">7</option>\
+		<option value="8">8</option>\
+		</select>' +
+	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
+	    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
+
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+	    }
+	});
 }
 
 function addWeight() {
-	//var weight = prompt("Please enter the new weight:");
 
 var options = {};
 
@@ -1502,7 +1532,6 @@ swal({
 }
 
 function addFood() {
-	//var weight = prompt("Please enter the new weight:");
 
 var options = {};
 

@@ -34,7 +34,7 @@ if($firstLoginResult->num_rows > 0) {
 	}
 }
 
-
+//This function deals with updating the profile picture
 if(isset($_POST['submit2'])){
     move_uploaded_file($_FILES['file']['tmp_name'],"images/profilePictures/".$_FILES['file']['name']);
 
@@ -46,20 +46,21 @@ if(isset($_POST['submit2'])){
 	}
 }
 
+//This function deals with updating/adding weight
 if(isset($_POST["weight"])){
 	$tt = $_POST["weight"];
 	$id = $_SESSION["id"];
 
 	$sql = "INSERT INTO userWeight (userID,weight) VALUES ($id, $tt)";
 
-	if ($link->query($sql) === TRUE) {
+	if ($link->query($sql) === TRUE) { //Run the query to add to userWeight table
 		//echo "New record created successfully";
 		$_SESSION["cWeight"] = $tt;
-		$sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id";
+		$sql2 = "UPDATE users SET cWeight=$tt WHERE id=$id"; //Update user table to make new weight their current weight
 
-		if ($link->query($sql2) === TRUE) {
+		if ($link->query($sql2) === TRUE) { //Run the query to update the user table
 			//echo "Record updated successfully";
-			header("Refresh:0");
+			header("Refresh:0"); //Refresh the page
 		} else {
 			echo "Error updating record: " . $link->error;
 		}
@@ -89,6 +90,21 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 
 	//$link->close();
 } 
+
+if(isset($_POST["water"])){
+	$waterA = $_POST["water"];
+	$id = $_SESSION["id"];
+
+	$sqlWater = "INSERT INTO userWater (userID,waterAmount) VALUES ($id, $waterA)";
+
+	if ($link->query($sqlWater) === TRUE) { //Run the query to add to userWeight table
+		//echo "New record created successfully";
+		header("Refresh:0"); //Refresh the page
+	} else {
+		echo "Error: " . $sql . "<br>" . $link->error;
+	}
+	//$link->close();
+}
 
 ?>
  
@@ -366,10 +382,6 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	<p id="caloriesfromcarbs"></p>
 	<p id="caloriesfromprotien"></p> -->
 	<?php include 'includes/graphQueries.php';?>
-
-	<?php
-		$link->close();
-	?>
 	
 	<div style="width:400px; padding-top: 30px;">
 		<p style="font-style: italic;">Last week summary chart:</p>
@@ -379,6 +391,32 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 		<p style="font-style: italic;">Macros chart for today:</p>
 		<div id="chart-container2">FusionCharts XT will load here!</div>
 	</div>
+
+	<h2>Add Water</h2>
+    <form method="post" action="welcome.php" style="padding: 20px 0px;">
+   		<input class="weight" type="number" name="water" placeholder="How many glasses?" required>
+   		<input class="addW" type="submit" name="submit" value="Add Water">
+	</form>
+	<?php
+	$id = $_SESSION["id"];
+
+	//Need this query to check if any results were returned (used in if statement)
+	$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$water_t = $link->query($water_total);
+	
+	if($water_t->num_rows > 0) {
+		//Main query to retrive water data
+		$total_water2 = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$total_water_for_user = $link->query($total_water2);
+		$tot_water = mysqli_fetch_assoc($total_water_for_user); 
+		$sum_water = $tot_water['total_water'];
+		echo "Total glasses of water today: " . $sum_water;
+	} else {
+		echo "You've not added any water today";
+	}
+
+	$link->close();
+	?>
 
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
