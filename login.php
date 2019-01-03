@@ -109,6 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<link rel="stylesheet" href="css/reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	<title>Login</title>
 	<style>
 	/*DO NOT PUT THIS CSS WITH THE DASHBOARD CSS OR YOU WILL GET COLLISIONS AND MESS UP THE DASHBOARD*/
@@ -240,12 +241,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body>
-<div id="mainContainerL" class="mainContainerL">
+<div id="mainContainerL" class="mainContainerL animated zoomIn">
 	<div class="con">
 		<div class="imageCon">
 			<img src="images/logoHolder.png" alt="">
 		</div>
-
 		<div class="oCon">
 			<div class="signInText">
 				<p>Sign into Ketogenetics</p>
