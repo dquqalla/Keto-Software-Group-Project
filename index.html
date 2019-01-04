@@ -18,6 +18,9 @@
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<link rel="stylesheet" href="css/slick-theme.css">
 	<title>Dashboard</title>
 	<style>
 		body {
@@ -356,7 +359,7 @@
 			font-size: 16px;
 			font-weight: 700;
 			color: #535353 !important;
-			padding-bottom: 4px;
+			padding-bottom: 2px;
 		}
 		.itemDescription {
 			font-size: 14px;
@@ -482,7 +485,7 @@
 			text-align: center;
 			padding: 0px 0px 40px 0px;
 		}
-		.detailButtonContainer button {
+		.detailButtonContainer button, .detailRecButtonContainer button {
 			background-color: #fff;
 			border: 2px solid #aaaaaa;
 			padding: 10px;
@@ -886,6 +889,22 @@
 			    padding: 18px 0px 12px 0px;
 			}
 		}
+		@media only screen and (max-width: 860px) and (min-width: 768px) {
+			.gC {
+				padding: 6px 10px !important;
+			}
+			.glassesContainer {
+			    padding: 18px 0px 12px 0px;
+			}
+		}
+		@media only screen and (max-width: 1415px) and (min-width: 1012px) {
+			.gC {
+				padding: 10px 10px !important;
+			}
+			.glassesContainer {
+			    padding: 18px 0px 12px 0px;
+			}
+		}
 		g[class$='creditgroup'] {
 			display:none !important;
 		}
@@ -1090,6 +1109,88 @@
 		    color: #333;
 		    outline: 0;
 		}
+		.recipeContainer {
+			position: relative;
+			width: 100%;
+			height: 216px;
+			overflow: hidden;
+			margin-top: 20px;
+			-webkit-border-top-left-radius: 5px;
+			-webkit-border-top-right-radius: 5px;
+			-moz-border-radius-topleft: 5px;
+			-moz-border-radius-topright: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+		.recipeContainerItem {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.recipeContainerItem img {
+			-webkit-transition: 0.6s ease;
+			transition: 0.6s ease;
+			width: 100%;
+			cursor: pointer;
+		}
+		.recipeContainer:hover .recipeContainerItem img {
+			-webkit-transform: scale(1.2);
+			transform: scale(1.2);
+			filter: grayscale(15%);		  
+		}
+		.detailRecButtonContainer {
+			 text-align: center;
+   			 padding: 28px 0px 10px 0px;
+		}
+		.recipeTitle {
+			background: #3F51B5;
+			padding: 15px 18px;
+			-webkit-border-bottom-right-radius: 5px;
+			-webkit-border-bottom-left-radius: 5px;
+			-moz-border-radius-bottomright: 5px;
+			-moz-border-radius-bottomleft: 5px;
+			border-bottom-right-radius: 5px;
+			border-bottom-left-radius: 5px;
+		}
+		.recipeTitle span {
+			font-weight: 700;
+			font-size: 18px;
+			color: #fff !important;
+		}
+		.recipeTitleP {
+			font-weight: 300;
+			font-size: 16px;
+			color: #fff !important;
+		}
+		@media only screen and (max-width: 425px) {
+			.recipeContainer {
+				height: 228px !important;
+			}
+			.recipeContainerItem img {
+				width: auto !important;
+				margin-left: -47px;
+				margin-top: 0px !important;
+				height: 228px;
+			}
+    	}
+    	@media only screen and (max-width: 1675px) and (min-width: 1163px) {
+			.recipeContainerItem img {
+				width: auto !important;
+				height: 250px;
+			}
+    	}
+    	@media only screen and (min-width: 426px) and (max-width: 764px) {
+			.recipeContainerItem img {
+				width: auto !important;
+				height: 380px;
+			}
+    	}
+    	.slickExtraP {
+    		padding: 0px 20px;
+    	}
+    	.slick-slide:focus, .slick-current:focus, .slick-active:focus {
+    		outline: none;
+    	}
 	</style>
 </head>
 
@@ -1367,9 +1468,53 @@
             </div>  
 
             <div class="item recipeCon animated bounceIn"> 
-				<p class="itemTitle">Recipe of the day</p>
+				<p class="itemTitle">Recipe Ideas & Inspiration</p>
 				<p class="itemDescription">Hand picked by us, just for you.</p>
+				<div class="slick">
 
+				<div>
+					<div class="slickExtraP">
+						<div class="recipeContainer">
+						  <div class="recipeContainerItem">
+						    <img src="images/recipes/recipe1.png" />
+						  </div>
+						</div>
+						<div class="recipeTitle">
+							<p class="recipeTitleP"><span>Featured Recipe</span><br>Simple grilled chicken with almond courgetti salad</p>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="slickExtraP">
+						<div class="recipeContainer">
+						  <div class="recipeContainerItem">
+						    <img src="images/recipes/recipe2.jpg" />
+						  </div>
+						</div>
+						<div class="recipeTitle" style="background-color: #673AB7;">
+							<p class="recipeTitleP"><span>New Recipe</span><br>Lemon roasted mackerel fillets with apple tzatziki</p>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="slickExtraP">
+						<div class="recipeContainer">
+						  <div class="recipeContainerItem">
+						    <img src="images/recipes/recipe3.jpg" />
+						  </div>
+						</div>
+						<div class="recipeTitle" style="background-color: #4CAF50;">
+							<p class="recipeTitleP"><span>New Recipe</span><br>Rainbow soba salad with ginger and miso dressing</p>
+						</div>
+					</div>
+				</div>
+
+				</div>
+				<div class="detailRecButtonContainer">
+					<button type="button" class="hvr-pop">Detailed Recipe</button>
+				</div>
             </div>  
 
         </div>
@@ -1391,6 +1536,14 @@
 
 </body>
 <script>
+
+$('.slick').slick({
+  dots: true,
+  speed: 500,
+  fade: true,
+  lazyLoad: 'ondemand',
+  cssEase: 'linear'
+});
 
 var myMenu = new OSREC.superslide
 ({
