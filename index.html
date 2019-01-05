@@ -14,13 +14,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.css">
-	<script href="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<link rel="stylesheet" href="css/slick-theme.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<link rel="stylesheet" href="css/slick-theme.css">
+
 	<title>Dashboard</title>
 	<style>
 		body {
@@ -311,12 +312,11 @@
 		.date {
 			float: left;
 			/*width: 140px;*/
-			    padding-left: 16px;
-			    cursor: pointer;
+		    padding-left: 16px;
+		    cursor: pointer;
 		}
 		.date p, .date span {
 			font-size: 13px;
-
 		}
 		.date p {
 			text-align: right;
@@ -389,7 +389,6 @@
 		.size-1of1 {
 		    width: 100%;
 		}
-
 		.column:nth-child(1) {
 			width: 30%;
 		}
@@ -660,7 +659,6 @@
 			bottom: 0;
 			transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
 		}
-
 		.mobileMenuBall i {
 			color: #fff;
 			width: 24px;
@@ -732,7 +730,6 @@
 			display: inline-block; 
 			/*background-color: red; */
 			padding: 0px 28px;
-
 		}
 		.relCon {
 			position: relative;
@@ -752,10 +749,8 @@
 			font-size: 14px;
 			font-weight: 500;
 			color: #999999;
-
 		}
 		@media only screen and (max-width: 750px) {
-
 		    .logo img {
 		        width: 86%;
 		    }
@@ -810,7 +805,7 @@
 				padding-top: 20px !important;
 			}
 		}
-				@media only screen and (max-width: 767px) {
+		@media only screen and (max-width: 767px) {
 		   #grid[data-columns]::before {
 		        content: '1 .column.size-1of1';
 		    }
@@ -824,7 +819,6 @@
 				padding: 0px 14px;
 			}
 		}
-
 		@media screen and (min-width: 768px) and (max-width: 991px) {
 		   #grid[data-columns]::before {
 		        content: '2 .column.size-1of2';
@@ -833,7 +827,6 @@
 		    	width: 50% !important;
 		    }
 		}
-
 		@media screen and (min-width: 1200px) {
 		   #grid[data-columns]::before {
 		        content: '3 .column.size-1of3';
@@ -1201,7 +1194,6 @@
 			<div class="profileImageContainer">
 				<div class="profileImage">
 					<p id="nameLetterM"></p>
-
 				</div>
 			</div>
 			<div class="menuProfileText">
@@ -1221,42 +1213,42 @@
 	<div class="header">
 		<div class="headInner clearfix">
 			<div class="logo">
-				<a href="index.html"><img src="images/logoHolder.png" alt=""></a>
+				<a href="index.html"><img src="images/logoHolder.png" alt="Logo"></a>
 			</div>
 
 			<div class="right">
 				<div class="rightInner clearfix">
-				<div class="profileInfo">
-					<div class="drop"> 
-					<div class="profileImageContainer" >
-						<div class="profileImage">
-							<p id="nameLetter"></p>
+					<div class="profileInfo">
+						<div class="drop"> 
+							<div class="profileImageContainer" >
+								<div class="profileImage">
+									<p id="nameLetter"></p>
+								</div>
+							</div>
+						 	<div id="drop-content" class="drop-content">
+							 	<span>Change Picture</span>
+							 	<span>Remove Picture</span>
+							</div>
+						</div>
+						<div class="profileText">
+							<p id="name">Mizna Uppal</p>
+							<p>Free Membership</p>
 						</div>
 					</div>
-				 	<div id="drop-content" class="drop-content">
-					 	<span>Change Picture</span>
-					 	<span>Remove Picture</span>
+					<div class="iconContainer">
+						<div class="notifications tooltip" title="Notifications">
+							<a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
+						</div>
+						<div class="settings tooltip" title="Settings">
+							<a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+						</div>
+						<div class="logout tooltip" title="Logout">
+							<a href="#"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
+						</div>
+						<div class="menuTrigger" onclick="openMenu()">
+							<a href="#"><img src="images/icons/menuIcon.png" alt="Menu"></a>
+						</div>
 					</div>
-					</div>
-					<div class="profileText">
-						<p id="name">Mizna Uppal</p>
-						<p>Free Membership</p>
-					</div>
-				</div>
-				<div class="iconContainer">
-					<div class="notifications tooltip" title="Notifications">
-						<a href="#"><img src="images/icons/notificationIcon.png" alt=""></a>
-					</div>
-					<div class="settings tooltip" title="Settings">
-						<a href="#"><img src="images/icons/settingsIcon.png" alt=""></a>
-					</div>
-					<div class="logout tooltip" title="Logout">
-						<a href="#"><img src="images/icons/logoutIcon.png" alt=""></a>
-					</div>
-					<div class="menuTrigger" onclick="openMenu()">
-						<a href="#"><img src="images/icons/menuIcon.png" alt=""></a>
-					</div>
-				</div>
 				</div>
 			</div>
 
@@ -1265,31 +1257,30 @@
 
 	<div class="navigation clearfix">
 		<div class="scrollContainer">
-		<div class="scrolling-wrapper-flexbox">
-		  <div class="navItem">
-		  	<p class="navMainText">Dashboard</p>
-		  	<p class="navSubText">Overview</p>
-		  </div>
-		  <div></div>
-		  <div class="navItem">
-		  	<p class="navMainText">Daily Log</p>
-		  	<p class="navSubText">Your Daily Tracking</p>
-		  </div>
-		  <div class="navItem">
-		  	<p class="navMainText">Diet Planning</p>
-		  	<p class="navSubText">Meal Inspiration</p>
-		  </div>
-		  <div class="navItem">
-		  	<p class="navMainText">Statistics</p>
-		  	<p class="navSubText">A Detailed View</p>
-		  </div>
-		  <a href="welcome.php">
-		  <div class="navItem">
-		  	<p class="navMainText" style="color: red;">Development</p>
-		  	<p class="navSubText">Dev Test Screen</p>
-		  </div>
-		  </a>
-		</div>
+			<div class="scrolling-wrapper-flexbox">
+				<div class="navItem">
+					<p class="navMainText">Dashboard</p>
+					<p class="navSubText">Overview</p>
+				</div>
+				<div class="navItem">
+					<p class="navMainText">Daily Log</p>
+					<p class="navSubText">Your Daily Tracking</p>
+				</div>
+				<div class="navItem">
+					<p class="navMainText">Diet Planning</p>
+					<p class="navSubText">Meal Inspiration</p>
+				</div>
+				<div class="navItem">
+					<p class="navMainText">Statistics</p>
+					<p class="navSubText">A Detailed View</p>
+				</div>
+				<a href="welcome.php">
+					<div class="navItem">
+						<p class="navMainText" style="color: red;">Development</p>
+						<p class="navSubText">Dev Test Screen</p>
+					</div>
+				</a>
+			</div>
 		</div>
 
 		<div class="addContainer clearfix">
@@ -1298,13 +1289,11 @@
 				<p>Add Water</p>
 			</div>
 			<div class="addButtons addFood tooltip" title="Quick Add" onclick="addFood()">
-				<div class="addFoodI">
-				</div>
+				<div class="addFoodI"></div>
 				<p>Add Food</p>
 			</div>
 			<div class="addButtons addWeight tooltip" title="Quick Add" onclick="addWeight()">
-				<div class="addWeightI">
-				</div>
+				<div class="addWeightI"></div>
 				<p>Add Weight</p>
 			</div>
 		</div>
@@ -1327,14 +1316,14 @@
 				<div class="percentageContainer">
 					<div id="test-circle2"></div>
 					<svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
-					  <linearGradient id="circle-gradient" x2="1" y2="1">
-					    <stop offset="0%" stop-color="#25AE9A" />
-					    <stop offset="100%" stop-color="#2F85AD" />
-					  </linearGradient>
+						<linearGradient id="circle-gradient" x2="1" y2="1">
+							<stop offset="0%" stop-color="#25AE9A" />
+							<stop offset="100%" stop-color="#2F85AD" />
+						</linearGradient>
 					</svg>
 				</div>
-				<div class="statInfo">
 
+				<div class="statInfo">
 					<div class="yWeight">
 						<p>Your Weight: <span class="tooltip" title="Value not available yet">NaN</span></p>
 					</div>
@@ -1348,9 +1337,11 @@
 						<p>Calorie Goal: <span>NaN</span></p>
 					</div>
 				</div>
+
 				<div class="editButtonContainer">
 					<button type="button" class="hvr-pop">EDIT</button>
 				</div>
+
             </div>  
 
             <div class="item waterCon animated bounceIn"> 
@@ -1360,16 +1351,16 @@
 					<div class="gC">
 						<p class="glassSText">You've drank</p>
 						<div class="relCon">
-						<img src="images/orangeGlass.png" alt="">
-						<p class="numberOfGlasses" id="numberOfGlasses">0</p>
+							<img src="images/orangeGlass.png" alt="Glasses Consumed">
+							<p class="numberOfGlasses" id="numberOfGlasses">0</p>
 						</div>
 						<p class="glassSText">glasses today</p>
 					</div>
 					<div class="gC">
 						<p class="glassSText">You've drank</p>
 						<div class="relCon">
-						<img src="images/greenGlass.png" alt="">
-						<p class="numberOfGlasses2" id="numberOfGlasses2">5</p>
+							<img src="images/greenGlass.png" alt="Water Goal">
+							<p class="numberOfGlasses2" id="numberOfGlasses2">5</p>
 						</div>
 						<p class="glassSText">glasses in a day</p>
 					</div>
@@ -1394,7 +1385,6 @@
 					<div id="chart-container">FusionCharts XT will load here!</div>
 				</div>
 				<div class="statInfo statInfoTarget">
-
 					<div class="tCarbs">
 						<p>Target Carbs: <span class="tooltip" title="Value not available yet">NaN</span></p>
 					</div>
@@ -1428,89 +1418,87 @@
 				</div>
             </div>  
 
-              <div class="item macrosCon animated bounceIn">
-              	<div style="padding: 32px 37px 0px 37px;">
+			<div class="item macrosCon animated bounceIn">
+				<div style="padding: 32px 37px 0px 37px;">
 					<p class="itemTitle">Macros</p>
 					<p class="itemDescription">Below is a pie chart of your macros for today.</p>
 				</div>
-				<!-- <div style="height: 310px; display: flex; justify-content: center; align-items: center;">
-					<p style="font-size: 22px; font-weight: 700; text-align: center; color: #dcdcdc;">Sorry there isn't enough data yet.</p>
-				</div> -->
+			<!-- <div style="height: 310px; display: flex; justify-content: center; align-items: center;">
+				<p style="font-size: 22px; font-weight: 700; text-align: center; color: #dcdcdc;">Sorry there isn't enough data yet.</p>
+			</div> -->
 				<div class="pieChartContainer">
 					<div id="chart-container2">FusionCharts XT will load here!</div>
 				</div>
 				<div class="macroStats">
 					<div class="macroStatsContainer clearfix">
-					<div class="macroStatsLeft">
-						<div class="macroFatColour"></div>
-						<p>Fats</p>
-					</div>
-					<p class="macroStatsPercentage">100%</p>
-					</div>
-					<div class="macroStatsContainer clearfix">
-					<div class="macroStatsLeft">
-						<div class="macroCarbColour"></div>
-						<p>Net Carbs</p>
-					</div>
-					<p class="macroStatsPercentage">100%</p>
+						<div class="macroStatsLeft">
+							<div class="macroFatColour"></div>
+							<p>Fats</p>
+						</div>
+						<p class="macroStatsPercentage">100%</p>
 					</div>
 					<div class="macroStatsContainer clearfix">
-					<div class="macroStatsLeft">
-						<div class="macroProColour"></div>
-						<p>Protein</p>
+						<div class="macroStatsLeft">
+							<div class="macroCarbColour"></div>
+							<p>Net Carbs</p>
+						</div>
+						<p class="macroStatsPercentage">100%</p>
 					</div>
-					<p class="macroStatsPercentage">100%</p>
+					<div class="macroStatsContainer clearfix">
+						<div class="macroStatsLeft">
+							<div class="macroProColour"></div>
+							<p>Protein</p>
+						</div>
+						<p class="macroStatsPercentage">100%</p>
 					</div>
 				</div>
 				<div class="detailButtonContainer">
 					<button type="button" class="hvr-pop">Detailed View</button>
 				</div>
-            </div>  
+			</div>  
 
             <div class="item recipeCon animated bounceIn"> 
 				<p class="itemTitle">Recipe Ideas & Inspiration</p>
 				<p class="itemDescription">Hand picked by us, just for you.</p>
 				<div class="slick">
-
-				<div>
-					<div class="slickExtraP">
-						<div class="recipeContainer">
-						  <div class="recipeContainerItem">
-						    <img src="images/recipes/recipe1.png" />
-						  </div>
-						</div>
-						<div class="recipeTitle">
-							<p class="recipeTitleP"><span>Featured Recipe</span><br>Simple grilled chicken with almond courgetti salad</p>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="slickExtraP">
-						<div class="recipeContainer">
-						  <div class="recipeContainerItem">
-						    <img src="images/recipes/recipe2.jpg" />
-						  </div>
-						</div>
-						<div class="recipeTitle" style="background-color: #673AB7;">
-							<p class="recipeTitleP"><span>New Recipe</span><br>Lemon roasted mackerel fillets with apple tzatziki</p>
+					<div>
+						<div class="slickExtraP">
+							<div class="recipeContainer">
+								<div class="recipeContainerItem">
+									<img src="images/recipes/recipe1.png" alt="Recipe">
+								</div>
+							</div>
+							<div class="recipeTitle">
+								<p class="recipeTitleP"><span>Featured Recipe</span><br>Simple grilled chicken with almond courgetti salad</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div>
-					<div class="slickExtraP">
-						<div class="recipeContainer">
-						  <div class="recipeContainerItem">
-						    <img src="images/recipes/recipe3.jpg" />
-						  </div>
-						</div>
-						<div class="recipeTitle" style="background-color: #4CAF50;">
-							<p class="recipeTitleP"><span>New Recipe</span><br>Rainbow soba salad with ginger and miso dressing</p>
+					<div>
+						<div class="slickExtraP">
+							<div class="recipeContainer">
+								<div class="recipeContainerItem">
+									<img src="images/recipes/recipe2.jpg" alt="Recipe">
+								</div>
+							</div>
+							<div class="recipeTitle" style="background-color: #673AB7;">
+								<p class="recipeTitleP"><span>New Recipe</span><br>Lemon roasted mackerel fillets with apple tzatziki</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
+					<div>
+						<div class="slickExtraP">
+							<div class="recipeContainer">
+								<div class="recipeContainerItem">
+									<img src="images/recipes/recipe3.jpg" alt="Recipe">
+								</div>
+							</div>
+							<div class="recipeTitle" style="background-color: #4CAF50;">
+								<p class="recipeTitleP"><span>New Recipe</span><br>Rainbow soba salad with ginger and miso dressing</p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="detailRecButtonContainer">
 					<button type="button" class="hvr-pop">Detailed Recipe</button>
@@ -1519,32 +1507,21 @@
 
         </div>
 	</div>
-
-
 </div>
 
 <div class="mobileMenuBall">
-	<i class="first"><img src="images/icons/weightIconWhite.png" width="40px" alt="" onclick="addWeight()"></i>
-	<i class="second"><img src="images/icons/foodIconWhite.png" width="40px" alt="" onclick="addFood()"></i>
-	<i class="third"><img src="images/icons/waterIconWhite.png" width="34px" alt="" onclick="addWater()"></i>
+	<i class="first"><img src="images/icons/weightIconWhite.png" width="40px" alt="Weight" onclick="addWeight()"></i>
+	<i class="second"><img src="images/icons/foodIconWhite.png" width="40px" alt="Food" onclick="addFood()"></i>
+	<i class="third"><img src="images/icons/waterIconWhite.png" width="34px" alt="Water" onclick="addWater()"></i>
 	<?xml version="1.0" encoding="utf-8"?>
 	<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-		 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
-		30,15.5 "/>
-	</svg>
+	width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
+	30,15.5 "/></svg>
 </div>	
 
 </body>
+
 <script>
-
-$('.slick').slick({
-  dots: true,
-  speed: 500,
-  fade: true,
-  lazyLoad: 'ondemand',
-  cssEase: 'linear'
-});
-
 var myMenu = new OSREC.superslide
 ({
     slider: document.getElementById('menu'),
@@ -1561,11 +1538,13 @@ function openMenu() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+
+	//Controls the profile picture header
 	var firstLetterOfName = document.getElementById("name").innerHTML;
-	//console.log(firstLetterOfName.charAt(0));
 	document.getElementById("nameLetter").innerHTML = firstLetterOfName.charAt(0);
 	document.getElementById("nameLetterM").innerHTML = firstLetterOfName.charAt(0);
 
+	//Functions controls the current date in dashboard
 	var objToday = new Date(),
 	domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
 	dayOfMonth = today + ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
@@ -1576,11 +1555,16 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("currentDate").innerHTML = today;
 });
 
-//$('#grid').addClass('animated fadeIn');
+//Function controls the recipe tile carousel
+$('.slick').slick({
+	dots: true,
+	speed: 500,
+	fade: true,
+	lazyLoad: 'ondemand',
+	cssEase: 'linear'
+});
 
-//$('.navItem').addClass('animated fadeIn');
-
-
+//Controls the overview tile animation
 $("#test-circle2").circliful({
 	animationStep: 3,
 	foregroundBorderWidth: 2,
@@ -1598,13 +1582,12 @@ $("#test-circle2").circliful({
 var svgCircle = document.getElementsByClassName('circliful')[0];
 svgCircle.setAttribute("viewBox", "0 0 194 170");
 </script>
-<script type="text/javascript" src="js/tooltipster.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/tooltipster.css">
+
 <script>
+//Initalises tooltips
 $(document).ready(function() {
     $('.tooltip').tooltipster();
 });
-
 
 $(document).ready(function() {
 	var x = document.getElementById("drop-content");
@@ -1662,72 +1645,71 @@ function addWater() {
 }
 
 function addWeight() {
+	var options = {};
 
-var options = {};
+	swal({
+	    title: "Add Weight",
+	    type: 'info',
+	    inputOptions: options,
+	    html: '<p class="modalHeader">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
+	    '<div style="" >' +
+	    '<form method="post" action="" style="padding: 20px 0px;">' +
+	    '<input class="foodInputs weightInputs" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
 
-swal({
-    title: "Add Weight",
-    type: 'info',
-    inputOptions: options,
-    html: '<p class="modalHeader">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
-    '<div style="" >' +
-    '<form method="post" action="" style="padding: 20px 0px;">' +
-    '<input class="foodInputs weightInputs" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
+	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
+	    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
 
-    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
-    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
-
-    showConfirmButton: false,
-    onOpen: function(ele) {
-        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
-    }
-});
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+	    }
+	});
 }
 
 function addFood() {
 
-var options = {};
+	var options = {};
 
-swal({
-    title: "Add Food",
-    type: 'info',
-    inputOptions: options,
-    html: '<p class="modalHeader">Use our search to find foods or enter food manually.</p>' +
-    '<div style="" >' +
-    '<div style="padding: 20px 0px;"><input class="foodInputs foodSearchInput" type="text" name="intelligentFoodSearch" placeholder="Search (sorry I\'m disabled for now)" disabled></div>' +
-    '<p class="foodInputBreak">- or -</p>' +
-    '<form class="addFoodForm" method="post" action="">' +
-    '<input class="foodInputs rName" type="text" name="rName" placeholder="Name of recipe/meal" autocomplete="off">' +
-    '<input class="foodInputs mCat" type="text" name="mCat" placeholder="Meal category, e.g Lunch" autocomplete="off">' +
-    '<input class="foodInputs foodFloatInputs caloriesInput" type="number" name="cal" min="0" placeholder="Calories" autocomplete="off">' +
-    '<input class="foodInputs foodFloatInputs carbsInput" type="number" name="car" min="0" placeholder="Carbs" autocomplete="off">' +
-    '<input class="foodInputs foodFloatInputs fatsInput" type="number" name="pro" min="0" placeholder="Fats" autocomplete="off">' +
-    '<input class="foodInputs foodFloatInputs proteinInput" type="number" name="fat" min="0" placeholder="Protein" autocomplete="off">' +
+	swal({
+	    title: "Add Food",
+	    type: 'info',
+	    inputOptions: options,
+	    html: '<p class="modalHeader">Use our search to find foods or enter food manually.</p>' +
+	    '<div style="" >' +
+	    '<div style="padding: 20px 0px;"><input class="foodInputs foodSearchInput" type="text" name="intelligentFoodSearch" placeholder="Search (sorry I\'m disabled for now)" disabled></div>' +
+	    '<p class="foodInputBreak">- or -</p>' +
+	    '<form class="addFoodForm" method="post" action="">' +
+	    '<input class="foodInputs rName" type="text" name="rName" placeholder="Name of recipe/meal" autocomplete="off">' +
+	    '<input class="foodInputs mCat" type="text" name="mCat" placeholder="Meal category, e.g Lunch" autocomplete="off">' +
+	    '<input class="foodInputs foodFloatInputs caloriesInput" type="number" name="cal" min="0" placeholder="Calories" autocomplete="off">' +
+	    '<input class="foodInputs foodFloatInputs carbsInput" type="number" name="car" min="0" placeholder="Carbs" autocomplete="off">' +
+	    '<input class="foodInputs foodFloatInputs fatsInput" type="number" name="pro" min="0" placeholder="Fats" autocomplete="off">' +
+	    '<input class="foodInputs foodFloatInputs proteinInput" type="number" name="fat" min="0" placeholder="Protein" autocomplete="off">' +
 
-    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
+	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
 
-    '<input value="Cancel" type="button" id="btnC" class="cancelBut" onclick="swal.close();"></input></form></div></div>', 
+	    '<input value="Cancel" type="button" id="btnC" class="cancelBut" onclick="swal.close();"></input></form></div></div>', 
 
-    showConfirmButton: false,
-    onOpen: function(ele) {
-        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
-    }
-});
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+	    }
+	});
 }
 
-
+//Adjusts the display of the water tile depending on how many glasses are consumed
 $(document).ready(function() {
-var str = document.getElementById("numberOfGlasses").innerHTML;
-var strLength = str.length;
-if(strLength > 1) {
-	document.getElementById("numberOfGlasses").style.left = "36%";
-}
+	var str = document.getElementById("numberOfGlasses").innerHTML;
+	var strLength = str.length;
+	if(strLength > 1) {
+		document.getElementById("numberOfGlasses").style.left = "36%";
+	}
 
-var str2 = document.getElementById("numberOfGlasses2").innerHTML;
-var strLength2 = str2.length;
-if(strLength2 > 1) {
-	document.getElementById("numberOfGlasses2").style.left = "36%";
-}
+	var str2 = document.getElementById("numberOfGlasses2").innerHTML;
+	var strLength2 = str2.length;
+	if(strLength2 > 1) {
+		document.getElementById("numberOfGlasses2").style.left = "36%";
+	}
 });
 </script>
 <script type="text/javascript">
@@ -1737,7 +1719,6 @@ if(strLength2 > 1) {
     renderAt: 'chart-container',
     width: '100%',
     height: '400',
-
     dataFormat: 'json',
     dataSource: {
         "chart": {
@@ -1856,4 +1837,6 @@ FusionCharts.ready(function() {
 });
 </script>
 <script src="js/salvattore.min.js"></script>
+<script type="text/javascript" src="js/tooltipster.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tooltipster.css">
 </html>
