@@ -143,4 +143,78 @@
 	if (!($carbsFrom7DaysAgoTotal > 0)) { 
 		$carbsFrom7DaysAgoTotal = 0;
 	}
+
+	//Water queries start here
+	$waterFrom7DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -7 DAY AND `time` <  DATE(NOW()) + INTERVAL -6 DAY";
+	$waterFrom7DaysAgoR = $link->query($waterFrom7DaysAgo);
+	$waterFrom7DaysAgoRow = mysqli_fetch_assoc($waterFrom7DaysAgoR); 
+	$waterFrom7DaysAgoTotal = $waterFrom7DaysAgoRow['total_water'];
+
+	if (!($carbsFrom7DaysAgoTotal > 0)) { 
+		$carbsFrom7DaysAgoTotal = 0;
+	}
+
+	$waterFrom6DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -6 DAY AND `time` <  DATE(NOW()) + INTERVAL -5 DAY";
+	$waterFrom6DaysAgoR = $link->query($waterFrom6DaysAgo);
+	$waterFrom6DaysAgoRow = mysqli_fetch_assoc($waterFrom6DaysAgoR); 
+	$waterFrom6DaysAgoTotal = $waterFrom6DaysAgoRow['total_water'];
+
+	if (!($waterFrom6DaysAgoTotal > 0)) { 
+		$waterFrom6DaysAgoTotal = 0;
+	}
+
+	$waterFrom5DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -5 DAY AND `time` <  DATE(NOW()) + INTERVAL -4 DAY";
+	$waterFrom5DaysAgoR = $link->query($waterFrom5DaysAgo);
+	$waterFrom5DaysAgoRow = mysqli_fetch_assoc($waterFrom5DaysAgoR); 
+	$waterFrom5DaysAgoTotal = $waterFrom5DaysAgoRow['total_water'];
+
+	if (!($waterFrom5DaysAgoTotal > 0)) { 
+		$waterFrom5DaysAgoTotal = 0;
+	}
+
+	$waterFrom4DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -4 DAY AND `time` <  DATE(NOW()) + INTERVAL -3 DAY";
+	$waterFrom4DaysAgoR = $link->query($waterFrom4DaysAgo);
+	$waterFrom4DaysAgoRow = mysqli_fetch_assoc($waterFrom4DaysAgoR); 
+	$waterFrom4DaysAgoTotal = $waterFrom4DaysAgoRow['total_water'];
+
+	if (!($waterFrom4DaysAgoTotal > 0)) { 
+		$waterFrom4DaysAgoTotal = 0;
+	}
+
+	$waterFrom3DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -3 DAY AND `time` <  DATE(NOW()) + INTERVAL -2 DAY";
+	$waterFrom3DaysAgoR = $link->query($waterFrom3DaysAgo);
+	$waterFrom3DaysAgoRow = mysqli_fetch_assoc($waterFrom3DaysAgoR); 
+	$waterFrom3DaysAgoTotal = $waterFrom3DaysAgoRow['total_water'];
+
+	if (!($carbsFrom3DaysAgoTotal > 0)) { 
+		$carbsFrom3DaysAgoTotal = 0;
+	}
+
+	$waterFrom2DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -2 DAY AND `time` <  DATE(NOW()) + INTERVAL -1 DAY";
+	$waterFrom2DaysAgoR = $link->query($waterFrom2DaysAgo);
+	$waterFrom2DaysAgoRow = mysqli_fetch_assoc($waterFrom2DaysAgoR); 
+	$waterFrom2DaysAgoTotal = $waterFrom2DaysAgoRow['total_water'];
+
+	if (!($carbsFrom2DaysAgoTotal > 0)) { 
+		$carbsFrom2DaysAgoTotal = 0;
+	}
+
+	$waterFrom1DaysAgo = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -1 DAY AND `time` <  DATE(NOW()) + INTERVAL 0 DAY";
+	$waterFrom1DaysAgoR = $link->query($waterFrom1DaysAgo);
+	$waterFrom1DaysAgoRow = mysqli_fetch_assoc($waterFrom1DaysAgoR); 
+	$waterFrom1DaysAgoTotal = $waterFrom1DaysAgoRow['total_water'];
+
+	if (!($carbsFrom1DaysAgoTotal > 0)) { 
+		$carbsFrom1DaysAgoTotal = 0;
+	}
+
+	// function processWater($query) {
+	// 	$waterFromDaysAgoRow = mysqli_fetch_assoc($query); 
+	// 	$waterFromDaysAgoTotal = $waterFromDaysAgoRow['total_water'];
+
+	// 	if (!($waterFromDaysAgoTotal > 0)) { 
+	// 		$waterFromDaysAgoTotal = 0;
+	// 	}
+	// }
+
 	?>
