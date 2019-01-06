@@ -203,6 +203,7 @@ if(isset($_POST["water"])){
     </style>
 </head>
 <body>
+	<div style="background-color: #444; padding: 20px; text-align: center;"><p style="text-align: center; font-weight: 300; font-size: 16px; color: #fff;">This is a development test screen and is not coded properly. Bad coding practices and shortcuts have been used.</p></div>
 	<div class="pageCon">
     <div class="page-header">
         <h1>Hi, <?php echo ($_SESSION["firstName"]); ?> <?php echo ($_SESSION["lastName"]); ?></h1>
@@ -239,7 +240,7 @@ if(isset($_POST["water"])){
 	    echo "<br>";
 	    echo "<p style=\"font-weight: bold;\">All time weight history:</p>";
 	    while($row = $result->fetch_assoc()) {
-	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">time updated:</span> " . $row["timee"] . "<br>";
+	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">updated:</span> " . $row["timee"] . "<br>";
 	    }
 	    echo "<br> Timezones are USA.";
 	} else {
@@ -418,6 +419,11 @@ if(isset($_POST["water"])){
 
 	$link->close();
 	?>
+
+	<br><br>
+	<div class="pieChartContainer" style="width:400px;">
+		<div id="chart-container3">FusionCharts XT will load here!</div>
+	</div>
 
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
@@ -658,6 +664,58 @@ FusionCharts.ready(function() {
     }
   });
   fusioncharts2.render();
+});
+
+FusionCharts.ready(function(){
+var chart3 = new FusionCharts({
+type: 'area2d',
+renderAt: 'chart-container3',
+width: '100%',
+height: '400',
+dataFormat: 'json',
+dataSource: {
+    "chart": {
+        "theme": "fusion",
+        "caption": "Average glasses",
+        "subCaption": "Over the past 7 days",
+        "xAxisName": "Date",
+        "yAxisName": "Glasses",
+        "animationDuration": "3",
+        "paletteColors": "#F2C158",
+        "xAxisNameFontColor": "#999999",
+        "yAxisNameFontColor": "#999999",
+        "labelFontColor": "#999999",
+        "captionFontColor": "#444444",
+        "baseFontColor": "#999999",
+        "captionFontSize": "16",
+        "subCaptionFontSize": "14",
+        "captionFont": "Open Sans, sans-serif"
+    },
+    "data": [{
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-7)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom7DaysAgoTotal)) {echo($waterFrom7DaysAgoTotal);} ?>"
+    }, {
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-6)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom6DaysAgoTotal)) {echo($waterFrom6DaysAgoTotal);} ?>"
+    }, {
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-5)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom5DaysAgoTotal)) {echo($waterFrom5DaysAgoTotal);} ?>"
+    }, {
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-4)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom4DaysAgoTotal)) {echo($waterFrom4DaysAgoTotal);} ?>"
+    }, {
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-3)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom3DaysAgoTotal)) {echo($waterFrom3DaysAgoTotal);} ?>"
+    }, {
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-2)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom2DaysAgoTotal)) {echo($waterFrom2DaysAgoTotal);} ?>"
+    }, {
+        "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-1)); echo $yesterday; ?>",
+        "value": "<?php if(isset($waterFrom1DaysAgoTotal)) {echo($waterFrom1DaysAgoTotal);} ?>"
+    }]
+}
+});
+	chart3.render();
 });
 </script>
 </div>
