@@ -217,4 +217,86 @@
 	// 	}
 	// }
 
+	$firstLastWeight = "SELECT weight FROM userWeight WHERE userID = $id ORDER BY timee DESC LIMIT 7";
+	$firstLastWeightR = $link->query($firstLastWeight);
+	if ($firstLastWeightR->num_rows > 0) {
+		 while($arr = $firstLastWeightR->fetch_assoc()) {
+	        $arrayTest[] = $arr['weight'];
+	    }
+
+	    if(array_key_exists(0, $arrayTest)) {
+			$firstLastWeight = $arrayTest[0];
+	    }
+
+	    if(array_key_exists(1, $arrayTest)) {
+			$secondLastWeight = $arrayTest[1];
+	    }
+	    if(array_key_exists(2, $arrayTest)) {
+	    	$thirdLastWeight = $arrayTest[2];
+	    }
+	    if(array_key_exists(3, $arrayTest)) {
+	    	$fourthLastWeight = $arrayTest[3];
+	    }
+	    if(array_key_exists(4, $arrayTest)) {
+	    	$fifthLastWeight = $arrayTest[4];
+	    }
+	    if(array_key_exists(5, $arrayTest)) {
+	    	$sixthLastWeight = $arrayTest[5];
+	    }
+	    if(array_key_exists(6, $arrayTest)) {
+	    	$seventhLastWeight = $arrayTest[6];
+	    }
+
+	}
+	// echo $firstLastWeight;
+	// echo $secondLastWeight;
+	// echo $thirdLastWeight;
+	// echo $fourthLastWeight;
+	// echo $fifthLastWeight;
+	// echo $sixthLastWeight;
+	// echo $seventhLastWeight;
+
+	$firstLastWeightTime = "SELECT timee FROM userWeight WHERE userID = $id ORDER BY timee DESC LIMIT 7";
+	$firstLastWeightTimeR = $link->query($firstLastWeightTime);
+	if ($firstLastWeightTimeR->num_rows > 0) {
+		 while($arr2 = $firstLastWeightTimeR->fetch_assoc()) {
+	        $arrayTest2[] = $arr2['timee'];
+	    }
+
+	    if(array_key_exists(0, $arrayTest)) {
+			$firstLastTime = $arrayTest2[0];
+	    }
+
+	    if(array_key_exists(1, $arrayTest)) {
+	    	$secondLastTime = $arrayTest2[1];
+	    }
+
+	    if(array_key_exists(2, $arrayTest)) {
+	    	$thirdLastTime = $arrayTest2[2];
+	    }
+
+	    if(array_key_exists(3, $arrayTest)) {
+	    	$fourthLastTime = $arrayTest2[3];
+	    }
+
+	    if(array_key_exists(4, $arrayTest)) {
+	    	$fifthLastTime = $arrayTest2[4];
+	    }
+
+	    if(array_key_exists(5, $arrayTest)) {
+	    	$sixthLastTime = $arrayTest2[5];
+	    }
+
+	    if(array_key_exists(6, $arrayTest)) {
+	    	$seventhLastTime = $arrayTest2[6];
+	    }
+	}
+
+	// $firstLastTimeR = strtotime($firstLastTime); echo date('d/m', $firstLastTimeR);
+	// $secondLastTimeR = strtotime($secondLastTime); echo date('d/m', $secondLastTimeR);
+	// $thirdLastTimeR = strtotime($thirdLastTime); echo date('d/m', $thirdLastTimeR);
+	// $fourthLastTimeR = strtotime($fourthLastTime); echo date('d/m', $fourthLastTimeR);
+	// $fifthLastTimeR = strtotime($fifthLastTime); echo date('d/m', $fifthLastTimeR);
+	// $sixthLastTimeR = strtotime($sixthLastTime); echo date('d/m', $sixthLastTimeR);
+	// $seventhLastTimeR = strtotime($seventhLastTime); echo date('d/m', $seventhLastTimeR);
 	?>

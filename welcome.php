@@ -242,12 +242,16 @@ if(isset($_POST["water"])){
 	    while($row = $result->fetch_assoc()) {
 	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">updated:</span> " . $row["timee"] . "<br>";
 	    }
-	    echo "<br> Timezones are USA.";
+	    echo "<br> Timezones are USA.<br><br>";
 	} else {
 	    echo "<p>You have no all time weight history.</p>";
 	}
-	
 	?>
+
+	<div class="pieChartContainer" style="width:400px;">
+		<p style="font-style: italic;">Weight chart:</p>
+		<div id="chart-container4">FusionCharts XT will load here!</div>
+	</div>
 
 	<?php
 	//This section of code gets the start weight for the user
@@ -716,6 +720,57 @@ dataSource: {
 }
 });
 	chart3.render();
+});
+
+FusionCharts.ready(function(){
+var chart4 = new FusionCharts({
+    type: 'line',
+    renderAt: 'chart-container4',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "caption": "Weight history",
+            "xAxisName": "Date",
+            "yAxisName": "Weight (kg)",
+            "captionFont": "Open Sans, sans-serif",
+            "lineThickness": "3"
+        },
+
+        "data": [{
+        		"label": "<?php if(isset($seventhLastTime)) {$seventhLastTimeR = strtotime($seventhLastTime); echo date('d/m', $seventhLastTimeR);} ?>",
+                "value": "<?php if(isset($seventhLastWeight)) {echo($seventhLastWeight);} ?>"
+            },
+            {
+            	"label": "<?php if(isset($sixthLastTime)) {$sixthLastTimeR = strtotime($sixthLastTime); echo date('d/m', $sixthLastTimeR);} ?>",
+                "value": "<?php if(isset($sixthLastWeight)) {echo($sixthLastWeight);} ?>"
+            },
+            {
+            	"label": "<?php if(isset($fifthLastTime)) {$fifthLastTimeR = strtotime($fifthLastTime); echo date('d/m', $fifthLastTimeR);} ?>",
+                "value": "<?php if(isset($fifthLastWeight)) {echo($fifthLastWeight);} ?>"
+            },
+            {
+                "label": "<?php if(isset($fourthLastTime)) {$fourthLastTimeR = strtotime($fourthLastTime); echo date('d/m', $fourthLastTimeR);} ?>",
+                "value": "<?php if(isset($fourthLastWeight)) {echo($fourthLastWeight);} ?>"
+            },
+            {
+                "label": "<?php if(isset($thirdLastTime)) {$thirdLastTimeR = strtotime($thirdLastTime); echo date('d/m', $thirdLastTimeR);} ?>",
+                "value": "<?php if(isset($thirdLastWeight)) {echo($thirdLastWeight);} ?>"
+            },
+            {
+                "label": "<?php if(isset($secondLastTime)) {$secondLastTimeR = strtotime($secondLastTime); echo date('d/m', $secondLastTimeR);} ?>",
+                "value": "<?php if(isset($secondLastWeight)) {echo($secondLastWeight);} ?>"
+            },
+            {
+                "label": "<?php if(isset($firstLastTime)) {$firstLastTimeR = strtotime($firstLastTime); echo date('d/m', $firstLastTimeR);} ?>",
+                "value": "<?php if(isset($firstLastWeight)) {echo($firstLastWeight);} ?>"
+            }
+        ]
+    }
+});
+	chart4.render();
 });
 </script>
 </div>
