@@ -248,7 +248,7 @@ if(isset($_POST["water"])){
 	}
 	?>
 
-	<div class="pieChartContainer" style="width:400px;">
+	<div class="pieChartContainer" style="width:500px;">
 		<p style="font-style: italic;">Weight chart:</p>
 		<div id="chart-container4">FusionCharts XT will load here!</div>
 	</div>
@@ -388,11 +388,11 @@ if(isset($_POST["water"])){
 	<p id="caloriesfromprotien"></p> -->
 	<?php include 'includes/graphQueries.php';?>
 	
-	<div style="width:400px; padding-top: 30px;">
+	<div style="width:500px; padding-top: 30px;">
 		<p style="font-style: italic;">Last week summary chart:</p>
 		<div id="chart-container">FusionCharts XT will load here!</div>
 	</div>
-	<div class="pieChartContainer" style="width:400px;">
+	<div class="pieChartContainer" style="width:500px;">
 		<p style="font-style: italic;">Macros chart for today:</p>
 		<div id="chart-container2">FusionCharts XT will load here!</div>
 	</div>
@@ -425,7 +425,7 @@ if(isset($_POST["water"])){
 	?>
 
 	<br><br>
-	<div class="pieChartContainer" style="width:400px;">
+	<div class="pieChartContainer" style="width:500px;">
 		<div id="chart-container3">FusionCharts XT will load here!</div>
 	</div>
 
