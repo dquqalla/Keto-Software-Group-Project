@@ -70,6 +70,7 @@ if(isset($_POST["weight"])){
 	//$link->close();
 }
 
+//This function deals with adding food
 if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['pro'], $_POST['fat'])) {
 	$ttn = $_POST["rName"];
 	$ttm = $_POST["mCat"];
@@ -82,28 +83,56 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	$sqlqw = "INSERT INTO userFood (userID,rName,mCat,calories,carbs,protein,fat) VALUES ($id, '$ttn', '$ttm', $ttc, $ttcr, $ttp, $ttf)";
 
 	if ($link->query($sqlqw) === TRUE) {
-		//echo "New record created successfully";
 		header("Refresh:0");
 	} else {
 		echo "Error: " . $sqlqw . "<br>" . $link->error;
 	}
-
 	//$link->close();
 } 
 
+//This function deals with adding water via inputbox/sweetAlert
 if(isset($_POST["water"])){
 	$waterA = $_POST["water"];
 	$id = $_SESSION["id"];
 
-	$sqlWater = "INSERT INTO userWater (userID,waterAmount) VALUES ($id, $waterA)";
+	//We are using a for loop so we can remove water too!
+	for ($x = 1; $x <= $waterA; $x++) {
+		$sqlWater = "INSERT INTO userWater (userID,waterAmount) VALUES ($id, 1)";
 
-	if ($link->query($sqlWater) === TRUE) { //Run the query to add to userWeight table
-		//echo "New record created successfully";
-		//header("Refresh:0");
-	} else {
-		echo "Error: " . $sql . "<br>" . $link->error;
+		if ($link->query($sqlWater) === TRUE) {
+		} else {
+			echo "Error: " . $sqlWater . "<br>" . $link->error;
+		}
 	}
-	//$link->close();
+}
+
+//This function deals with adding water via the add button
+if(isset($_POST["waterAddButton"])){
+	$id = $_SESSION["id"];
+
+	$sqlWater = "INSERT INTO userWater (userID,waterAmount) VALUES ($id, 1)";
+
+	if ($link->query($sqlWater) === TRUE) {
+	} else {
+		echo "Error: " . $sqlWater . "<br>" . $link->error;
+	}
+}
+
+//This function deals with deleting water via the delete button
+if(isset($_POST["waterAddDButton"])){
+	$id = $_SESSION["id"];
+
+	$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$water_t = $link->query($water_total);
+	
+	if(!($water_t->num_rows == 0)) {
+		$sqlWater = "DELETE FROM userWater WHERE userID=$id ORDER BY `time` DESC LIMIT 1";
+
+		if ($link->query($sqlWater) === TRUE) {
+		} else {
+			echo "Error: " . $sqlWater . "<br>" . $link->error;
+		}
+	}
 }
 
 ?>
@@ -270,40 +299,39 @@ if(isset($_POST["water"])){
 	<h2>Change Profile Picture</h2>
 
 	<?php
-
 	$sql = "SELECT profilePicture FROM users WHERE id = $id";
 	$result = $link->query($sql);
 
 	    while($row = $result->fetch_assoc()){
-	            if($row['profilePicture'] == ""){
-	                    echo "
-						<div class=\"drop\"> 
-						<div class=\"profileImageContainer\">
-						<div class=\"profileImage\">
-						<p id=\"nameLetter\">You got no profile image!</p>
-						</div>
-						</div>
-						<div id=\"drop-content\" class=\"drop-content\" style=\"display: none;\">
-						<span>Change Picture</span>
-						<span>Remove Picture</span>
-						</div>
-						</div>
-	                    ";
-	            } else {
-						echo "
-						<div class=\"drop\"> 
-						<div class=\"profileImageContainer\">
-						<div class=\"profileImage\">
-						<img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
-						</div>
-						</div>
-						</div>
-	                    ";
-	            }
-	            echo "<br>";
+	        if($row['profilePicture'] == ""){
+	                echo "
+					<div class=\"drop\"> 
+					<div class=\"profileImageContainer\">
+					<div class=\"profileImage\">
+					<p id=\"nameLetter\">You got no profile image!</p>
+					</div>
+					</div>
+					<div id=\"drop-content\" class=\"drop-content\" style=\"display: none;\">
+					<span>Change Picture</span>
+					<span>Remove Picture</span>
+					</div>
+					</div>
+	                ";
+	        } else {
+					echo "
+					<div class=\"drop\"> 
+					<div class=\"profileImageContainer\">
+					<div class=\"profileImage\">
+					<img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
+					</div>
+					</div>
+					</div>
+	                ";
+	        }
+	        echo "<br>";
 	    }
-	    	//$link->close();
 	?>
+	
 	<form action="" method="post" enctype="multipart/form-data">
 	<input type="file" name="file">
 	<input class="addP" type="submit" name="submit2" value="Upload">
@@ -341,39 +369,37 @@ if(isset($_POST["water"])){
 	}
 
 	if ($result->num_rows > 0) {
-	//Add the total carbs for today for user and display it
-	$sql2 = "SELECT SUM(carbs) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
-	$result2 = $link->query($sql2);
-	$row = mysqli_fetch_assoc($result2); 
-	$sum = $row['total_value'];
-	echo "Total carbs today: " . $sum . " (<span id=\"carbPercentage\"></span>%)<br>";
+		//Add the total carbs for today for user and display it
+		$sql2 = "SELECT SUM(carbs) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$result2 = $link->query($sql2);
+		$row = mysqli_fetch_assoc($result2); 
+		$sum = $row['total_value'];
+		echo "Total carbs today: " . $sum . " (<span id=\"carbPercentage\"></span>%)<br>";
 
-	//Add the total protein for today for user and display it
-	$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
-	$result3 = $link->query($sql3);
-	$row1 = mysqli_fetch_assoc($result3); 
-	$sum1 = $row1['total_value'];
-	echo "Total protein today: " . $sum1 . " (<span id=\"proPercentage\"></span>%)<br>";
+		//Add the total protein for today for user and display it
+		$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$result3 = $link->query($sql3);
+		$row1 = mysqli_fetch_assoc($result3); 
+		$sum1 = $row1['total_value'];
+		echo "Total protein today: " . $sum1 . " (<span id=\"proPercentage\"></span>%)<br>";
 
-	//Add the total fat for today for user and display it
-	$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
-	$result4 = $link->query($sql4);
-	$row2 = mysqli_fetch_assoc($result4); 
-	$sum2 = $row2['total_value'];
-	echo "Total fats today: " . $sum2 . " (<span id=\"fatPercentage\"></span>%)<br>";
+		//Add the total fat for today for user and display it
+		$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$result4 = $link->query($sql4);
+		$row2 = mysqli_fetch_assoc($result4); 
+		$sum2 = $row2['total_value'];
+		echo "Total fats today: " . $sum2 . " (<span id=\"fatPercentage\"></span>%)<br>";
 
-	//Add the total calories for today for user and display it
-	$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
-	$result5 = $link->query($sql5);
-	$row3 = mysqli_fetch_assoc($result5); 
-	$sum3 = $row3['total_value'];
-	echo "Total calories today: " . $sum3 . "<br>";
+		//Add the total calories for today for user and display it
+		$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$result5 = $link->query($sql5);
+		$row3 = mysqli_fetch_assoc($result5); 
+		$sum3 = $row3['total_value'];
+		echo "Total calories today: " . $sum3 . "<br>";
 	}
 
-
-	//$link->close();
-
 	?>
+
 	<p id="calories"></p>
 	<p id="leanBodyMass"></p>
 	<p id="rProteinIntake"></p>
@@ -383,9 +409,6 @@ if(isset($_POST["water"])){
 	<p id="calFromC"></p>
 	<p id="calFromF"></p>
 
-<!-- 	<p id="caloriesfromfats"></p>
-	<p id="caloriesfromcarbs"></p>
-	<p id="caloriesfromprotien"></p> -->
 	<?php include 'includes/graphQueries.php';?>
 	
 	<div style="width:500px; padding-top: 30px;">
@@ -403,6 +426,7 @@ if(isset($_POST["water"])){
    		<input class="addW" type="submit" name="submit" value="Add Water">
 	</form>
 	<p>We recommend 2000 - 2500ml of water a day. This is roughly 8 - 10 glasses.</p>
+
 	<?php
 	$id = $_SESSION["id"];
 
@@ -416,13 +440,24 @@ if(isset($_POST["water"])){
 		$total_water_for_user = $link->query($total_water2);
 		$tot_water = mysqli_fetch_assoc($total_water_for_user); 
 		$sum_water = $tot_water['total_water'];
-		echo "Total glasses of water today: " . $sum_water;
+		echo "<p style=\"font-weight:600;\">Total glasses of water today: " . $sum_water . "</p>";
 	} else {
-		echo "You've not added any water today";
+		echo "<p style=\"font-weight:600;\">You've not added any water today</p>";
 	}
 
-	$link->close();
+	$link->close(); //Close the connection
 	?>
+
+	<div class="buttonMar" style="float: left; margin: 2px;">
+		<form method="post" action="welcome.php">
+			<input name="waterAddButton" style="width: 40px; height: 40px; background-color: #2ECC71; color:#fff;" type="submit" value="+" class="waterASButton waterAdd tooltip" title="Add a glass of water">
+		</form>
+	</div>
+	<div class="buttonMar" style="float: left; margin: 2px;">
+		<form method="post" action="welcome.php">
+			<input name="waterAddDButton" style="width: 40px; height: 40px; background-color: #F25661; color:#fff;" type="submit" value="-" class="waterASButton waterSub tooltip" title="Remove a glass of water">
+		</form>
+	</div>
 
 	<br><br>
 	<div class="pieChartContainer" style="width:500px;">
@@ -432,6 +467,7 @@ if(isset($_POST["water"])){
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
+
 <script>
 	//first weight signed up with
 	 var oldestWeight = "<?php if(isset($oldestWeight)) {echo($oldestWeight);} ?>";
