@@ -135,6 +135,19 @@ if(isset($_POST["waterAddDButton"])){
 	}
 }
 
+if(isset($_POST["editGoalW"])){
+	$id = $_SESSION["id"];
+	$updatedGoalWeight = $_POST["editGoalW"];
+
+	$sql = "UPDATE users SET gWeight=$updatedGoalWeight WHERE id=$id";
+
+	if ($link->query($sql) === TRUE) {
+		$_SESSION["gWeight"] = $updatedGoalWeight; //Cheeky way to update session variable on the sly
+	} else {
+		echo "Error: " . $sql . "<br>" . $link->error;
+	}
+}
+
 ?>
  
 <!DOCTYPE html>
@@ -248,6 +261,11 @@ if(isset($_POST["waterAddDButton"])){
         <h4><span>Activity Level:</span> <?php echo ($_SESSION["activityLevel"]); ?></h4>
         </div>
     </div>
+
+    <form method="post" action="welcome.php" style="padding: 20px 0px;">
+   		<input class="weight" type="number" name="editGoalW" placeholder="Edit Goal Weight" required>
+   		<input class="addW" type="submit" name="updateWeight" value="Update">
+	</form>
 
     <!-- <input type="submit" class="button" name="insert" value="insert"/> -->
     <h2>Add Weight</h2>
