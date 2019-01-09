@@ -214,7 +214,7 @@
 			text-transform: uppercase;
 			font-size: 14px;
 			font-weight: 600;
-			padding-top: 17px;
+			padding-top: 23px;
 			letter-spacing: 1px;
 			color: #777777;
 		}
@@ -1197,6 +1197,19 @@
     	.slick-slide:focus, .slick-current:focus, .slick-active:focus {
     		outline: none;
     	}
+    	.navBreadcrumbs {
+			width: 0;
+			height: 0;
+			border-left: 16px solid transparent;
+			border-right: 16px solid transparent;
+			border-top: 13px solid #fff;
+			text-align: center;
+			margin: 0 auto;
+			border-color: #fff transparent transparent transparent;
+			-webkit-filter: drop-shadow(1px 1px 0px rgba(0,0,0,.15));
+			filter: drop-shadow(1px 1px 0px rgba(0,0,0,.15));
+			margin-top: -0.6px;
+		}
 	</style>
 </head>
 
@@ -1276,6 +1289,7 @@
 						<p class="navMainText" id="pen2">Dashboard</p>
 						<p class="navSubText">Overview</p>
 					</div>
+					<div class="navBreadcrumbs"></div>
 				</a>
 				<a href="#">
 				<div class="navItem" id="navItemT">
