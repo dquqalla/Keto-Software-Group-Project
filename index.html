@@ -963,6 +963,13 @@
 		    font-weight: 400;
 		    text-align: center;
     	}
+    	.addBut, .cancelBut {
+    		webkit-transition: all 0.3s ease-out; 
+			-moz-transition: all 0.3s ease-out; 
+			-o-transition: all 0.3s ease-out; 
+			-ms-transition: all 0.3s ease-out; 
+			transition: all 0.3s ease-out;
+    	}
     	.addBut {
     		padding: 11px 40px;
     		background-color:#2ECC71;
@@ -971,6 +978,9 @@
     		border-radius: 4px;
     		cursor:pointer;
     	}
+    	.addBut:hover {
+			background-color:#29b765;
+    	}
     	.cancelBut {
     		padding: 11px 40px;
     		background-color: #bbbbbb;
@@ -978,6 +988,9 @@
     		font-size: 15px;
     		border-radius: 4px;
     		cursor:pointer;
+    	}
+    	.cancelBut:hover {
+			background-color: #a8a8a8;
     	}
     	.modalHeader {
     		font-size: 17px;
@@ -1258,22 +1271,30 @@
 	<div class="navigation clearfix">
 		<div class="scrollContainer">
 			<div class="scrolling-wrapper-flexbox">
-				<div class="navItem">
-					<p class="navMainText">Dashboard</p>
-					<p class="navSubText">Overview</p>
-				</div>
-				<div class="navItem">
+				<a href="index.html">
+					<div class="navItem" id="navItemO">
+						<p class="navMainText" id="pen2">Dashboard</p>
+						<p class="navSubText">Overview</p>
+					</div>
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemT">
 					<p class="navMainText">Daily Log</p>
 					<p class="navSubText">Your Daily Tracking</p>
 				</div>
-				<div class="navItem">
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemTh">
 					<p class="navMainText">Diet Planning</p>
 					<p class="navSubText">Meal Inspiration</p>
 				</div>
-				<div class="navItem">
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemF">
 					<p class="navMainText">Statistics</p>
 					<p class="navSubText">A Detailed View</p>
 				</div>
+				</a>
 				<a href="welcome.php">
 					<div class="navItem">
 						<p class="navMainText" style="color: red;">Development</p>
@@ -1339,7 +1360,7 @@
 				</div>
 
 				<div class="editButtonContainer">
-					<button type="button" class="hvr-pop">EDIT</button>
+					<button type="button" class="hvr-pop" onclick="swalEditWeight()">EDIT</button>
 				</div>
 
             </div>  
@@ -1581,6 +1602,33 @@ $("#test-circle2").circliful({
 
 var svgCircle = document.getElementsByClassName('circliful')[0];
 svgCircle.setAttribute("viewBox", "0 0 194 170");
+
+$(function() {
+  $('#navItemO').hover(function() {
+    $('#navItemO > .navMainText').css('color', '#27AC9D');
+    $('#navItemO > .navMainText').css('transition', 'all 0.3s ease');
+  }, function() {
+   	$('#navItemO > .navMainText').css('color', '#777777');
+  });
+  $('#navItemT').hover(function() {
+    $('#navItemT > .navMainText').css('color', '#27AC9D');
+    $('#navItemT > .navMainText').css('transition', 'all 0.3s ease');
+  }, function() {
+   	$('#navItemT > .navMainText').css('color', '#777777');
+  });
+  $('#navItemTh').hover(function() {
+    $('#navItemTh > .navMainText').css('color', '#27AC9D');
+    $('#navItemTh > .navMainText').css('transition', 'all 0.3s ease');
+  }, function() {
+   	$('#navItemTh > .navMainText').css('color', '#777777');
+  });
+  $('#navItemF').hover(function() {
+    $('#navItemF > .navMainText').css('color', '#27AC9D');
+    $('#navItemF > .navMainText').css('transition', 'all 0.3s ease');
+  }, function() {
+   	$('#navItemF > .navMainText').css('color', '#777777');
+  });
+});
 </script>
 
 <script>
@@ -1689,6 +1737,28 @@ function addFood() {
 	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
 
 	    '<input value="Cancel" type="button" id="btnC" class="cancelBut" onclick="swal.close();"></input></form></div></div>', 
+
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+	    }
+	});
+}
+
+function swalEditWeight() {
+	var options = {};
+
+	swal({
+	    title: "Edit Goal Weight",
+	    type: 'info',
+	    inputOptions: options,
+	    html: '<p class="modalHeader">Please enter your new target weight.</p>' +
+	    '<div style="" >' +
+	    '<form method="post" action="" style="padding: 20px 0px;">' +
+	    '<input class="foodInputs weightInputs" type="number" name="editGoalW" placeholder="Updated goal weight (kg)" required> <br />' +
+
+	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="updateWeight" value="Update"> ' +
+	    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
 
 	    showConfirmButton: false,
 	    onOpen: function(ele) {
