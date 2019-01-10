@@ -776,7 +776,7 @@
         .item {
             position: relative;
             /*padding: 15px;*/
-            padding: 32px 37px;
+            padding: 0px;
             background: #fff;
             margin: 18px;
             border-radius: 6px;
@@ -793,6 +793,7 @@
             font-weight: 700;
             color: #535353 !important;
             padding-bottom: 2px;
+            padding: 32px 36px 0px 36px;
         }
         .waterGraph > .itemTitle:before {
             content: "";
@@ -838,10 +839,27 @@
         .item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
             margin-top: 4px;
         } 
-        #chart-container3, #chart-container4, #chart-container, #chart-container5 {
+        #chart-container3, #chart-container4, #chart-container, #chart-container5, #chart-container-mobile {
             margin-right: 18px;
-             padding-top: 36px;
+             padding: 32px 37px;
         }
+        #chart-container-mobile {
+        	display: none !important;
+        }
+         @media only screen and (max-width: 767px) {
+			#chart-container-mobile {
+        		display: block !important;
+        	}
+        	#chart-container {
+        		display: none !important;
+        	}
+         }
+         @media only screen and (max-width: 425px) {
+         	 #chart-container3, #chart-container4, #chart-container, #chart-container5, #chart-container-mobile {
+				margin-right: 10px;
+    			padding: 32px 24px;
+         	 }
+         }
 	</style>
 </head>
 
@@ -1001,6 +1019,7 @@
             <p class="itemTitle">Carbs vs fats</p>
             <div class="" style="width:100%;">
                 <div id="chart-container">FusionCharts XT will load here!</div>
+                <div id="chart-container-mobile">FusionCharts XT will load here!</div>
             </div>
         </div>
     </div>
@@ -1254,6 +1273,97 @@ FusionCharts.ready(function(){
     }
 });
     fusioncharts1.render();
+});
+
+FusionCharts.ready(function(){
+    var fusionchartsmobile = new FusionCharts({
+    type: 'mscolumn2d',
+    renderAt: 'chart-container-mobile',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "caption": "Average [] fats, [] carbs",
+            "subCaption": "Over the past 7 days",
+            "xAxisname": "Date",
+            "yAxisName": "Grams (g)",
+            "plotFillAlpha": "80",
+            "divLineIsDashed": "1",
+            "divLineDashLen": "1",
+            "divLineGapLen": "1",
+             "palettecolors":"F25661,F2C158",
+            "adjustDiv": "0",
+            "numDivLines": "5",
+            "animationDuration": "3",
+            "divLineColor": "#6699cc",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontBold": "0",
+            "subcaptionFontSize": "14",
+            "captionFontSize": "16",
+            "numVDivLines": "13",
+            "plotHighlightEffect": "fadeout|color=#000, alpha=15",
+            "legendIconScale": "1.5",
+            "plotToolText": "Day: $label <br> $seriesname: $dataValue <br>"
+        },
+        "categories": [{
+            "category": [{
+                "label": "26/09"
+            }, {
+                "label": "27/09"
+            }, {
+                "label": "28/09"
+            }, {
+                "label": "29/09"
+            }, {
+                "label": "30/09"
+            }, {
+                "label": "07/10"
+            }, {
+                "label": "08/10"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Fat",
+            "data": [{
+                "value": "150"
+            }, {
+                "value": "143"
+            }, {
+                "value": "111"
+            }, {
+                "value": "143"
+            }, {
+                "value": "111"
+            }, {
+                "value": "129"
+            }, {
+                "value": "119"
+
+            }]
+        }, {
+            "seriesname": "Carbs",
+            "data": [{
+                "value": "20"
+            }, {
+                "value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "18"
+            }, {
+                "value": "25"
+            }]
+        }],
+    }
+});
+    fusionchartsmobile.render();
 });
 
 FusionCharts.ready(function(){
