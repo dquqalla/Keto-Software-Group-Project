@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noarchive">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
+	<script src='js/superslide-std.min.js'></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/js/jquery.circliful.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<link rel="stylesheet" href="css/slick-theme.css">
+
+	<title>Statistics</title>
+	<style>
+body{
+    background-color:#f0f0f0
+}
+::placeholder{
+    color:#ddd;
+    opacity:1
+}
+:-ms-input-placeholder{
+    color:#ddd
+}
+::-ms-input-placeholder{
+    color:#ddd
+}
+.header{
+    height:90px;
+    width:100%;
+    background:rgba(46,133,173,1);
+    background:-moz-linear-gradient(left,rgba(46,133,173,1) 0,rgba(34,179,150,1) 100%);
+    background:-webkit-gradient(left top,right top,color-stop(0,rgba(46,133,173,1)),color-stop(100%,rgba(34,179,150,1)));
+    background:-webkit-linear-gradient(left,rgba(46,133,173,1) 0,rgba(34,179,150,1) 100%);
+    background:-o-linear-gradient(left,rgba(46,133,173,1) 0,rgba(34,179,150,1) 100%);
+    background:-ms-linear-gradient(left,rgba(46,133,173,1) 0,rgba(34,179,150,1) 100%);
+    background:linear-gradient(to right,rgba(46,133,173,1) 0,rgba(34,179,150,1) 100%)
+}
+.headInner{
+    max-width:1280px;
+    margin:0 auto
+}
+.logo{
+    float:left;
+    line-height:90px;
+    width:50%
+}
+.logo img{
+    padding-left:20px;
+    vertical-align:middle
+}
+.right{
+    float:right;
+    height:90px;
+    width:50%
+}
+.profileImage{
+    width:50px;
+    height:50px;
+    background-color:#fd809e;
+    border-radius:100%;
+    margin:0 10px;
+    border:3px solid #fff;
+    cursor:pointer
+}
+.profileImage img{
+    max-width:100%;
+    max-height:100%;
+    border-radius:100%
+}
+.profileImageContainer{
+    display:inline-block;
+    vertical-align:middle
+}
+.profileText{
+    display:inline-block;
+    vertical-align:middle
+}
+.profileText p{
+    color:#fff;
+    font-family:'Open Sans',sans-serif;
+    font-size:14px;
+    font-weight:300
+}
+.profileText p:nth-child(1){
+    font-weight:600
+}
+.iconContainer{
+    display:inline-block;
+    vertical-align:middle;
+    padding:0 20px
+}
+.profileInfo{
+    display:inline-block;
+    vertical-align:middle
+}
+.logout,.menuTrigger,.notifications,.settings{
+    display:inline-block;
+    padding:0 6px
+}
+.rightInner{
+    padding-top:20px;
+    float:right;
+    padding-right:20px
+}
+.navigation{
+    height:86px;
+    width:100%;
+    background-color:#fff;
+    -webkit-box-shadow:0 1px 2px 0 rgba(0,0,0,.15);
+    -moz-box-shadow:0 1px 2px 0 rgba(0,0,0,.15);
+    box-shadow:0 1px 2px 0 rgba(0,0,0,.15)
+}
+.menuTrigger{
+    display:none
+}
+#menu{
+    background-color:#fff
+}
+.navlink{
+    padding:20px 30px;
+    color:#333;
+    font-size:15px;
+    font-weight:400;
+    font-family:'Open Sans',sans-serif
+}
+.navlink:hover{
+    background-color:#eee;
+    webkit-transition:all .3s ease-out;
+    -moz-transition:all .3s ease-out;
+    -o-transition:all .3s ease-out;
+    -ms-transition:all .3s ease-out;
+    transition:all .3s ease-out
+}
+.mobileMenuProfile{
+    padding:30px 15px;
+    padding-bottom:28px;
+    background:#fff;
+    color:#26aa9c
+}
+.borderBreak{
+    background-color:#eee;
+    width:86%;
+    height:1px;
+    margin:0 auto;
+    margin-bottom:20px
+}
+.menuProfileText{
+    display:inline-block;
+    vertical-align:middle
+}
+.menuProfileText p{
+    color:#333;
+    font-family:'Open Sans',sans-serif;
+    font-size:14px;
+    font-weight:300
+}
+.menuProfileText p:nth-child(1){
+    font-weight:600
+}
+.menuProfileText p:nth-child(2){
+    color:#26aa9c
+}
+.profileImage p{
+    font-size:22px;
+    text-align:center;
+    color:#fff;
+    font-weight:600;
+    padding-top:6px
+}
+.scrolling-wrapper-flexbox{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch
+}
+.navItem{
+    flex:0 0 auto;
+    width:150px;
+    height:86px;
+    cursor:pointer
+}
+.navMainText,.navSubText{
+    text-align:center
+}
+.navMainText{
+    text-transform:uppercase;
+    font-size:14px;
+    font-weight:600;
+    padding-top:23px;
+    letter-spacing:1px;
+    color:#777
+}
+.navSubText{
+    font-size:13px;
+    font-weight:300;
+    color:#aaa
+}
+.scrollContainer{
+    float:left
+}
+.addContainer{
+    float:right;
+    width:308px;
+    height:86px
+}
+.addButtons{
+    width:92px;
+    height:inherit;
+    text-align:center;
+    float:left;
+    padding-top:9px
+}
+.addButtons p{
+    color:#777;
+    font-size:13px;
+    padding-top:4px
+}
+.addFoodI,.addWaterI,.addWeightI{
+    border:2px solid #24b298;
+    width:46px;
+    height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto;
+    border-radius:100px;
+    background-repeat:no-repeat
+}
+.addWaterI{
+    background-image:url(images/icons/waterIcon.png);
+    background-position:center
+}
+.addFoodI{
+    background-image:url(images/icons/foodIcon.png);
+    background-position:50% 45%
+}
+.addWeightI{
+    background-image:url(images/icons/weightIcon.png);
+    background-position:50% 42%
+}
+.addFood,.addWater,.addWeight{
+    cursor:pointer;
+    webkit-transition:all .3s ease-in;
+    -moz-transition:all .3s ease-in;
+    -o-transition:all .3s ease-in;
+    -ms-transition:all .3s ease-in;
+    transition:all .3s ease-in;
+    webkit-transition:all .3s ease-out;
+    -moz-transition:all .3s ease-out;
+    -o-transition:all .3s ease-out;
+    -ms-transition:all .3s ease-out;
+    transition:all .3s ease-out
+}
+.addFood:hover,.addWater:hover,.addWeight:hover{
+    background-color:#f7f7f7
+}
+.titleCon{
+    padding:40px 40px 20px 40px
+}
+.pageTitle{
+    float:left;
+    width:400px
+}
+.pageTitle p,.pageTitle span{
+    font-size:18px;
+    font-weight:600;
+    color:#545454
+}
+.line{
+    float:left;
+    height:1px;
+    width:-webkit-calc(100% - 544px);
+    width:-moz-calc(100% - 544px);
+    width:calc(100% - 544px);
+    background:#ccc;
+    margin-top:13px
+}
+.date{
+    float:left;
+    padding-left:16px;
+    cursor:pointer
+}
+.date p,.date span{
+    font-size:13px
+}
+.date p{
+    text-align:right;
+    background:rgba(40,157,161,1);
+    background:-moz-linear-gradient(left,rgba(40,157,161,1) 0,rgba(34,179,150,1) 100%);
+    background:-webkit-gradient(left top,right top,color-stop(0,rgba(40,157,161,1)),color-stop(100%,rgba(34,179,150,1)));
+    background:-webkit-linear-gradient(left,rgba(40,157,161,1) 0,rgba(34,179,150,1) 100%);
+    background:-o-linear-gradient(left,rgba(40,157,161,1) 0,rgba(34,179,150,1) 100%);
+    background:-ms-linear-gradient(left,rgba(40,157,161,1) 0,rgba(34,179,150,1) 100%);
+    background:linear-gradient(to right,rgba(40,157,161,1) 0,rgba(34,179,150,1) 100%);
+    border-radius:100px;
+    font-size:13px;
+    color:#fff;
+    padding:8px 15px
+}
+.clearfix::after{
+    content:"";
+    clear:both;
+    display:table
+}
+.drop{
+    display:inline-block;
+    position:relative
+}
+.drop-content{
+    background-color:#efefef;
+    min-width:150px;
+    position:absolute;
+    border-radius:5px;
+    margin-top:15px;
+    box-shadow:2px 2px 2px 0 rgba(0,0,0,.05);
+    -moz-box-shadow:2px 2px 2px 0 rgba(0,0,0,.05);
+    box-shadow:2px 2px 2px 0 rgba(0,0,0,.05)
+}
+.drop-content span{
+    color:#555;
+    padding:15px;
+    text-decoration:none;
+    display:block;
+    border-radius:5px;
+    cursor:pointer
+}
+.drop-content span:hover{
+    background-color:#eaeaea
+}
+.drop-content span:after{
+    position:absolute;
+    left:17%;
+    margin-top:0;
+    top:-9px;
+    width:0;
+    height:0;
+    content:'';
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #efefef
+}
+.mobileMenuBall{
+    width:60px;
+    height:60px;
+    background:#86c559;
+    border-radius:50%;
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    overflow:hidden;
+    transition:all .2s cubic-bezier(.25,.75,.5,1.25);
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    display:none
+}
+.mobileMenuBall:before{
+    content:'';
+    width:50px;
+    height:50px;
+    position:absolute;
+    margin:auto;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    border-radius:50%;
+    background:#a1d27f;
+    opacity:0;
+    cursor:pointer
+}
+.mobileMenuBall:hover{
+    cursor:pointer
+}
+.mobileMenuBall svg{
+    position:absolute;
+    margin:auto;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    transition:all .2s cubic-bezier(.25,.75,.5,1.25)
+}
+.mobileMenuBall i{
+    color:#fff;
+    width:24px;
+    height:24px;
+    position:absolute;
+    margin:auto;
+    transition:all .2s cubic-bezier(.25,.75,.5,1.25);
+    opacity:0
+}
+.mobileMenuBall i.first{
+    top:-40px;
+    left:0;
+    right:0;
+    text-align:center
+}
+.mobileMenuBall i.second{
+    left:-25px;
+    top:-25px
+}
+.mobileMenuBall i.third{
+    left:-40px;
+    top:0;
+    bottom:0
+}
+@media only screen and (max-width:750px){
+    .logo img{
+        width:86%
+    }
+    .logout,.profileText,.settings{
+        display:none
+    }
+    .iconContainer{
+        padding:0 4px
+    }
+    .logout,.menuTrigger,.notifications,.settings{
+        padding:0 4px
+    }
+    .profileImage{
+        margin:0 6px
+    }
+    .menuTrigger{
+        display:inline-block
+    }
+    .menuTrigger img{
+        width:90%
+    }
+    .navSubText{
+        display:none
+    }
+    .navItem,.navigation{
+        height:60px
+    }
+    .navItem{
+        width:128px
+    }
+    .navItem:nth-child(1){
+        margin-left:10px
+    }
+    .navMainText{
+        padding-top:19px
+    }
+    .addContainer{
+        display:none
+    }
+    .scrollContainer{
+        float:none
+    }
+}
+@media only screen and (max-width:910px){
+    .addContainer{
+        display:none
+    }
+    .mobileMenuBall{
+        display:block!important
+    }
+}
+@media only screen and (max-width:740px){
+    .date,.line{
+        display:none
+    }
+    .pageTitle{
+        width:100%
+    }
+    .titleCon{
+        padding:30px 29px 8px 30px
+    }
+    .pageTitle p,.pageTitle span{
+        font-size:16px
+    }
+    .drop-content span:after{
+        left:14%!important
+    }
+}
+		.mobileMenuBall {
+		  width: 60px;
+		  height: 60px;
+		  background: #86C559;
+		  border-radius: 50%;
+		  position: fixed;
+		  right: 20px;
+		  bottom: 20px;
+		  overflow: hidden;
+		  transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  display: none;
+		}
+		.mobileMenuBall:before {
+			content: '';
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 50%;
+			background: #A1D27F;
+			opacity: 0;
+			cursor: pointer;
+		}
+		.mobileMenuBall:hover {
+			cursor: pointer;
+		}
+		.mobileMenuBall.active {
+			width: 260px;
+		    height: 260px;
+		    bottom: -83px;
+		    right: -79px;
+		}
+		.mobileMenuBall.active:hover {
+			cursor: default;
+		}
+		.mobileMenuBall.active:before {
+			opacity: 1;
+		}
+		.mobileMenuBall.active svg {
+			transform: rotate(45deg);
+			cursor: pointer;
+		}
+		.mobileMenuBall.active .first {
+		    top: 28px;
+		    right: 10px;
+		    opacity: 1;
+		}
+		.mobileMenuBall.active .second {
+		    top: 57px;
+		    left: 50px;
+		    opacity: 1;
+		}
+		.mobileMenuBall.active .third {
+			left: 31px;
+			top: 0px;
+			opacity: 1;
+		}
+		.mobileMenuBall svg {
+			position: absolute;
+			margin: auto;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+		}
+		.mobileMenuBall i {
+			color: #fff;
+			width: 24px;
+			height: 24px;
+			position: absolute;
+			margin: auto;
+			transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+			opacity: 0;
+		}
+		.mobileMenuBall i.first {
+			top: -40px;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+		.mobileMenuBall i.second {
+			left: -25px;
+			top: -25px;
+		}
+		.mobileMenuBall i.third {
+			left: -40px;
+			top: 0;
+			bottom: 0;
+		}
+		.mobileMenuBall.expand {
+			width: 200%;
+			height: 150%;
+			bottom: -25%;
+			right: -50%;
+		}
+		.mobileMenuBall.expand:before {
+			opacity: 0;
+		}
+		.mobileMenuBall.expand > * {
+			display: none;
+		}
+		@media only screen and (max-width: 910px) {
+
+			.mobileMenuBall {
+				display: block !important;
+			}
+		}
+		    	.modalHeader {
+    		font-size: 17px;
+    		font-weight:400;
+    		color:#999999;
+    	}
+    	.foodInputs {
+    		margin: 6px 0px;
+    		padding: 15px 20px 15px 42px;
+    		border: 2px solid #ddd;
+    		border-radius: 5px;
+    		width: 90%;
+    		font-size: 16px;
+    		color: #777;
+    		font-weight: 500;
+    		outline: 0;
+    	}
+    	    	.rName, .mCat {
+    		background: #fff url(images/icons/infoIconInputBox.png) no-repeat 20px 17px;
+    	}
+		.caloriesInput {
+			background: #fff url(images/icons/caloriesIconInputBox.png) no-repeat 14px 17px;
+		}
+		.carbsInput {
+			background: #fff url(images/icons/carbsIconInputBox.png) no-repeat 14px 17px;
+		}
+		.fatsInput {
+			background: #fff url(images/icons/fatsIconInputBox.png) no-repeat 14px 16px;
+		}
+		.proteinInput {
+			background: #fff url(images/icons/proteinIconInputBox.png) no-repeat 14px 20px;
+		}
+		.foodSearchInput {
+			background: #fff url(images/icons/foodSearchInput.png) no-repeat 14px 15px;
+		}
+		    	.foodInputBreak {
+    		font-size: 22px;
+		    font-style: italic;
+		    font-weight: 400;
+		    text-align: center;
+    	}
+    	    	.addFoodForm {
+    		padding: 20px 0px;
+    	}
+    	    	.foodFloatInputs {
+    		width: 44%;
+    		display: inline-block;
+    		margin: 6px 5px;
+    	}
+    	    	.addBut, .cancelBut {
+    		webkit-transition: all 0.3s ease-out; 
+			-moz-transition: all 0.3s ease-out; 
+			-o-transition: all 0.3s ease-out; 
+			-ms-transition: all 0.3s ease-out; 
+			transition: all 0.3s ease-out;
+    	}
+    	.addBut {
+    		padding: 11px 40px;
+    		background-color:#2ECC71;
+    		color: #fff;
+    		font-size: 15px;
+    		border-radius: 4px;
+    		cursor:pointer;
+    	}
+    	.addBut:hover {
+			background-color:#29b765;
+    	}
+    	.cancelBut {
+    		padding: 11px 40px;
+    		background-color: #bbbbbb;
+    		color: #fff;
+    		font-size: 15px;
+    		border-radius: 4px;
+    		cursor:pointer;
+    	}
+    	.cancelBut:hover {
+			background-color: #a8a8a8;
+    	}
+    	.weightInputs {
+    		padding: 15px 20px 15px 20px !important;
+    	}
+    	.waterSelect {
+			width: 200px;
+		    border: 2px solid #eee;
+		    border-radius: 4px;
+		    padding: 8px 11px;
+		    font-size: 15px;
+		    color: #333;
+		    outline: 0;
+		}
+        .navBreadcrumbs {
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 13px solid #fff;
+            text-align: center;
+            margin: 0 auto;
+            border-color: #fff transparent transparent transparent;
+            -webkit-filter: drop-shadow(1px 1px 0px rgba(0,0,0,.15));
+            filter: drop-shadow(1px 1px 0px rgba(0,0,0,.15));
+            margin-top: -0.6px;
+        }
+                g[class$='creditgroup'] {
+            display:none !important;
+        }
+        .navActive {
+            color: #27AC9D !important;
+        }
+	</style>
+	<style>
+		/*Page specific styles*/
+		.line {
+			width: -webkit-calc(100% - 420px) !important;
+    		width: -moz-calc(100% - 420px) !important;
+    		width: calc(100% - 420px) !important;
+		}
+		.pageTitle {
+		    width: 280px !important;
+		}
+        #grid {
+            overflow: hidden;
+            padding: 0px 18px;
+            animation-duration: 1.5s;
+            animation-delay: 0.3s;
+        }
+        @media only screen and (max-width: 767px) {
+           #grid[data-columns]::before {
+                content: '1 .column.size-1of1';
+            }
+            .column {
+                width: 100% !important;
+            }
+            .item:nth-child(1) {
+                margin-top: 18px !important;
+            }
+            #grid {
+                padding: 0px 14px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+           #grid[data-columns]::before {
+                content: '2 .column.size-1of2';
+            }
+        }
+        .item:nth-child(1), .item:nth-child(2) {
+            margin-top: 4px;
+        } 
+
+        .column {
+            float: left;
+        }
+
+        .size-1of2 {
+            width: 50%;
+        }
+        .size-1of1 {
+            width: 100%;
+        }
+        .column:nth-child(1) {
+            width: 40%;
+        }
+        .column:nth-child(2) {
+            width: 60%;
+        }
+
+        .item {
+            position: relative;
+            /*padding: 15px;*/
+            padding: 32px 37px;
+            background: #fff;
+            margin: 18px;
+            border-radius: 6px;
+            box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+            -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+            box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+            margin: 30px 18px;
+        }
+        .item p {
+            color: #999;
+        }
+        .itemTitle {
+            font-size: 16px;
+            font-weight: 700;
+            color: #535353 !important;
+            padding-bottom: 2px;
+        }
+        .waterGraph > .itemTitle:before {
+            content: "";
+            display: block;
+            background: url("images/icons/graphIcon3.png") no-repeat;
+            width: 19px;
+            height: 15px;
+            float: left;
+            margin: 3px 10px 0px 0px;
+        }
+        .weightGraph > .itemTitle:before {
+            content: "";
+            display: block;
+            background: url("images/icons/graphIcon1.png") no-repeat;
+            width: 19px;
+            height: 15px;
+            float: left;
+            margin: 3px 10px 0px 0px;
+        }
+        .carbfatGraph > .itemTitle:before {
+            content: "";
+            display: block;
+            background: url("images/icons/graphIcon4.png") no-repeat;
+            width: 19px;
+            height: 15px;
+            float: left;
+            margin: 3px 10px 0px 0px;
+        }
+        .macrosGraph > .itemTitle:before {
+            content: "";
+            display: block;
+            background: url("images/icons/graphIcon2.png") no-repeat;
+            width: 16px;
+            height: 16px;
+            float: left;
+            margin: 3px 10px 0px 0px;
+        }
+        .itemDescription {
+            font-size: 14px;
+            font-weight: 400;
+            color: #999 !important;
+        }
+        .item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
+            margin-top: 4px;
+        } 
+        #chart-container3, #chart-container4, #chart-container, #chart-container5 {
+            margin-right: 18px;
+             padding-top: 36px;
+        }
+	</style>
+</head>
+
+<body>
+<div id="menu">
+	<div>
+		<div class="mobileMenuProfile">
+			<div class="profileImageContainer">
+				<div class="profileImage">
+					<p id="nameLetterM"></p>
+				</div>
+			</div>
+			<div class="menuProfileText">
+				<p>Mizna Uppal</p>
+				<p>Free Membership</p>
+			</div>
+		</div>
+		<div class="borderBreak"></div>
+		<div class="navlink">Logout</div>
+		<div class="navlink">Settings</div>
+		<div class="navlink">Account Upgrade</div>
+		<div class="navlink">Getting Started Guide</div>
+		<div class="navlink">FAQ</div>
+	</div>
+</div>
+<div id="mainContainer" class="mainContainer">
+	<div class="header">
+		<div class="headInner clearfix">
+			<div class="logo">
+				<a href="index.html"><img src="images/logoHolder.png" alt="Logo"></a>
+			</div>
+
+			<div class="right">
+				<div class="rightInner clearfix">
+					<div class="profileInfo">
+						<div class="drop"> 
+							<div class="profileImageContainer" >
+								<div class="profileImage">
+									<p id="nameLetter"></p>
+								</div>
+							</div>
+						 	<div id="drop-content" class="drop-content">
+							 	<span>Change Picture</span>
+							 	<span>Remove Picture</span>
+							</div>
+						</div>
+						<div class="profileText">
+							<p id="name">Mizna Uppal</p>
+							<p>Free Membership</p>
+						</div>
+					</div>
+					<div class="iconContainer">
+						<div class="notifications tooltip" title="Notifications">
+							<a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
+						</div>
+						<div class="settings tooltip" title="Settings">
+							<a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+						</div>
+						<div class="logout tooltip" title="Logout">
+							<a href="#"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
+						</div>
+						<div class="menuTrigger" onclick="openMenu()">
+							<a href="#"><img src="images/icons/menuIcon.png" alt="Menu"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="navigation clearfix">
+		<div class="scrollContainer">
+			<div class="scrolling-wrapper-flexbox">
+				<a href="index.html">
+					<div class="navItem" id="navItemO">
+						<p class="navMainText">Dashboard</p>
+						<p class="navSubText">Overview</p>
+					</div>
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemT">
+					<p class="navMainText">Daily Log</p>
+					<p class="navSubText">Your Daily Tracking</p>
+				</div>
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemTh">
+					<p class="navMainText">Diet Planning</p>
+					<p class="navSubText">Meal Inspiration</p>
+				</div>
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemF">
+					<p class="navMainText navActive">Statistics</p>
+					<p class="navSubText">A Detailed View</p>
+				</div>
+				<div class="navBreadcrumbs"></div>
+				</a>
+				<a href="welcome.php">
+					<div class="navItem">
+						<p class="navMainText" style="color: red;">Development</p>
+						<p class="navSubText">Dev Test Screen</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="addContainer clearfix">
+			<div class="addButtons addWater tooltip" title="Quick Add" onclick="addWater()">
+				<div class="addWaterI"></div>
+				<p>Add Water</p>
+			</div>
+			<div class="addButtons addFood tooltip" title="Quick Add" onclick="addFood()">
+				<div class="addFoodI"></div>
+				<p>Add Food</p>
+			</div>
+			<div class="addButtons addWeight tooltip" title="Quick Add" onclick="addWeight()">
+				<div class="addWeightI"></div>
+				<p>Add Weight</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="mainBody">
+		<div class="titleCon clearfix">
+			<div class="pageTitle">
+				<p>A history of your tracking data.</p>
+			</div>
+			<hr class="line">
+			<div class="date">
+				<p>Today: <span id="currentDate"></span></p>
+			</div>
+		</div>
+	</div>
+
+    <div class="clearfix" id="grid" data-columns>
+        <div class="item weightGraph animated bounceIn">
+            <p class="itemTitle">Your weight overtime</p>
+            <div class="" style="width:100%;">
+                <div id="chart-container4">FusionCharts XT will load here!</div>
+            </div>
+        </div>
+        <div class="item macrosGraph animated bounceIn">
+            <p class="itemTitle">Your macros overtime</p>
+            <div class="" style="width:100%;">
+                <div id="chart-container5">FusionCharts XT will load here!</div>
+            </div>
+        </div>
+        <div class="item waterGraph animated bounceIn">
+            <p class="itemTitle">Water consumption overtime</p>
+            <div class="" style="width:100%;">
+                <div id="chart-container3">FusionCharts XT will load here!</div>
+            </div>
+        </div>
+        <div class="item carbfatGraph animated bounceIn">
+            <p class="itemTitle">Carbs vs fats</p>
+            <div class="" style="width:100%;">
+                <div id="chart-container">FusionCharts XT will load here!</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mobileMenuBall">
+	<i class="first"><img src="images/icons/weightIconWhite.png" width="40px" alt="Weight" onclick="addWeight()"></i>
+	<i class="second"><img src="images/icons/foodIconWhite.png" width="40px" alt="Food" onclick="addFood()"></i>
+	<i class="third"><img src="images/icons/waterIconWhite.png" width="34px" alt="Water" onclick="addWater()"></i>
+	<?xml version="1.0" encoding="utf-8"?>
+	<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
+	30,15.5 "/></svg>
+</div>	
+
+</body>
+<script src="js/globalScripts.js"></script>
+<script>
+	
+FusionCharts.ready(function(){
+var chart3 = new FusionCharts({
+type: 'area2d',
+renderAt: 'chart-container3',
+width: '100%',
+height: '400',
+dataFormat: 'json',
+dataSource: {
+    "chart": {
+        "theme": "fusion",
+        "caption": "Average [] glasses",
+        "subCaption": "Over the past 7 days",
+        "xAxisName": "Date",
+        "yAxisName": "Glasses",
+        "animationDuration": "3",
+        "paletteColors": "#F2C158",
+        "xAxisNameFontColor": "#999999",
+        "yAxisNameFontColor": "#999999",
+        "labelFontColor": "#999999",
+        "captionFontColor": "#666666",
+        "baseFontColor": "#999999",
+        "captionFontSize": "16",
+        "subCaptionFontSize": "14",
+        "captionFontBold": "0",
+        "captionFont": "Open Sans, sans-serif",
+        "subcaptionFont": "Open Sans, sans-serif"
+    },
+    "data": [{
+        "label": "02/01",
+        "value": "6"
+    }, {
+        "label": "03/01",
+        "value": "8"
+    }, {
+        "label": "04/01",
+        "value": "10"
+    }, {
+        "label": "05/01",
+        "value": "9"
+    }, {
+        "label": "06/01",
+        "value": "7"
+    }, {
+        "label": "07/01",
+        "value": "8"
+    }, {
+        "label": "08/01",
+        "value": "5"
+    }]
+}
+});
+    chart3.render();
+});
+
+FusionCharts.ready(function(){
+var chart4 = new FusionCharts({
+    type: 'line',
+    renderAt: 'chart-container4',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "xAxisName": "Date",
+            "yAxisName": "Weight (kg)",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontColor": "#666666",
+            "captionFontBold": "0",
+            "captionFontSize": "16",
+			"palettecolors":"#4b7bec",
+            "lineThickness": "5"
+        },
+
+        "data": [{
+        "label": "02/01",
+        "value": "70"
+    }, {
+        "label": "03/01",
+        "value": "68"
+    }, {
+        "label": "04/01",
+        "value": "65"
+    }, {
+        "label": "05/01",
+        "value": "67"
+    }, {
+        "label": "06/01",
+        "value": "65"
+    }, {
+        "label": "07/01",
+        "value": "66"
+    }, {
+        "label": "08/01",
+        "value": "62"
+    }]
+    }
+});
+    chart4.render();
+});
+
+FusionCharts.ready(function(){
+    var fusioncharts1 = new FusionCharts({
+    type: 'mscolumn2d',
+    renderAt: 'chart-container',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "caption": "Average [] fats, [] carbs",
+            "subCaption": "Over the past 14 days",
+            "xAxisname": "Date",
+            "yAxisName": "Grams (g)",
+            "plotFillAlpha": "80",
+            "divLineIsDashed": "1",
+            "divLineDashLen": "1",
+            "divLineGapLen": "1",
+             "palettecolors":"F25661,F2C158",
+            "adjustDiv": "0",
+            "numDivLines": "5",
+            "animationDuration": "3",
+            "divLineColor": "#6699cc",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontBold": "0",
+            "subcaptionFontSize": "14",
+            "captionFontSize": "16",
+            "numVDivLines": "13",
+            "plotHighlightEffect": "fadeout|color=#000, alpha=15",
+            "legendIconScale": "1.5",
+            "plotToolText": "Day: $label <br> $seriesname: $dataValue <br>"
+        },
+        "categories": [{
+            "category": [{
+                "label": "26/09"
+            }, {
+                "label": "27/09"
+            }, {
+                "label": "28/09"
+            }, {
+                "label": "29/09"
+            }, {
+                "label": "30/09"
+            }, {
+                "label": "31/09"
+            }, {
+                "label": "01/10"
+            }, {
+                "label": "02/10"
+            }, {
+                "label": "03/10"
+            }, {
+                "label": "04/10"
+            }, {
+                "label": "05/10"
+            }, {
+                "label": "06/10"
+            }, {
+                "label": "07/10"
+            }, {
+                "label": "08/10"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Fat",
+            "data": [{
+                "value": "150"
+            }, {
+                "value": "143"
+            }, {
+                "value": "111"
+            }, {
+                "value": "129"
+            }, {
+                "value": "143"
+            }, {
+                "value": "111"
+            }, {
+                "value": "129"
+            }, {
+                "value": "143"
+            }, {
+                "value": "111"
+            }, {
+                "value": "129"
+            }, {
+                "value": "143"
+            }, {
+                "value": "111"
+            }, {
+                "value": "129"
+            }, {
+                "value": "119"
+
+            }]
+        }, {
+            "seriesname": "Carbs",
+            "data": [{
+                "value": "20"
+            }, {
+                "value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "18"
+            }, {
+                "value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "18"
+            }, {
+                "value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "18"
+            }, {
+                "value": "25"
+            }, {
+                "value": "15"
+            }, {
+                "value": "18"
+            }, {
+                "value": "25"
+            }]
+        }],
+    }
+});
+    fusioncharts1.render();
+});
+
+FusionCharts.ready(function(){
+	var chartObj = new FusionCharts({
+    type: 'msline',
+    renderAt: 'chart-container5',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "xAxisName": "Date",
+            "yAxisName": "Grams",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontColor": "#666666",
+            "captionFontBold": "0",
+            "captionFontSize": "16",
+            "lineThickness": "5",
+            "xAxisName": "Day"
+        },
+        "categories": [{
+            "category": [{
+                "label": "Mon"
+            }, {
+                "label": "Tue"
+            }, {
+                "label": "Wed"
+            }, {
+                "label": "Thu"
+            }, {
+                "label": "Fri"
+            }, {
+                "label": "Sat"
+            }, {
+                "label": "Sun"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Fat",
+            "data": [{
+                "value": "100"
+            }, {
+                "value": "110"
+            }, {
+                "value": "105"
+            }, {
+                "value": "111"
+            }, {
+                "value": "106"
+            }, {
+                "value": "90"
+            }, {
+                "value": "80"
+            }]
+        }, {
+            "seriesname": "Protein",
+            "data": [{
+                "value": "40"
+            }, {
+                "value": "50"
+            }, {
+                "value": "60"
+            }, {
+                "value": "65"
+            }, {
+                "value": "55"
+            }, {
+                "value": "52"
+            }, {
+                "value": "50"
+            }]
+        }, {
+            "seriesname": "Carbs",
+            "data": [{
+                "value": "15"
+            }, {
+                "value": "20"
+            }, {
+                "value": "25"
+            }, {
+                "value": "21"
+            }, {
+                "value": "22"
+            }, {
+                "value": "23"
+            }, {
+                "value": "17"
+            }]
+        }],
+
+    }
+});
+	chartObj.render();
+
+});
+
+
+</script>
+<script src="js/salvattore.min.js"></script>
+<script type="text/javascript" src="js/tooltipster.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tooltipster.css">
+</html>
