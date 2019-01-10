@@ -603,6 +603,10 @@ if(isset($_POST["editGoalW"])){
             "divLineGapLen": "1",
              "palettecolors":"F25661,F2C158",
              "animationDuration": "3",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "subcaptionFontSize": "14",
+            "captionFontSize": "16",
 			"adjustDiv": "0",
 			"numDivLines": "5",
 			"divLineColor": "#6699cc",
@@ -734,7 +738,7 @@ dataFormat: 'json',
 dataSource: {
     "chart": {
         "theme": "fusion",
-        "caption": "Average glasses",
+        "caption": "Average [] glasses",
         "subCaption": "Over the past 7 days",
         "xAxisName": "Date",
         "yAxisName": "Glasses",
@@ -743,11 +747,13 @@ dataSource: {
         "xAxisNameFontColor": "#999999",
         "yAxisNameFontColor": "#999999",
         "labelFontColor": "#999999",
-        "captionFontColor": "#444444",
+        "captionFontColor": "#666666",
         "baseFontColor": "#999999",
         "captionFontSize": "16",
         "subCaptionFontSize": "14",
-        "captionFont": "Open Sans, sans-serif"
+        "captionFontBold": "0",
+        "captionFont": "Open Sans, sans-serif",
+        "subcaptionFont": "Open Sans, sans-serif"
     },
     "data": [{
         "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-7)); echo $yesterday; ?>",
@@ -790,7 +796,12 @@ var chart4 = new FusionCharts({
             "xAxisName": "Date",
             "yAxisName": "Weight (kg)",
             "captionFont": "Open Sans, sans-serif",
-            "lineThickness": "3"
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontColor": "#666666",
+            "captionFontBold": "0",
+            "captionFontSize": "16",
+            "palettecolors":"#4b7bec",
+            "lineThickness": "5"
         },
 
         "data": [{
