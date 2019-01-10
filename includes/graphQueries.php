@@ -14,6 +14,33 @@
 	//7 days ago
 	//$sqlqu = "SELECT SUM(fat) AS total_fat FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -7 DAY AND `time` <  DATE(NOW()) + INTERVAL -6 DAY";
 
+	$fatFrom10DaysAgo = "SELECT SUM(fat) AS total_fat FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -10 DAY AND `time` <  DATE(NOW()) + INTERVAL -9 DAY";
+	$fatFrom10DaysAgoR = $link->query($fatFrom10DaysAgo);
+	$fatFrom10DaysAgoRow = mysqli_fetch_assoc($fatFrom10DaysAgoR); 
+	$fatFrom10DaysAgoTotal = $fatFrom10DaysAgoRow['total_fat'];
+
+	if (!($fatFrom10DaysAgoTotal > 0)) { 
+		$fatFrom10DaysAgoTotal = 0;
+	}
+
+	$fatFrom9DaysAgo = "SELECT SUM(fat) AS total_fat FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -9 DAY AND `time` <  DATE(NOW()) + INTERVAL -8 DAY";
+	$fatFrom9DaysAgoR = $link->query($fatFrom9DaysAgo);
+	$fatFrom9DaysAgoRow = mysqli_fetch_assoc($fatFrom9DaysAgoR); 
+	$fatFrom9DaysAgoTotal = $fatFrom9DaysAgoRow['total_fat'];
+
+	if (!($fatFrom9DaysAgoTotal > 0)) { 
+		$fatFrom9DaysAgoTotal = 0;
+	}
+
+	$fatFrom8DaysAgo = "SELECT SUM(fat) AS total_fat FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -8 DAY AND `time` <  DATE(NOW()) + INTERVAL -7 DAY";
+	$fatFrom8DaysAgoR = $link->query($fatFrom8DaysAgo);
+	$fatFrom8DaysAgoRow = mysqli_fetch_assoc($fatFrom8DaysAgoR); 
+	$fatFrom8DaysAgoTotal = $fatFrom8DaysAgoRow['total_fat'];
+
+	if (!($fatFrom8DaysAgoTotal > 0)) { 
+		$fatFrom8DaysAgoTotal = 0;
+	}
+
 	$fatFrom7DaysAgo = "SELECT SUM(fat) AS total_fat FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -7 DAY AND `time` <  DATE(NOW()) + INTERVAL -6 DAY";
 	$fatFrom7DaysAgoR = $link->query($fatFrom7DaysAgo);
 	$fatFrom7DaysAgoRow = mysqli_fetch_assoc($fatFrom7DaysAgoR); 
@@ -142,6 +169,123 @@
 
 	if (!($carbsFrom7DaysAgoTotal > 0)) { 
 		$carbsFrom7DaysAgoTotal = 0;
+	}
+
+	$carbsFrom8DaysAgo = "SELECT SUM(carbs) AS total_carbs FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -8 DAY AND `time` <  DATE(NOW()) + INTERVAL -7 DAY";
+	$carbsFrom8DaysAgoR = $link->query($carbsFrom8DaysAgo);
+	$carbsFrom8DaysAgoRow = mysqli_fetch_assoc($carbsFrom8DaysAgoR); 
+	$carbsFrom8DaysAgoTotal = $carbsFrom8DaysAgoRow['total_carbs'];
+
+	if (!($carbsFrom8DaysAgoTotal > 0)) { 
+		$carbsFrom8DaysAgoTotal = 0;
+	}
+
+	$carbsFrom9DaysAgo = "SELECT SUM(carbs) AS total_carbs FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -9 DAY AND `time` <  DATE(NOW()) + INTERVAL -8 DAY";
+	$carbsFrom9DaysAgoR = $link->query($carbsFrom9DaysAgo);
+	$carbsFrom9DaysAgoRow = mysqli_fetch_assoc($carbsFrom9DaysAgoR); 
+	$carbsFrom9DaysAgoTotal = $carbsFrom9DaysAgoRow['total_carbs'];
+
+	if (!($carbsFrom9DaysAgoTotal > 0)) { 
+		$carbsFrom9DaysAgoTotal = 0;
+	}
+
+	$carbsFrom10DaysAgo = "SELECT SUM(carbs) AS total_carbs FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -10 DAY AND `time` <  DATE(NOW()) + INTERVAL -9 DAY";
+	$carbsFrom10DaysAgoR = $link->query($carbsFrom10DaysAgo);
+	$carbsFrom10DaysAgoRow = mysqli_fetch_assoc($carbsFrom10DaysAgoR); 
+	$carbsFrom10DaysAgoTotal = $carbsFrom10DaysAgoRow['total_carbs'];
+
+	if (!($carbsFrom10DaysAgoTotal > 0)) { 
+		$carbsFrom10DaysAgoTotal = 0;
+	}
+
+	$proFrom1DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -1 DAY AND `time` <  DATE(NOW()) + INTERVAL 0 DAY";
+	$proFrom1DaysAgoR = $link->query($proFrom1DaysAgo);
+	$proFrom1DaysAgoRow = mysqli_fetch_assoc($proFrom1DaysAgoR); 
+	$proFrom1DaysAgoTotal = $proFrom1DaysAgoRow['total_pro'];
+
+	if (!($proFrom1DaysAgoTotal > 0)) { 
+		$proFrom1DaysAgoTotal = 0;
+	}
+
+	$proFrom2DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -2 DAY AND `time` <  DATE(NOW()) + INTERVAL -1 DAY";
+	$proFrom2DaysAgoR = $link->query($proFrom2DaysAgo);
+	$proFrom2DaysAgoRow = mysqli_fetch_assoc($proFrom2DaysAgoR); 
+	$proFrom2DaysAgoTotal = $proFrom2DaysAgoRow['total_pro'];
+
+	if (!($proFrom2DaysAgoTotal > 0)) { 
+		$proFrom2DaysAgoTotal = 0;
+	}
+
+	$proFrom3DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -3 DAY AND `time` <  DATE(NOW()) + INTERVAL -2 DAY";
+	$proFrom3DaysAgoR = $link->query($proFrom3DaysAgo);
+	$proFrom3DaysAgoRow = mysqli_fetch_assoc($proFrom3DaysAgoR); 
+	$proFrom3DaysAgoTotal = $proFrom3DaysAgoRow['total_pro'];
+
+	if (!($proFrom3DaysAgoTotal > 0)) { 
+		$proFrom3DaysAgoTotal = 0;
+	}
+
+	$proFrom4DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -4 DAY AND `time` <  DATE(NOW()) + INTERVAL -3 DAY";
+	$proFrom4DaysAgoR = $link->query($proFrom4DaysAgo);
+	$proFrom4DaysAgoRow = mysqli_fetch_assoc($proFrom4DaysAgoR); 
+	$proFrom4DaysAgoTotal = $proFrom4DaysAgoRow['total_pro'];
+
+	if (!($proFrom4DaysAgoTotal > 0)) { 
+		$proFrom4DaysAgoTotal = 0;
+	}
+
+	$proFrom5DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -5 DAY AND `time` <  DATE(NOW()) + INTERVAL -4 DAY";
+	$proFrom5DaysAgoR = $link->query($proFrom5DaysAgo);
+	$proFrom5DaysAgoRow = mysqli_fetch_assoc($proFrom5DaysAgoR); 
+	$proFrom5DaysAgoTotal = $proFrom5DaysAgoRow['total_pro'];
+
+	if (!($proFrom5DaysAgoTotal > 0)) { 
+		$proFrom5DaysAgoTotal = 0;
+	}
+
+	$proFrom6DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -6 DAY AND `time` <  DATE(NOW()) + INTERVAL -5 DAY";
+	$proFrom6DaysAgoR = $link->query($proFrom6DaysAgo);
+	$proFrom6DaysAgoRow = mysqli_fetch_assoc($proFrom6DaysAgoR); 
+	$proFrom6DaysAgoTotal = $proFrom6DaysAgoRow['total_pro'];
+
+	if (!($proFrom6DaysAgoTotal > 0)) { 
+		$proFrom6DaysAgoTotal = 0;
+	}
+
+	$proFrom7DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -7 DAY AND `time` <  DATE(NOW()) + INTERVAL -6 DAY";
+	$proFrom7DaysAgoR = $link->query($proFrom7DaysAgo);
+	$proFrom7DaysAgoRow = mysqli_fetch_assoc($proFrom7DaysAgoR); 
+	$proFrom7DaysAgoTotal = $proFrom7DaysAgoRow['total_pro'];
+
+	if (!($proFrom7DaysAgoTotal > 0)) { 
+		$proFrom7DaysAgoTotal = 0;
+	}
+
+	$proFrom8DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -8 DAY AND `time` <  DATE(NOW()) + INTERVAL -7 DAY";
+	$proFrom8DaysAgoR = $link->query($proFrom8DaysAgo);
+	$proFrom8DaysAgoRow = mysqli_fetch_assoc($proFrom8DaysAgoR); 
+	$proFrom8DaysAgoTotal = $proFrom8DaysAgoRow['total_pro'];
+
+	if (!($proFrom8DaysAgoTotal > 0)) { 
+		$proFrom8DaysAgoTotal = 0;
+	}
+
+	$proFrom9DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -9 DAY AND `time` <  DATE(NOW()) + INTERVAL -8 DAY";
+	$proFrom9DaysAgoR = $link->query($proFrom9DaysAgo);
+	$proFrom9DaysAgoRow = mysqli_fetch_assoc($proFrom9DaysAgoR); 
+	$proFrom9DaysAgoTotal = $proFrom9DaysAgoRow['total_pro'];
+
+	if (!($proFrom9DaysAgoTotal > 0)) { 
+		$proFrom9DaysAgoTotal = 0;
+	}
+
+	$proFrom10DaysAgo = "SELECT SUM(protein) AS total_pro FROM userFood WHERE userID = $id AND `time` >= DATE(NOW()) + INTERVAL -10 DAY AND `time` <  DATE(NOW()) + INTERVAL -9 DAY";
+	$proFrom10DaysAgoR = $link->query($proFrom10DaysAgo);
+	$proFrom10DaysAgoRow = mysqli_fetch_assoc($proFrom10DaysAgoR); 
+	$proFrom10DaysAgoTotal = $proFrom10DaysAgoRow['total_pro'];
+
+	if (!($proFrom10DaysAgoTotal > 0)) { 
+		$proFrom10DaysAgoTotal = 0;
 	}
 
 	//Water queries start here

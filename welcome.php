@@ -366,25 +366,87 @@ if(isset($_POST["editGoalW"])){
 		<input class="addW" type="submit" name="submit" value="Add Food" required>
 	</form>
 
+	<p style="font-weight: bold; padding-bottom: 14px;">Your food history for today:</p>
+	<table>
+		<tr>
+			<td width="180">Name</td>
+			<td width="80">Calories</td>
+			<td width="80">Carbs</td>
+			<td width="80">Protein</td>
+			<td>Fat</td>
+		</tr>
+	</table>
+
 	<?php
 
 	$id = $_SESSION["id"];
 
-	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
-	$result = $link->query($sql);
+	$breakfastOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Breakfast' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$breakfastOnlyResult = $link->query($breakfastOnly);
 
-	if ($result->num_rows > 0) {
+	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">BREAKFAST</p></div>";
+
+	if ($breakfastOnlyResult->num_rows > 0) {
 	    // output data of each row
-	    echo "<p style=\"font-weight: bold; padding-bottom: 14px;\">Your food history for today:</p>";
 		echo "<table id=\"foodTable\">";
-		echo "<tr><th>Name:</th><th>Category</th><th>Calories</th><th>Carbs</th><th>Protein</th><th>Fat</th></tr>";
-	    while($row = $result->fetch_assoc()) {
-	        echo "<tr>" . "<td>" . $row["rName"] . "</td><td>" . $row["mCat"] . "</td><td>" . $row["calories"] . "</td><td>" . $row["carbs"] . "</td><td>" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	    while($row = $breakfastOnlyResult->fetch_assoc()) {
+	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
 	    }
 	    echo "</table>";
 	} else {
-	    echo "<p style=\"font-weight:700;\">------ You haven't added any food. ------</p><br>";
+		echo "<p style=\"font-style: italic;\">You've not added any breakfast!</p>";
 	}
+
+	$lunchOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Lunch' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$lunchOnlyResult = $link->query($lunchOnly);
+
+	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">LUNCH</p></div>";
+
+	if ($lunchOnlyResult->num_rows > 0) {
+	    // output data of each row
+		echo "<table id=\"foodTable\">";
+	    while($row = $lunchOnlyResult->fetch_assoc()) {
+	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+		echo "<p style=\"font-style: italic;\">You've not added any lunch!</p>";
+	}
+
+	$dinnerOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Dinner' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$dinnerOnlyResult = $link->query($dinnerOnly);
+
+	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">DINNER</p></div>";
+
+	if ($dinnerOnlyResult->num_rows > 0) {
+	    // output data of each row
+		echo "<table id=\"foodTable\">";
+	    while($row = $dinnerOnlyResult->fetch_assoc()) {
+	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+		echo "<p style=\"font-style: italic;\">You've not added any dinner!</p>";
+	}
+
+	$snacksOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Snack' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$snacksOnlyResult = $link->query($snacksOnly);
+
+	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">SNACKS</p></div>";
+
+	if ($snacksOnlyResult->num_rows > 0) {
+	    // output data of each row
+		echo "<table id=\"foodTable\">";
+	    while($row = $snacksOnlyResult->fetch_assoc()) {
+	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+		echo "<p style=\"font-style: italic;\">You've not added any snacks!</p>";
+	}
+
+	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$result = $link->query($sql);
 
 	if ($result->num_rows > 0) {
 		//Add the total carbs for today for user and display it
@@ -392,33 +454,33 @@ if(isset($_POST["editGoalW"])){
 		$result2 = $link->query($sql2);
 		$row = mysqli_fetch_assoc($result2); 
 		$sum = $row['total_value'];
-		echo "Total carbs today: " . $sum . " (<span id=\"carbPercentage\"></span>%)<br>";
+		echo "<p><br>Total carbs today: " . $sum . " (<span id=\"carbPercentage\"></span>%)<br></p>";
 
 		//Add the total protein for today for user and display it
 		$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
 		$result3 = $link->query($sql3);
 		$row1 = mysqli_fetch_assoc($result3); 
 		$sum1 = $row1['total_value'];
-		echo "Total protein today: " . $sum1 . " (<span id=\"proPercentage\"></span>%)<br>";
+		echo "<p>Total protein today: " . $sum1 . " (<span id=\"proPercentage\"></span>%)<br></p>";
 
 		//Add the total fat for today for user and display it
 		$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
 		$result4 = $link->query($sql4);
 		$row2 = mysqli_fetch_assoc($result4); 
 		$sum2 = $row2['total_value'];
-		echo "Total fats today: " . $sum2 . " (<span id=\"fatPercentage\"></span>%)<br>";
+		echo "<p>Total fats today: " . $sum2 . " (<span id=\"fatPercentage\"></span>%)<br></p>";
 
 		//Add the total calories for today for user and display it
 		$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
 		$result5 = $link->query($sql5);
 		$row3 = mysqli_fetch_assoc($result5); 
 		$sum3 = $row3['total_value'];
-		echo "Total calories today: " . $sum3 . "<br>";
+		echo "<p>Total calories today: " . $sum3 . "<br></p>";
 	}
 
 	?>
 
-	<p id="calories"></p>
+	<p id="calories" style="padding-top: 10px;"></p>
 	<p id="leanBodyMass"></p>
 	<p id="rProteinIntake"></p>
 	<p id="rCarbIntake"></p>
@@ -426,16 +488,21 @@ if(isset($_POST["editGoalW"])){
 	<p id="calFromP"></p>
 	<p id="calFromC"></p>
 	<p id="calFromF"></p>
+	<p id="withinLimit"></p>
 
 	<?php include 'includes/graphQueries.php';?>
 	
+	<div class="pieChartContainer" style="width:500px;">
+		<p style="font-style: italic; padding-top: 20px;">Macros chart for today:</p>
+		<div id="chart-container2">FusionCharts XT will load here!</div>
+	</div>
 	<div style="width:500px; padding-top: 30px;">
 		<p style="font-style: italic;">Last week summary chart:</p>
 		<div id="chart-container">FusionCharts XT will load here!</div>
 	</div>
 	<div class="pieChartContainer" style="width:500px;">
-		<p style="font-style: italic;">Macros chart for today:</p>
-		<div id="chart-container2">FusionCharts XT will load here!</div>
+		<p style="font-style: italic;">Macros overtime chart:</p>
+		<div id="chart-container5">FusionCharts XT will load here!</div>
 	</div>
 
 	<h2>Add Water</h2>
@@ -583,6 +650,22 @@ if(isset($_POST["editGoalW"])){
 	document.getElementById("calFromP").innerHTML = "Calories from protein: " + Math.round(rProteinIntake) * 4;
 	document.getElementById("calFromC").innerHTML = "Calories from Carbs: " + Math.round(carbsGoal) * 4;
 	document.getElementById("calFromF").innerHTML = "Calories from fat: " + Math.round(caloriesFromFat);
+
+	if (!(anyFoodAddedToday == "")) {
+		if(totalCarb < carbsGoal) {
+			document.getElementById("withinLimit").innerHTML = "You're within your carb goal.";
+			document.getElementById("withinLimit").style.backgroundColor = "#2ECC71";
+			document.getElementById("withinLimit").style.color = "#ffffff";
+		} else {
+			document.getElementById("withinLimit").innerHTML = "You've exceeded your carb intake limit.";
+			document.getElementById("withinLimit").style.backgroundColor = "#F25661";
+			document.getElementById("withinLimit").style.color = "#ffffff";
+		}
+	} else {
+		document.getElementById("withinLimit").innerHTML = "You're within your carb goal.";
+		document.getElementById("withinLimit").style.backgroundColor = "#2ECC71";
+		document.getElementById("withinLimit").style.color = "#ffffff";
+	}
 
     FusionCharts.ready(function(){
     var fusioncharts = new FusionCharts({
@@ -836,6 +919,103 @@ var chart4 = new FusionCharts({
     }
 });
 	chart4.render();
+});
+
+FusionCharts.ready(function(){
+	var chartObj = new FusionCharts({
+    type: 'msline',
+    renderAt: 'chart-container5',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "xAxisName": "Date",
+            "yAxisName": "Grams",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontColor": "#666666",
+            "captionFontBold": "0",
+            "captionFontSize": "16",
+            "lineThickness": "5",
+            "xAxisName": "Day"
+        },
+        "categories": [{
+			"category": [{
+            	"label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-7)); echo $yesterday; ?>"
+            }, {
+            	"label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-6)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-5)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-4)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-3)); echo $yesterday; ?>"
+            }, {
+            	"label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-2)); echo $yesterday; ?>"
+            }, {
+                "label": "<?php $yesterday = date("d/m", mktime(0, 0, 0, date("m") , date("d")-1)); echo $yesterday; ?>"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Fat",
+            "data": [{
+            	"value": "<?php if(isset($fatFrom7DaysAgoTotal)) {echo($fatFrom7DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($fatFrom6DaysAgoTotal)) {echo($fatFrom6DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom5DaysAgoTotal)) {echo($fatFrom5DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom4DaysAgoTotal)) {echo($fatFrom4DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($fatFrom3DaysAgoTotal)) {echo($fatFrom3DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom2DaysAgoTotal)) {echo($fatFrom2DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($fatFrom1DaysAgoTotal)) {echo($fatFrom1DaysAgoTotal);} ?>"
+
+            }]
+        }, {
+            "seriesname": "Protein",
+            "data": [{
+            	"value": "<?php if(isset($proFrom7DaysAgoTotal)) {echo($proFrom7DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($proFrom6DaysAgoTotal)) {echo($proFrom6DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($proFrom5DaysAgoTotal)) {echo($proFrom5DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($proFrom4DaysAgoTotal)) {echo($proFrom4DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($proFrom3DaysAgoTotal)) {echo($proFrom3DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($proFrom2DaysAgoTotal)) {echo($proFrom2DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($proFrom1DaysAgoTotal)) {echo($proFrom1DaysAgoTotal);} ?>"
+            }]
+        }, {
+            "seriesname": "Carbs",
+            "data": [{
+            	"value": "<?php if(isset($carbsFrom7DaysAgoTotal)) {echo($carbsFrom7DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($carbsFrom6DaysAgoTotal)) {echo($carbsFrom6DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom5DaysAgoTotal)) {echo($carbsFrom5DaysAgoTotal);} ?>"
+            }, {
+            	"value": "<?php if(isset($carbsFrom4DaysAgoTotal)) {echo($carbsFrom4DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom3DaysAgoTotal)) {echo($carbsFrom3DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom2DaysAgoTotal)) {echo($carbsFrom2DaysAgoTotal);} ?>"
+            }, {
+                "value": "<?php if(isset($carbsFrom1DaysAgoTotal)) {echo($carbsFrom1DaysAgoTotal);} ?>"
+            }]
+        }],
+
+    }
+});
+	chartObj.render();
+
 });
 </script>
 </div>
