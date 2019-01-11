@@ -46,6 +46,12 @@ if(isset($_POST['submit2'])){
 	}
 }
 
+if(isset($_POST["removePicture"])){
+	$id = $_SESSION["id"];
+	$sql = "UPDATE users SET profilePicture = '' WHERE id=$id";
+	$link->query($sql) === TRUE;
+}
+
 //This function deals with updating/adding weight
 if(isset($_POST["weight"])){
 	$tt = $_POST["weight"];
@@ -189,10 +195,10 @@ if(isset($_POST["editGoalW"])){
 		font-size: 15px;font-weight: 700;font-family: 'Open Sans', sans-serif; padding: 10px 0px;
 	}
 	.weight {
-		background-color: #eee;padding: 10px 20px;border: 1px solid #999;border-radius: 4px;
+		background-color: #eee;padding: 10px 20px;border: 1px solid #ddd;border-radius: 3px;
 	}
 	.addW, .addP {
-		background-color: #2ecc71;padding: 10px 20px;border: 1px solid #999;border-radius: 4px;color: #fff;
+		background-color: #2ecc71;padding: 10px 20px;border: 1px solid #2ecc71;border-radius: 3px;color: #fff;
 	}
 	#foodTable {
 		border-collapse: collapse;
@@ -242,6 +248,11 @@ if(isset($_POST["editGoalW"])){
 		font-size: 15px !important;
 		font-weight: 300 !important;
 	}
+	.removePicture {
+		padding: 10px 30px;
+    	background-color: #2ecc71;
+    	color: #fff;
+	}
     </style>
 </head>
 <body>
@@ -287,7 +298,7 @@ if(isset($_POST["editGoalW"])){
 	    echo "<br>";
 	    echo "<p style=\"font-weight: bold;\">All time weight history:</p>";
 	    while($row = $result->fetch_assoc()) {
-	        echo "<span style=\"font-weight: bold;\">weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">updated:</span> " . $row["timee"] . "<br>";
+	        echo "<span style=\"font-weight: bold;\">Weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">Updated:</span> " . $row["timee"] . "<br>";
 	    }
 	    echo "<br> Timezones are USA.<br><br>";
 	} else {
@@ -354,15 +365,18 @@ if(isset($_POST["editGoalW"])){
 	<input type="file" name="file">
 	<input class="addP" type="submit" name="submit2" value="Upload">
 	</form>
+	<form action="" method="post">
+	<input type="submit" class="removePicture" name="removePicture" value="Remove Profile Picture">
+	</form>
 
 	<h2>Add Food</h2>
 	<form method="post" action="welcome.php" class="foodForm" style="padding: 20px 0px;">
-		<input class="weight" type="text" name="rName" placeholder="name of recipe" required>
-		<input class="weight" type="text" name="mCat" placeholder="meal category" required>
-		<input class="weight" type="number" name="cal" placeholder="calories" required>
-		<input class="weight" type="number" name="car" placeholder="carbs" required>
-		<input class="weight" type="number" name="pro" placeholder="protine" required>
-		<input class="weight" type="number" name="fat" placeholder="fat" required>
+		<input class="weight" type="text" name="rName" placeholder="Name of recipe" required>
+		<input class="weight" type="text" name="mCat" placeholder="Meal category, e.g Lunch" required>
+		<input class="weight" type="number" name="cal" placeholder="Calories" required>
+		<input class="weight" type="number" name="car" placeholder="Carbs" required>
+		<input class="weight" type="number" name="pro" placeholder="Protine" required>
+		<input class="weight" type="number" name="fat" placeholder="Fat" required>
 		<input class="addW" type="submit" name="submit" value="Add Food" required>
 	</form>
 
