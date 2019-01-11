@@ -159,17 +159,18 @@
 	}
 	.addButtonContainer {
 	    text-align: center !important;
-	    padding-bottom: 30px !important;
+	    /*padding-bottom: 30px !important;*/
 	}
 	.mealSummary {
 		background-color: #f9f9f9;
 		border-radius: 6px;
 	}
 	#mealHeadings {
-		margin: 0 auto;
-		width: 100%;
-		    border-collapse: separate;
-    border-spacing: 10px 0px;
+		margin-right: 0px;
+		margin-left: auto;
+		width: 80%;
+		border-collapse: separate;
+		border-spacing: 10px 0px;
 	}
 	#mealHeadings td {
 		font-size: 14px;
@@ -324,6 +325,108 @@
 			margin-bottom: 0;
 		}
 	}
+	.targetHeadings {
+		    padding: 24px 36px 0px 36px;
+	}
+	.targetsContainer {
+		    padding: 24px 36px 32px 36px;
+	}
+	.targetHeadings p {
+		font-size: 15px;
+		font-weight: 400;
+		color: #666;
+	}
+	.targetHeadings p:nth-child(2) {
+		font-style: italic;
+		color: #bbb;
+	}
+	.targetCircle {
+		width: 80px;
+		height: 80px;
+		float: left;
+		margin: 6px 10px;
+		cursor: pointer;
+	}
+	.targetCircle2 {
+		width: 80px;
+		float: left;
+		margin: 6px 10px;
+		text-align: center;
+	}
+	.targetsFloat {
+		float: left;
+	}
+	.targetCircle p {
+		line-height: 80px;
+    	text-align: center;
+    	font-size: 22px;
+    	font-weight: 700;
+    	color: #888;
+		border-radius: 100px;
+		background-color: #EEEEEE;
+		-webkit-transition: 0.6s ease;
+		transition: 0.6s ease;
+	}
+	.targetCircle p:hover {
+		background-color: #2ECC71;
+		color: #fff;
+	}
+	.targetExplain {
+		padding: 14px 36px 50px 36px;
+	}
+	.targetExplain p {
+		color: #bbb;
+		font-size: 14px;
+		font-weight: 300;
+		text-decoration: underline;
+		display: inline-block; /*Tooltip fix*/
+	}
+	@media only screen and (max-width: 536px) {
+		.targetsFloat {
+			float: none;
+			display: block;
+			width: 100%;
+		}
+		.targetCircle {
+			width: 42%;
+		}
+		.targetCircle2 {
+		    width: 50%;
+		    margin: 6px 0px;
+		}
+	}
+	@media only screen and (max-width: 385px) {
+		.targetCircle {
+		    width: 41%;
+		}
+	}
+	@media only screen and (max-width: 358px) {
+		.targetCircle {
+		    width: 40%;
+		}
+	}
+	@media only screen and (max-width: 335px) {
+		.targetCircle {
+		    width: 39%;
+		}
+	}
+	.prevWater {
+	    text-align: center;
+	    padding: 24px 0px 38px 0px;
+	}
+	.prevWater button {
+		background-color: #fff;
+		border: 2px solid #aaaaaa;
+		padding: 10px;
+		width: 180px;
+		border-radius: 100px;
+		color: #aaaaaa;
+		font-size: 13px;
+		font-weight: 600;
+		cursor: pointer;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
 	</style>
 </head>
 
@@ -417,7 +520,7 @@
 					<p class="navSubText">Meal Inspiration</p>
 				</div>
 				</a>
-				<a href="#">
+				<a href="stats.html">
 				<div class="navItem" id="navItemF">
 					<p class="navMainText">Statistics</p>
 					<p class="navSubText">A Detailed View</p>
@@ -521,6 +624,33 @@
         <div class="item macrosGraph animated bounceIn">
             <p class="itemTitle">Your targets</p>
 			<p class="itemDescription">Based on the information you’ve given us, we’ve worked out your daily macros.</p>
+			<div class="targetHeadings">
+				<p>Our recommendation - </p>
+				<p>Based on your height, weight and current activity level.</p>
+			</div>
+			<div class="targetsContainer clearfix">
+				<div class="targetsFloat">
+					<div class="targets clearfix">
+						<div class="targetCircle"><p>1000</p></div>
+						<div class="targetCircle"><p>126</p></div>
+					</div>
+					<div class="targetsTitle clearfix">
+						<div class="targetCircle2"><p>Calories</p></div>
+						<div class="targetCircle2"><p>Fats (g)</p></div>
+					</div>
+				</div>
+				<div class="targetsFloat">
+					<div class="targets clearfix">
+						<div class="targetCircle"><p>25</p></div>
+						<div class="targetCircle"><p>70</p></div>
+					</div>
+					<div class="targetsTitle clearfix">
+						<div class="targetCircle2"><p>Carbs (g)</p></div>
+						<div class="targetCircle2"><p>Protein (g)</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="targetExplain"><p class="tooltip" title="We've used the Mifflin St Jeor formula. 10 x your_weight(kg) + 6.25 x your_height(cm) – 5 x your_age(y) + 5.">How have we worked this out?</p></div>
         </div>
         <div class="item weightGraph animated bounceIn columnHidden"></div>
         <div class="item waterGraph animated bounceIn">
@@ -551,6 +681,9 @@
 				<div class="buttonMar">
 					<input type="submit" value="-" class="waterASButton waterSub tooltip" title="Remove a glass of water">
 				</div>
+			</div>
+			<div class="prevWater">
+				<button type="button" class="hvr-pop">View Previous Days</button>
 			</div>
         </div>
         <div class="item weightGraph animated bounceIn columnHidden"></div>
