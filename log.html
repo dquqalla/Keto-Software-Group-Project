@@ -39,6 +39,11 @@
         animation-duration: 1.5s;
         animation-delay: 0.3s;
     }
+    @media screen and (min-width: 1200px) {
+       #grid[data-columns]::before {
+            content: '2 .column.size-1of2';
+        }
+    }
     @media only screen and (max-width: 767px) {
        #grid[data-columns]::before {
             content: '1 .column.size-1of1';
@@ -51,12 +56,6 @@
         }
         #grid {
             padding: 0px 14px;
-        }
-    }
-
-    @media screen and (min-width: 1200px) {
-       #grid[data-columns]::before {
-            content: '2 .column.size-1of2';
         }
     }
     .item:nth-child(1), .item:nth-child(2) {
@@ -199,6 +198,132 @@
 	.mealTypeL {
 		padding-bottom: 40px;
 	}
+		.raphael-group-134-plots text tspan:nth-child(2) {
+		font-size: 22px !important;
+		font-weight: 600 !important;
+	}
+	.raphael-group-134-plots text tspan {
+		font-size: 16px !important;
+	}
+	.pieChartContainer {
+		width: 54%;
+		float: left;
+		margin-top: -12px;
+	}
+	.macroStats {
+		width: 46%;
+		float: left;
+	}
+	.macroStatsContainer {
+		padding:2px 25px;
+	}
+	.macroStatsLeft {
+		float:left;
+	}
+	.macroStatsLeft div {
+		margin-bottom: -3px;
+		margin-right: 8px;
+		display:inline-block;
+		width: 17px;
+		height: 17px;
+		background-color: green;
+		border-radius: 4px;
+	}
+	.macroStatsLeft p {
+		display: inline-block;
+		font-size: 15px;
+		color: #525252;
+		font-weight: 400;
+	}
+	.macroStatsPercentage {
+		float: right;
+		font-size: 15px;
+		color: #525252 !important;
+		font-weight: 600;
+	}
+	.macroFatColour {
+		background-color: #495C6F !important;
+	}
+	.macroProColour {
+		background-color: #F46871 !important;
+	}
+	.macroCarbColour {
+		background-color: #F3C76A !important;
+	}
+	.macroStatsInner {
+	    width: 250px;
+	    background-color: #eeeeee;
+	    margin-bottom: 10px;
+	    margin-top: 68px;
+	    border-radius: 5px;
+	    padding: 14px 0px;
+	}
+	.macroStatsRem {
+		width: 250px;
+	    background-color: #F46871;
+	    margin-bottom: 10px;
+	    border-radius: 5px;
+	    padding: 14px 0px;
+	    cursor: pointer;
+	}
+	.macroStatsRem p {
+		text-align: center;
+		color: #fff;
+	}
+	.macroStatsRem > p:nth-child(1) {
+		font-size: 18px;
+		font-weight: 600;
+	}
+	.macroStatsRem > p:nth-child(2) {
+		font-size: 14px;
+	}
+	#chart-container10 svg {
+		background-color: transparent !important;
+	}
+	@media only screen and (max-width: 1366px) {
+		.pieChartContainer {
+			width: 52%;
+		}
+		.macroStats {
+			width: 48%;
+		}
+	}
+	@media only screen and (max-width: 1300px) and (min-width: 768px) {
+		.pieChartContainer {
+		    width: 100%;
+		    float: none;
+		    margin-top: -20px;
+		}
+		.macroStats {
+		    width: 100%;
+		    float: none;
+		    margin-top: -20px;
+		}
+		.macroStatsInner, .macroStatsRem {
+			margin-top: 0;
+			border-radius: 0px;
+			width: 100%;
+			margin-bottom: 0;
+		}
+	}
+	@media only screen and (max-width: 645px) {
+		.pieChartContainer {
+		    width: 100%;
+		    float: none;
+		    margin-top: -20px;
+		}
+		.macroStats {
+		    width: 100%;
+		    float: none;
+		    margin-top: -20px;
+		}
+		.macroStatsInner, .macroStatsRem {
+			margin-top: 0;
+			border-radius: 0px;
+			width: 100%;
+			margin-bottom: 0;
+		}
+	}
 	</style>
 </head>
 
@@ -338,6 +463,41 @@
     <div class="clearfix" id="grid" data-columns>
         <div class="item weightGraph animated bounceIn">
             <p class="itemTitle">Today - Overview</p>
+            <div class="clearfix">
+            <div class="pieChartContainer">
+					<div id="chart-container10">FusionCharts XT will load here!</div>
+			</div>
+			<div class="macroStats">
+				<div class="macroStatsInner">
+					<div class="macroStatsContainer clearfix">
+						<div class="macroStatsLeft">
+							<div class="macroFatColour"></div>
+							<p>Fats</p>
+						</div>
+						<p class="macroStatsPercentage">100%</p>
+					</div>
+					<div class="macroStatsContainer clearfix">
+						<div class="macroStatsLeft">
+							<div class="macroCarbColour"></div>
+							<p>Net Carbs</p>
+						</div>
+						<p class="macroStatsPercentage">100%</p>
+					</div>
+					<div class="macroStatsContainer clearfix">
+						<div class="macroStatsLeft">
+							<div class="macroProColour"></div>
+							<p>Protein</p>
+						</div>
+						<p class="macroStatsPercentage">100%</p>
+					</div>
+				</div>
+
+				<div class="macroStatsRem tooltip" title="You're doing great!">
+					<p>30/28 Net Carbs</p>
+					<p>0g remaining</p>
+				</div>
+			</div>
+			</div>
 			<div class="mealSummary">
 				<p class="itemTitle">Meal Summary - Today</p>
 				<div class="mealHeadingsC">
@@ -485,6 +645,56 @@ var chart4 = new FusionCharts({
     }
 });
     chart4.render();
+});
+
+FusionCharts.ready(function() {
+var fusioncharts2 = new FusionCharts({
+type: 'doughnut2d',
+renderAt: 'chart-container10',
+width: '100%',
+height: '340',
+dataFormat: 'json',
+dataSource: {
+  "chart": {
+    "startingAngle": "310",
+    "showLegend": "1",
+    "defaultCenterLabel": "Total<br>2200<br>Calories",
+    "centerLabel": "$label: $value(g)",
+    "centerLabelBold": "0",
+    "centerLabelColor": "#AAAAAA",
+    "centerLabelFontSize": "18",
+    "showTooltip": "0",
+    "decimals": "0",
+    "enableSmartLabels": "0",
+    "showLabels": "0",
+    "animationDuration": "3",
+    "showValues": "0",
+    "doughnutRadius": "80",
+    "plotFillAlpha": "90",
+    "showLegend": "0",
+    "bgColor": "#DDDDDD",
+    "bgAlpha": "0",
+    "theme": "fusion"
+  },
+  "data": [{
+      "label": "Fat",
+      "value": "70",
+      "color": "#34495E"
+    },
+    {
+      "label": "Carbs",
+      "value": "10",
+      "color": "#F2C158"
+    },
+    {
+      "label": "Protein",
+      "value": "50",
+      "color": "#F25661"
+    }
+  ]
+}
+});
+fusioncharts2.render();
 });
 </script>
 <script src="js/salvattore.min.js"></script>
