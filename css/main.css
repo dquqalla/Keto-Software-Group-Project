@@ -546,6 +546,61 @@ g[class$='creditgroup'] {
 .navActive {
     color: #27AC9D !important;
 }
+.glassesContainer {
+    overflow:hidden;
+    text-align: center;
+    padding: 28px 0px 12px 0px;
+}
+
+.gC {
+    display: inline-block; 
+    /*background-color: red; */
+    padding: 0px 28px;
+}
+.relCon {
+    position: relative;
+}
+.relCon p {
+    position: absolute;
+    top: 34%;
+    left: 43%;
+    font-size: 22px;
+    color: #fff !important;
+    font-weight: 600;
+}
+.relCon img {
+    padding: 4px;
+}
+.glassSText {
+    font-size: 14px;
+    font-weight: 500;
+    color: #999999;
+}
+.addButtonContainer {
+    text-align: right;
+    margin: 15px;
+}
+.buttonMar {
+    padding: 0px 5px;
+    display: inline-block;
+}
+.waterASButton {
+    width: 40px; 
+    height: 40px; 
+    background-color: #2ECC71; 
+    border-radius: 100px; 
+    font-size: 28px; 
+    color: #fff; 
+    font-weight: 400;    
+    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05); 
+    outline: 0; 
+    cursor: pointer;
+}
+.waterSub {
+    background-color: #F25661; 
+}
 @media only screen and (max-width:750px){
     .logo img{
         width:86%;
@@ -619,4 +674,28 @@ g[class$='creditgroup'] {
 	.mobileMenuBall {
 		display: block !important;
 	}
+}
+@media only screen and (max-width: 450px) {
+    .gC {
+        padding: 10px 10px;
+    }
+    .glassesContainer {
+        padding: 18px 0px 12px 0px;
+    }
+}
+@media only screen and (max-width: 860px) and (min-width: 768px) {
+    .gC {
+        padding: 6px 10px !important;
+    }
+    .glassesContainer {
+        padding: 18px 0px 12px 0px;
+    }
+}
+@media only screen and (max-width: 1415px) and (min-width: 1012px) {
+    .gC {
+        padding: 10px 10px !important;
+    }
+    .glassesContainer {
+        padding: 18px 0px 12px 0px;
+    }
 }

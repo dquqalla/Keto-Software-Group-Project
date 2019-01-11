@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noarchive">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
+	<script src='js/superslide-std.min.js'></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/js/jquery.circliful.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<link rel="stylesheet" href="css/slick-theme.css">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Daily Log</title>
+	<style>
+	/*Page specific styles*/
+	.line {
+		width: -webkit-calc(100% - 440px) !important;
+		width: -moz-calc(100% - 440px) !important;
+		width: calc(100% - 440px) !important;
+	}
+	.pageTitle {
+	    width: 300px !important;
+	}
+    #grid {
+        overflow: hidden;
+        padding: 0px 18px;
+        animation-duration: 1.5s;
+        animation-delay: 0.3s;
+    }
+    @media only screen and (max-width: 767px) {
+       #grid[data-columns]::before {
+            content: '1 .column.size-1of1';
+        }
+        .column {
+            width: 100% !important;
+        }
+        .item:nth-child(1) {
+            margin-top: 18px !important;
+        }
+        #grid {
+            padding: 0px 14px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+       #grid[data-columns]::before {
+            content: '2 .column.size-1of2';
+        }
+    }
+    .item:nth-child(1), .item:nth-child(2) {
+        margin-top: 4px;
+    } 
+
+    .column {
+        float: left;
+    }
+
+    .size-1of2 {
+        width: 50%;
+    }
+    .size-1of1 {
+        width: 100%;
+    }
+    .column:nth-child(1) {
+        width: 50%;
+    }
+    .column:nth-child(2) {
+        width: 50%;
+    }
+
+    .item {
+        position: relative;
+        /*padding: 15px;*/
+        padding: 0px;
+        background: #fff;
+        margin: 18px;
+        border-radius: 6px;
+        box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+        -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+        box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+        margin: 30px 18px;
+    }
+    .item p {
+        color: #999;
+    }
+    .itemTitle {
+        font-size: 16px;
+        font-weight: 700;
+        color: #535353 !important;
+        padding-bottom: 2px;
+        padding: 32px 36px 0px 36px;
+    }
+    .itemDescription {
+        font-size: 14px;
+        font-weight: 400;
+        color: #999 !important;
+        padding: 0px 36px 0px 36px;
+    }
+    .item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
+        margin-top: 4px;
+    }
+	.columnHidden {
+		display: none;
+	}
+	#chart-container9 {
+        margin-right: 18px;
+        padding: 32px 37px 20px 37px;
+    }
+    .weightTableOuter {
+    	padding: 0px 69px 60px 69px;
+    }
+    #weightHistory {
+    	border-collapse: collapse;
+  		width: 65%;
+  		font-family:'Open Sans',sans-serif;
+  		font-size: 16px;
+		margin: 0 auto;
+    }
+    #weightHistory th {
+	  text-align: left;
+	  background-color: #4b7bec;
+	  color: white;
+	  font-weight: 600;
+	}
+	#weightHistory td {
+		font-weight: 500;
+		color: #444;
+	}
+	#weightHistory td, #weightHistory th {
+	  border: 1px solid #ddd;
+	  padding: 10px 13px;
+	}
+	.wHistoryT {
+		padding-bottom: 10px;
+	}
+	.wHistoryT p {
+		color: #444;
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+	}
+	@media only screen and (max-width: 425px) {
+		.weightTableOuter {
+		    padding: 0px 0px 60px 0px;
+		}
+	}
+	.addButtonContainer {
+	    text-align: center !important;
+	    padding-bottom: 30px !important;
+	}
+	.mealSummary {
+		background-color: #f9f9f9;
+		border-radius: 6px;
+	}
+	#mealHeadings {
+		margin: 0 auto;
+		width: 100%;
+		    border-collapse: separate;
+    border-spacing: 10px 0px;
+	}
+	#mealHeadings td {
+		font-size: 14px;
+		font-weight: 400;
+		width: 20%;
+		border-right: 1px solid #ddd;
+	}
+	.mealHeadingsC {
+		padding: 34px 37px 0px 37px;
+	}
+	.mealType {
+		width:100%;
+		margin: 10px 0px;
+		padding: 0px 37px 0px 37px;
+	}
+	.mealType p {
+		padding: 8px 12px;
+		background-color: #444;
+		color:#fff;
+		font-size: 15px;
+		letter-spacing: 1px;
+		font-weight: 600;
+		text-decoration: underline;
+		border-radius: 3px;
+	}
+	.mealTypeL {
+		padding-bottom: 40px;
+	}
+	</style>
+</head>
+
+<body>
+<div id="menu">
+	<div>
+		<div class="mobileMenuProfile">
+			<div class="profileImageContainer">
+				<div class="profileImage">
+					<p id="nameLetterM"></p>
+				</div>
+			</div>
+			<div class="menuProfileText">
+				<p>Mizna Uppal</p>
+				<p>Free Membership</p>
+			</div>
+		</div>
+		<div class="borderBreak"></div>
+		<div class="navlink">Logout</div>
+		<div class="navlink">Settings</div>
+		<div class="navlink">Account Upgrade</div>
+		<div class="navlink">Getting Started Guide</div>
+		<div class="navlink">FAQ</div>
+	</div>
+</div>
+<div id="mainContainer" class="mainContainer">
+	<div class="header">
+		<div class="headInner clearfix">
+			<div class="logo">
+				<a href="index.html"><img src="images/logoHolder.png" alt="Logo"></a>
+			</div>
+
+			<div class="right">
+				<div class="rightInner clearfix">
+					<div class="profileInfo">
+						<div class="drop"> 
+							<div class="profileImageContainer" >
+								<div class="profileImage">
+									<p id="nameLetter"></p>
+								</div>
+							</div>
+						 	<div id="drop-content" class="drop-content">
+							 	<span>Change Picture</span>
+							 	<span>Remove Picture</span>
+							</div>
+						</div>
+						<div class="profileText">
+							<p id="name">Mizna Uppal</p>
+							<p>Free Membership</p>
+						</div>
+					</div>
+					<div class="iconContainer">
+						<div class="notifications tooltip" title="Notifications">
+							<a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
+						</div>
+						<div class="settings tooltip" title="Settings">
+							<a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+						</div>
+						<div class="logout tooltip" title="Logout">
+							<a href="#"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
+						</div>
+						<div class="menuTrigger" onclick="openMenu()">
+							<a href="#"><img src="images/icons/menuIcon.png" alt="Menu"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="navigation clearfix">
+		<div class="scrollContainer">
+			<div class="scrolling-wrapper-flexbox">
+				<a href="index.html">
+					<div class="navItem" id="navItemO">
+						<p class="navMainText">Dashboard</p>
+						<p class="navSubText">Overview</p>
+					</div>
+				</a>
+				<a href="log.html">
+				<div class="navItem" id="navItemT">
+					<p class="navMainText navActive">Daily Log</p>
+					<p class="navSubText">Your Daily Tracking</p>
+				</div>
+				<div class="navBreadcrumbs"></div>
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemTh">
+					<p class="navMainText">Diet Planning</p>
+					<p class="navSubText">Meal Inspiration</p>
+				</div>
+				</a>
+				<a href="#">
+				<div class="navItem" id="navItemF">
+					<p class="navMainText">Statistics</p>
+					<p class="navSubText">A Detailed View</p>
+				</div>
+				</a>
+				<a href="welcome.php">
+					<div class="navItem">
+						<p class="navMainText" style="color: red;">Development</p>
+						<p class="navSubText">Dev Test Screen</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="addContainer clearfix">
+			<div class="addButtons addWater tooltip" title="Quick Add" onclick="addWater()">
+				<div class="addWaterI"></div>
+				<p>Add Water</p>
+			</div>
+			<div class="addButtons addFood tooltip" title="Quick Add" onclick="addFood()">
+				<div class="addFoodI"></div>
+				<p>Add Food</p>
+			</div>
+			<div class="addButtons addWeight tooltip" title="Quick Add" onclick="addWeight()">
+				<div class="addWeightI"></div>
+				<p>Add Weight</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="mainBody">
+		<div class="titleCon clearfix">
+			<div class="pageTitle">
+				<p>Your daily tracking log - in detail.</p>
+			</div>
+			<hr class="line">
+			<div class="date">
+				<p>Today: <span id="currentDate"></span></p>
+			</div>
+		</div>
+	</div>
+
+    <div class="clearfix" id="grid" data-columns>
+        <div class="item weightGraph animated bounceIn">
+            <p class="itemTitle">Today - Overview</p>
+			<div class="mealSummary">
+				<p class="itemTitle">Meal Summary - Today</p>
+				<div class="mealHeadingsC">
+					<table id="mealHeadings">
+						<tr>
+							<td>Name</td>
+							<td>Calories</td>
+							<td>Carbs</td>
+							<td>Protein</td>
+							<td>Fat</td>
+						</tr>
+					</table>
+				</div>
+				<div class="mealType"><p>BREAKFAST</p></div>
+				<div class="mealType"><p>LUNCH</p></div>
+				<div class="mealType"><p>DINNER</p></div>
+				<div class="mealType mealTypeL"><p>SNACKS</p></div>
+
+			</div>
+        </div>
+        <div class="item macrosGraph animated bounceIn">
+            <p class="itemTitle">Your targets</p>
+			<p class="itemDescription">Based on the information you’ve given us, we’ve worked out your daily macros.</p>
+        </div>
+        <div class="item weightGraph animated bounceIn columnHidden"></div>
+        <div class="item waterGraph animated bounceIn">
+            <p class="itemTitle">Today - Water Intake Overview</p>
+			<p class="itemDescription">You have <span>[ ]</span> met your target for today.</p>
+			<div class="glassesContainer">
+				<div class="gC">
+					<p class="glassSText">You've drank</p>
+					<div class="relCon">
+						<img src="images/orangeGlass.png" alt="Glasses Consumed">
+						<p class="numberOfGlasses" id="numberOfGlasses">0</p>
+					</div>
+					<p class="glassSText">glasses today</p>
+				</div>
+				<div class="gC">
+					<p class="glassSText">You've drank</p>
+					<div class="relCon">
+						<img src="images/greenGlass.png" alt="Water Goal">
+						<p class="numberOfGlasses2" id="numberOfGlasses2">5</p>
+					</div>
+					<p class="glassSText">glasses in a day</p>
+				</div>
+			</div>
+			<div class="addButtonContainer">
+				<div class="buttonMar">
+					<input type="submit" value="+" class="waterASButton waterAdd tooltip" title="Add a glass of water">
+				</div>
+				<div class="buttonMar">
+					<input type="submit" value="-" class="waterASButton waterSub tooltip" title="Remove a glass of water">
+				</div>
+			</div>
+        </div>
+        <div class="item weightGraph animated bounceIn columnHidden"></div>
+        <div class="item carbfatGraph animated bounceIn">
+            <p class="itemTitle">Weight Progress</p>
+            <p class="itemDescription">A detailed history of your weight.</p>
+			<div class="" style="width:100%;">
+                <div id="chart-container9">FusionCharts XT will load here!</div>
+            </div>
+            <div class="wHistoryT"><p>- Weight History -</p></div>
+            <div class="weightTableOuter">
+            <table id="weightHistory">
+            	  <tr>
+				    <th>Date</th>
+				    <th>Weight</th>
+				  </tr>
+				  <tr>
+				    <td>01/10</td>
+				    <td>50</td>
+				  </tr>
+				  <tr>
+				    <td>02/10</td>
+				    <td>55</td>
+				  </tr>
+				  <tr>
+				    <td>03/10</td>
+				    <td>57</td>
+				  </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mobileMenuBall">
+	<i class="first"><img src="images/icons/weightIconWhite.png" width="40px" alt="Weight" onclick="addWeight()"></i>
+	<i class="second"><img src="images/icons/foodIconWhite.png" width="40px" alt="Food" onclick="addFood()"></i>
+	<i class="third"><img src="images/icons/waterIconWhite.png" width="34px" alt="Water" onclick="addWater()"></i>
+	<?xml version="1.0" encoding="utf-8"?>
+	<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
+	30,15.5 "/></svg>
+</div>	
+
+</body>
+<script src="js/globalScripts.js"></script>
+<script>
+	FusionCharts.ready(function(){
+var chart4 = new FusionCharts({
+    type: 'line',
+    renderAt: 'chart-container9',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "theme": "fusion",
+            "xAxisName": "Date",
+            "yAxisName": "Weight (kg)",
+            "captionFont": "Open Sans, sans-serif",
+            "subcaptionFont": "Open Sans, sans-serif",
+            "captionFontColor": "#666666",
+            "captionFontBold": "0",
+            "captionFontSize": "16",
+            "numDivLines": "5",
+			"palettecolors":"#4b7bec",
+            "lineThickness": "5"
+        },
+        "data": [{
+        "label": "02/01",
+        "value": "70"
+    }, {
+        "label": "03/01",
+        "value": "68"
+    }, {
+        "label": "04/01",
+        "value": "65"
+    }, {
+        "label": "05/01",
+        "value": "67"
+    }, {
+        "label": "06/01",
+        "value": "65"
+    }, {
+        "label": "07/01",
+        "value": "66"
+    }, {
+        "label": "08/01",
+        "value": "62"
+    }]
+    }
+});
+    chart4.render();
+});
+</script>
+<script src="js/salvattore.min.js"></script>
+<script type="text/javascript" src="js/tooltipster.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tooltipster.css">
+</html>
