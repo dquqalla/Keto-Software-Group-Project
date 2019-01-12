@@ -75,7 +75,7 @@
 .waterGraph > .itemTitle:before {
     content: "";
     display: block;
-    background: url("images/icons/graphIcon3.png") no-repeat;
+    background: url("../images/icons/graphIcon3.png") no-repeat;
     width: 19px;
     height: 15px;
     float: left;
@@ -84,7 +84,7 @@
 .weightGraph > .itemTitle:before {
     content: "";
     display: block;
-    background: url("images/icons/graphIcon1.png") no-repeat;
+    background: url("../images/icons/graphIcon1.png") no-repeat;
     width: 19px;
     height: 15px;
     float: left;
@@ -93,7 +93,7 @@
 .carbfatGraph > .itemTitle:before {
     content: "";
     display: block;
-    background: url("images/icons/graphIcon4.png") no-repeat;
+    background: url("../images/icons/graphIcon4.png") no-repeat;
     width: 19px;
     height: 15px;
     float: left;
@@ -102,7 +102,7 @@
 .macrosGraph > .itemTitle:before {
     content: "";
     display: block;
-    background: url("images/icons/graphIcon2.png") no-repeat;
+    background: url("../images/icons/graphIcon2.png") no-repeat;
     width: 16px;
     height: 16px;
     float: left;
