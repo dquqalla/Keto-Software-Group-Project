@@ -49,6 +49,9 @@ body{
     border:3px solid #fff;
     cursor:pointer;
 }
+.profileImageM{
+    background-color:#1B9CFC;
+}
 .profileImage img{
     max-width:100%;
     max-height:100%;
@@ -310,6 +313,7 @@ body{
     display:block;
     border-radius:5px;
     cursor:pointer;
+    /*text-align: center;*/
 }
 .drop-content span:hover{
     background-color:#eaeaea;
