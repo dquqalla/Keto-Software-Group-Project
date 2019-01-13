@@ -165,19 +165,6 @@
 		background-color: #f9f9f9;
 		border-radius: 6px;
 	}
-	#mealHeadings {
-		margin-right: 0px;
-		margin-left: auto;
-		width: 80%;
-		border-collapse: separate;
-		border-spacing: 10px 0px;
-	}
-	#mealHeadings td {
-		font-size: 14px;
-		font-weight: 400;
-		width: 20%;
-		border-right: 1px solid #ddd;
-	}
 	.mealHeadingsC {
 		padding: 34px 37px 0px 37px;
 	}
@@ -192,8 +179,7 @@
 		color:#fff;
 		font-size: 15px;
 		letter-spacing: 1px;
-		font-weight: 600;
-		text-decoration: underline;
+		font-weight: 400;
 		border-radius: 3px;
 	}
 	.mealTypeL {
@@ -427,6 +413,44 @@
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
+	#foodTable {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	#foodTable td {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+	#foodTable tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+	#foodTable tr:hover {
+		background-color: #ddd;
+	}
+	#foodTable th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color: #45aaf2;
+		color: white;
+		padding-left: 10px;
+	}
+	.tableWrapper {
+		width: 100%;
+    	/* margin: 10px 0px; */
+    	padding: 0px 37px 0px 37px;
+	}
+	#mealHeadings {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	#mealHeadings td {
+		border: 1px solid #ddd;
+		padding: 8px;
+		background-color: #444;
+		color: #fff;
+		text-decoration: underline;
+	}
 	</style>
 </head>
 
@@ -606,15 +630,40 @@
 				<div class="mealHeadingsC">
 					<table id="mealHeadings">
 						<tr>
-							<td>Name</td>
-							<td>Calories</td>
-							<td>Carbs</td>
-							<td>Protein</td>
+							<td style="width: 30%;">Name</td>
+							<td id="tableHeadingCal">Calories</td>
+							<td id="tableHeadingCar">Carbs</td>
+							<td id="tableHeadingPro">Protein</td>
 							<td>Fat</td>
 						</tr>
 					</table>
 				</div>
 				<div class="mealType"><p>BREAKFAST</p></div>
+				<div class="tableWrapper">
+					<table id="foodTable">
+						<tr>
+							<td style="width: 30%;">Cereal</td>
+							<td>50</td>
+							<td>50</td>
+							<td>50</td>
+							<td>50</td>
+						</tr>
+						<tr>
+							<td style="width: 30%;">Drink</td>
+							<td>100</td>
+							<td>5</td>
+							<td>2</td>
+							<td>35</td>
+						</tr>
+						<tr>
+							<td style="width: 30%;">Chicken</td>
+							<td>1000</td>
+							<td>79</td>
+							<td>5</td>
+							<td>66</td>
+						</tr>
+					</table>
+				</div>
 				<div class="mealType"><p>LUNCH</p></div>
 				<div class="mealType"><p>DINNER</p></div>
 				<div class="mealType mealTypeL"><p>SNACKS</p></div>
@@ -730,6 +779,13 @@
 
 </body>
 <script src="js/globalScripts.js"></script>
+<script>
+if ($(window).width() < 450) {
+	document.getElementById("tableHeadingCal").innerHTML = "Cal";
+	document.getElementById("tableHeadingPro").innerHTML = "Pro";
+	document.getElementById("tableHeadingCar").innerHTML = "Carb";
+}
+</script>
 <script>
 	FusionCharts.ready(function(){
 var chart4 = new FusionCharts({
