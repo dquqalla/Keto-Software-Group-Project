@@ -167,6 +167,15 @@ if(isset($_POST["editGoalW"])){
     	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
     <style type="text/css">
+    /* Hide HTML5 Up and Down arrows. */
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
+	 
+	input[type="number"] {
+	    -moz-appearance: textfield;
+	}
 	.drop {
 	    display: inline-block;position: relative;
 	}
@@ -204,12 +213,10 @@ if(isset($_POST["editGoalW"])){
 		border-collapse: collapse;
 		width: 500px;
 	}
-
-	#foodTable td, #customers th {
+	#foodTable td {
 		border: 1px solid #ddd;
 		padding: 8px;
 	}
-
 	#foodTable tr:nth-child(even){background-color: #f2f2f2;}
 
 	#foodTable tr:hover {background-color: #ddd;}
@@ -228,10 +235,14 @@ if(isset($_POST["editGoalW"])){
 	.pageCon {
 		padding: 30px;
 	}
-	.foodForm input {
+	.foodForm input, .foodForm select {
 		display: block;
 		margin: 10px 0px;
     	width: 300px;
+    	font-weight: 400;
+	}
+	.foodForm select {
+		color: #888;
 	}
 	.raphael-group-11-messageGroup text {
 		font-family: 'Open Sans', sans-serif !important;
@@ -372,10 +383,16 @@ if(isset($_POST["editGoalW"])){
 	<h2>Add Food</h2>
 	<form method="post" action="welcome.php" class="foodForm" style="padding: 20px 0px;">
 		<input class="weight" type="text" name="rName" placeholder="Name of recipe" required>
-		<input class="weight" type="text" name="mCat" placeholder="Meal category, e.g Lunch" required>
+		<select class="weight" type="text" name="mCat" required>
+			<option value="" disabled selected>Meal category, e.g Lunch</option>
+			<option value="Breakfast">Breakfast</option>
+			<option value="Lunch">Lunch</option>
+			<option value="Dinner">Dinner</option>
+			<option value="Snack">Snack</option>
+		</select>
 		<input class="weight" type="number" name="cal" placeholder="Calories" required>
 		<input class="weight" type="number" name="car" placeholder="Carbs" required>
-		<input class="weight" type="number" name="pro" placeholder="Protine" required>
+		<input class="weight" type="number" name="pro" placeholder="Protein" required>
 		<input class="weight" type="number" name="fat" placeholder="Fat" required>
 		<input class="addW" type="submit" name="submit" value="Add Food" required>
 	</form>
