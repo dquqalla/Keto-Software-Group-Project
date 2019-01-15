@@ -62,20 +62,6 @@ $(document).ready(function() {
     $('.tooltip').tooltipster();
 });
 
-$(document).ready(function() {
-	var x = document.getElementById("drop-content");
-	x.style.display = "none";
-
-	$(".profileImageContainer").click(function() {
-
-	if (x.style.display === "none") {
-		x.style.display = "block";
-	} else {
-		x.style.display = "none";
-	}
-	})
-});
-
 function addWater() {
 	var options = {};
 
@@ -155,6 +141,34 @@ function addFood() {
 	    showConfirmButton: false,
 	    onOpen: function(ele) {
 	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+	    }
+	});
+}
+
+function addPicture() {
+	var options = {};
+
+	swal({
+	    title: "Change Profile Picture",
+	    width: 600,
+	    inputOptions: options,
+	    html: '<p class="modalHeader">Upload or remove profile picture.</p>' +
+	    '<div style="padding-top: 24px;" >' +
+	    '<form class="uploadPicture" method="post" action="" style="padding: 20px 0px;">' +
+	    '<div><input class="up" type="file">' +
+		'<p class="dragText">Drag your files here or click in this area.</p></div>' +
+		'<div class="clearfix">' +
+		'<button class="uploadPicBtn" type="submit">Upload</button>' +
+		'<p class="orSelection">- or -</p>'+
+		'<button class="removePicBtn" type="submit">Remove</button></div>' +
+	    '<div style="padding: 30px 0px;"><input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
+
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+			$('.up').change(function () {
+				$('.dragText').text(this.files.length + " file(s) selected. Press the upload button!");
+			});
 	    }
 	});
 }
