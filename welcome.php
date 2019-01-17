@@ -398,13 +398,15 @@ if(isset($_POST["editGoalW"])){
 	</form>
 
 	<p style="font-weight: bold; padding-bottom: 14px;">Your food history for today:</p>
-	<table>
+	<table style="width: 500px;">
 		<tr>
-			<td width="180">Name</td>
+			<td width="0" style="display: none;">ID</td>
+			<td width="150">Name</td>
 			<td width="80">Calories</td>
 			<td width="80">Carbs</td>
 			<td width="80">Protein</td>
-			<td>Fat</td>
+			<td width="80">Fat</td>
+			<td style="opacity: 0;">Remove?</td>
 		</tr>
 	</table>
 
@@ -412,7 +414,7 @@ if(isset($_POST["editGoalW"])){
 
 	$id = $_SESSION["id"];
 
-	$breakfastOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Breakfast' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$breakfastOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Breakfast' AND userID = $id AND DATE(`time`) = CURDATE()";
 	$breakfastOnlyResult = $link->query($breakfastOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">BREAKFAST</p></div>";
@@ -421,14 +423,22 @@ if(isset($_POST["editGoalW"])){
 	    // output data of each row
 		echo "<table id=\"foodTable\">";
 	    while($row = $breakfastOnlyResult->fetch_assoc()) {
-	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	        echo "<tr>" . 
+	        "<td width=\"0\" style=\"display: none;\">" . $row["foodID"] . "</td>
+	        <td width=\"150\">" . $row["rName"] . "</td>
+	        <td width=\"80\">" . $row["calories"] . "</td>
+	        <td width=\"80\">" . $row["carbs"] . "</td>
+	        <td width=\"80\">" . $row["protein"] . "</td>
+	        <td width=\"80\">" . $row["fat"] . "</td>
+			<td><a href=\"includes/delete.php?id=".$row['foodID']."\">Delete</a></td>
+	        </tr>";
 	    }
 	    echo "</table>";
 	} else {
 		echo "<p style=\"font-style: italic;\">You've not added any breakfast!</p>";
 	}
 
-	$lunchOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Lunch' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$lunchOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Lunch' AND userID = $id AND DATE(`time`) = CURDATE()";
 	$lunchOnlyResult = $link->query($lunchOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">LUNCH</p></div>";
@@ -437,14 +447,22 @@ if(isset($_POST["editGoalW"])){
 	    // output data of each row
 		echo "<table id=\"foodTable\">";
 	    while($row = $lunchOnlyResult->fetch_assoc()) {
-	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	        echo "<tr>" . 
+	        "<td width=\"0\" style=\"display: none;\">" . $row["foodID"] . "</td>
+	        <td width=\"150\">" . $row["rName"] . "</td>
+	        <td width=\"80\">" . $row["calories"] . "</td>
+	        <td width=\"80\">" . $row["carbs"] . "</td>
+	        <td width=\"80\">" . $row["protein"] . "</td>
+	        <td width=\"80\">" . $row["fat"] . "</td>
+			<td><a href=\"includes/delete.php?id=".$row['foodID']."\">Delete</a></td>
+	        </tr>";
 	    }
 	    echo "</table>";
 	} else {
 		echo "<p style=\"font-style: italic;\">You've not added any lunch!</p>";
 	}
 
-	$dinnerOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Dinner' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$dinnerOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Dinner' AND userID = $id AND DATE(`time`) = CURDATE()";
 	$dinnerOnlyResult = $link->query($dinnerOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">DINNER</p></div>";
@@ -453,14 +471,22 @@ if(isset($_POST["editGoalW"])){
 	    // output data of each row
 		echo "<table id=\"foodTable\">";
 	    while($row = $dinnerOnlyResult->fetch_assoc()) {
-	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	        echo "<tr>" . 
+	        "<td width=\"0\" style=\"display: none;\">" . $row["foodID"] . "</td>
+	        <td width=\"150\">" . $row["rName"] . "</td>
+	        <td width=\"80\">" . $row["calories"] . "</td>
+	        <td width=\"80\">" . $row["carbs"] . "</td>
+	        <td width=\"80\">" . $row["protein"] . "</td>
+	        <td width=\"80\">" . $row["fat"] . "</td>
+			<td><a href=\"includes/delete.php?id=".$row['foodID']."\">Delete</a></td>
+	        </tr>";
 	    }
 	    echo "</table>";
 	} else {
 		echo "<p style=\"font-style: italic;\">You've not added any dinner!</p>";
 	}
 
-	$snacksOnly = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Snack' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$snacksOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Snack' AND userID = $id AND DATE(`time`) = CURDATE()";
 	$snacksOnlyResult = $link->query($snacksOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">SNACKS</p></div>";
@@ -469,7 +495,15 @@ if(isset($_POST["editGoalW"])){
 	    // output data of each row
 		echo "<table id=\"foodTable\">";
 	    while($row = $snacksOnlyResult->fetch_assoc()) {
-	        echo "<tr>" . "<td width=\"180\">" . $row["rName"] . "</td><td width=\"80\">" . $row["calories"] . "</td><td width=\"80\">" . $row["carbs"] . "</td><td width=\"80\">" . $row["protein"] . "</td><td>" . $row["fat"] . "</td></tr>";
+	        echo "<tr>" . 
+	        "<td width=\"0\" style=\"display: none;\">" . $row["foodID"] . "</td>
+	        <td width=\"150\">" . $row["rName"] . "</td>
+	        <td width=\"80\">" . $row["calories"] . "</td>
+	        <td width=\"80\">" . $row["carbs"] . "</td>
+	        <td width=\"80\">" . $row["protein"] . "</td>
+	        <td width=\"80\">" . $row["fat"] . "</td>
+			<td><a href=\"includes/delete.php?id=".$row['foodID']."\">Delete</a></td>
+	        </tr>";
 	    }
 	    echo "</table>";
 	} else {
