@@ -391,9 +391,9 @@ circle:first-child {
 	font-size: 16px;
 	color: #fff !important;
 }
-	.slickExtraP {
+/*.slickExtraP {
 	padding: 0px 20px;
-}
+}*/
 .slick-slide:focus, .slick-current:focus, .slick-active:focus {
 	outline: none;
 }
