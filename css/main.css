@@ -758,3 +758,11 @@ g[class$='creditgroup'] {
         padding: 18px 0px 12px 0px;
     }
 }
+@media only screen and (max-width: 341px) {
+    .logo {
+        width: 45%;
+    }
+    .right {
+        width: 55%;
+    }
+}

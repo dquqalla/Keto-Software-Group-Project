@@ -24,7 +24,6 @@
 	<link rel="stylesheet" href="css/main.css">
 	<title>Daily Log</title>
 	<style>
-
     #grid {
         overflow: hidden;
         padding: 0px 18px;
@@ -177,7 +176,7 @@
 	.mealTypeL {
 		padding-bottom: 40px;
 	}
-		.raphael-group-134-plots text tspan:nth-child(2) {
+	.raphael-group-134-plots text tspan:nth-child(2) {
 		font-size: 22px !important;
 		font-weight: 600 !important;
 	}
@@ -301,6 +300,31 @@
 			border-radius: 0px;
 			width: 100%;
 			margin-bottom: 0;
+		}
+	}
+	@media only screen and (max-width: 366px) {
+		.pieChartContainer {
+			width: 112%;
+			margin-left: -6%;
+		}
+		.raphael-group-131-plots text tspan:nth-child(2) {
+			font-size: 22px !important;
+			font-weight: 600 !important;
+		}
+		.raphael-group-131-plots text tspan {
+			font-size: 16px !important;
+		}
+	}
+	@media only screen and (max-width: 338px) {
+		.pieChartContainer {
+			width: 116%;
+	    	margin-left: -8%;
+		}
+	}
+	@media only screen and (max-width: 329px) {
+		.pieChartContainer {
+			width: 118%;
+	    	margin-left: -9%;
 		}
 	}
 	.targetHeadings {
@@ -443,6 +467,22 @@
 		color: #fff;
 		text-decoration: underline;
 	}
+	@media only screen and (max-width: 450px) {
+		.mealHeadingsC {
+		    padding: 34px 0px 0px 0px;
+		}
+		.mealType {
+			padding: 0px;
+			margin: 10px 0px 0px 0px;
+		}
+		.mealType p {
+			border-radius: 0px;
+		}
+		.tableWrapper {
+		    padding: 0px;
+		}
+	}
+
 	</style>
 </head>
 
@@ -620,11 +660,12 @@
 				<div class="mealHeadingsC">
 					<table id="mealHeadings">
 						<tr>
-							<td style="width: 30%;">Name</td>
+							<td>Name</td>
 							<td id="tableHeadingCal">Calories</td>
 							<td id="tableHeadingCar">Carbs</td>
 							<td id="tableHeadingPro">Protein</td>
 							<td>Fat</td>
+							<td>x</td>
 						</tr>
 					</table>
 				</div>
@@ -632,25 +673,36 @@
 				<div class="tableWrapper">
 					<table id="foodTable">
 						<tr>
-							<td style="width: 30%;">Cereal</td>
+							<td>Cereal</td>
 							<td>50</td>
 							<td>50</td>
 							<td>50</td>
 							<td>50</td>
+							<td><a href="">x</a></td>
 						</tr>
 						<tr>
-							<td style="width: 30%;">Drink</td>
+							<td>Drink</td>
 							<td>100</td>
 							<td>5</td>
 							<td>2</td>
 							<td>35</td>
+							<td><a href="">x</a></td>
 						</tr>
 						<tr>
-							<td style="width: 30%;">Chicken</td>
+							<td>Chicken</td>
 							<td>1000</td>
 							<td>79</td>
 							<td>5</td>
 							<td>66</td>
+							<td><a href="">x</a></td>
+						</tr>
+						<tr>
+							<td>Banoffee Pie</td>
+							<td>495</td>
+							<td>101</td>
+							<td>20</td>
+							<td>55</td>
+							<td><a href="">x</a></td>
 						</tr>
 					</table>
 				</div>

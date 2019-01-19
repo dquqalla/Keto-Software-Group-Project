@@ -501,14 +501,6 @@ circle:first-child {
     	margin-left: -9%;
 	}
 }
-@media only screen and (max-width: 341px) {
-	.logo {
-	    width: 45%;
-	}
-	.right {
-	    width: 55%;
-	}
-}
 @media only screen and (max-width: 390px) {
 	.macroStats {
 		width: 220px;
