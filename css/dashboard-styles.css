@@ -483,10 +483,30 @@ circle:first-child {
    }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 366px) {
 	.pieChartContainer {
 		width: 112%;
 		margin-left: -6%;
+	}
+}
+@media only screen and (max-width: 338px) {
+	.pieChartContainer {
+		width: 116%;
+    	margin-left: -8%;
+	}
+}
+@media only screen and (max-width: 329px) {
+	.pieChartContainer {
+		width: 118%;
+    	margin-left: -9%;
+	}
+}
+@media only screen and (max-width: 341px) {
+	.logo {
+	    width: 45%;
+	}
+	.right {
+	    width: 55%;
 	}
 }
 @media only screen and (max-width: 390px) {
