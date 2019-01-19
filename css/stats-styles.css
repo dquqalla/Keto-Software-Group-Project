@@ -1,12 +1,4 @@
 /*Page specific styles*/
-.line {
-	width: -webkit-calc(100% - 420px) !important;
-	width: -moz-calc(100% - 420px) !important;
-	width: calc(100% - 420px) !important;
-}
-.pageTitle {
-    width: 280px !important;
-}
 #grid {
     overflow: hidden;
     padding: 0px 18px;

@@ -258,26 +258,30 @@ input[type="number"] {
 }
 .pageTitle{
     float:left;
-    width:400px;
+    /*border:1px solid #00F;*/
+    min-width:220px;
 }
 .pageTitle p,.pageTitle span{
     font-size:18px;
     font-weight:600;
     color:#545454;
 }
+.titleLineBreak {
+    overflow: hidden;
+    /*border:1px solid #0F0;*/
+    padding-left: 20px;
+    padding-right: 20px;
+}
 .line{
-    float:left;
     height:1px;
-    width:-webkit-calc(100% - 544px);
-    width:-moz-calc(100% - 544px);
-    width:calc(100% - 544px);
     background:#ccc;
     margin-top:13px;
 }
 .date{
-    float:left;
-    padding-left:16px;
+    float:right;
     cursor:pointer;
+    /*border:1px solid #F00;*/
+    width:126px;
 }
 .date p,.date span{
     font-size:13px;
