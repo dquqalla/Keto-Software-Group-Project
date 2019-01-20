@@ -553,7 +553,8 @@ if(isset($_POST["editGoalW"])){
 	<p id="calFromP"></p>
 	<p id="calFromC"></p>
 	<p id="calFromF"></p>
-	<p id="withinLimit"></p>
+	<p id="withinLimit" style="display: inline-block;"></p>
+	<p id="withinLimitRemaining" style="display: inline-block;"></p>
 
 	<?php include 'includes/graphQueries.php';?>
 	
@@ -730,6 +731,23 @@ if(isset($_POST["editGoalW"])){
 		document.getElementById("withinLimit").innerHTML = "You're within your carb goal.";
 		document.getElementById("withinLimit").style.backgroundColor = "#2ECC71";
 		document.getElementById("withinLimit").style.color = "#ffffff";
+	}
+
+	if (!(anyFoodAddedToday == "")) {
+		var carbsRemaining = carbsGoal - totalCarb;
+		if (carbsRemaining < 0) {
+			document.getElementById("withinLimitRemaining").innerHTML = "0g remaining";
+			document.getElementById("withinLimitRemaining").style.backgroundColor = "#F25661";
+			document.getElementById("withinLimitRemaining").style.color = "#ffffff";
+		} else {
+			document.getElementById("withinLimitRemaining").innerHTML = carbsRemaining + "g remaining";
+			document.getElementById("withinLimitRemaining").style.backgroundColor = "#2ECC71";
+			document.getElementById("withinLimitRemaining").style.color = "#ffffff";
+		}
+	} else {
+		document.getElementById("withinLimitRemaining").innerHTML = carbsGoal + "g remaining";
+		document.getElementById("withinLimitRemaining").style.backgroundColor = "#2ECC71";
+		document.getElementById("withinLimitRemaining").style.color = "#ffffff";
 	}
 
     FusionCharts.ready(function(){
