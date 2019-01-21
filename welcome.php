@@ -26,7 +26,7 @@ if($firstLoginResult->num_rows > 0) {
 		$cWeight = $_SESSION["cWeight"];
 		$id = $_SESSION["id"];
 
-		$addWeightOnLogin = "INSERT INTO userWeight (userID,weight) VALUES ($id, $cWeight)";
+		$addWeightOnLogin = "INSERT INTO userWeight (userID,weight,timee) VALUES ($id, $cWeight, now() + INTERVAL 7 HOUR)";
 		$link->query($addWeightOnLogin);
 
 		$updateLogin = "UPDATE users SET firstLogin=1 WHERE id=$id";
@@ -57,7 +57,7 @@ if(isset($_POST["weight"])){
 	$tt = $_POST["weight"];
 	$id = $_SESSION["id"];
 
-	$sql = "INSERT INTO userWeight (userID,weight) VALUES ($id, $tt)";
+	$sql = "INSERT INTO userWeight (userID,weight,timee) VALUES ($id, $tt, now() + INTERVAL 7 HOUR)";
 
 	if ($link->query($sql) === TRUE) { //Run the query to add to userWeight table
 		//echo "New record created successfully";
@@ -86,7 +86,7 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	$ttf = $_POST["fat"];
 	$id = $_SESSION["id"];
 
-	$sqlqw = "INSERT INTO userFood (userID,rName,mCat,calories,carbs,protein,fat) VALUES ($id, '$ttn', '$ttm', $ttc, $ttcr, $ttp, $ttf)";
+	$sqlqw = "INSERT INTO userFood (userID,rName,mCat,calories,carbs,protein,fat,`time`) VALUES ($id, '$ttn', '$ttm', $ttc, $ttcr, $ttp, $ttf, now() + INTERVAL 7 HOUR)";
 
 	if ($link->query($sqlqw) === TRUE) {
 		header("Refresh:0");
@@ -103,7 +103,7 @@ if(isset($_POST["water"])){
 
 	//We are using a for loop so we can remove water too!
 	for ($x = 1; $x <= $waterA; $x++) {
-		$sqlWater = "INSERT INTO userWater (userID,waterAmount) VALUES ($id, 1)";
+		$sqlWater = "INSERT INTO userWater (userID,waterAmount,`time`) VALUES ($id, 1, now() + INTERVAL 7 HOUR)";
 
 		if ($link->query($sqlWater) === TRUE) {
 		} else {
@@ -116,7 +116,7 @@ if(isset($_POST["water"])){
 if(isset($_POST["waterAddButton"])){
 	$id = $_SESSION["id"];
 
-	$sqlWater = "INSERT INTO userWater (userID,waterAmount) VALUES ($id, 1)";
+	$sqlWater = "INSERT INTO userWater (userID,waterAmount,`time`) VALUES ($id, 1, now() + INTERVAL 7 HOUR)";
 
 	if ($link->query($sqlWater) === TRUE) {
 	} else {
