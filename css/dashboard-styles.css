@@ -506,3 +506,19 @@ circle:first-child {
 		width: 220px;
 	}
 }
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+select,select option:disabled {
+	background-color: #fff !important;
+	color: #000;
+}
+select option{
+	color: #777;
+}
+select:invalid {
+	color: #ccc !important;
+}

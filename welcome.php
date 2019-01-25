@@ -264,6 +264,25 @@ if(isset($_POST["editGoalW"])){
     	background-color: #2ecc71;
     	color: #fff;
 	}
+	#weightHistory {
+    	border-collapse: collapse;
+  		font-family:'Open Sans',sans-serif;
+  		font-size: 16px;
+    }
+    #weightHistory th {
+	  text-align: left;
+	  background-color: #4b7bec;
+	  color: white;
+	  font-weight: 600;
+	}
+	#weightHistory td {
+		font-weight: 500;
+		color: #444;
+	}
+	#weightHistory td, #weightHistory th {
+	  border: 1px solid #ddd;
+	  padding: 10px 13px;
+	}
     </style>
 </head>
 <body>
@@ -307,14 +326,21 @@ if(isset($_POST["editGoalW"])){
 	if ($result->num_rows > 0) {
 	    // output data of each row
 	    echo "<br>";
-	    echo "<p style=\"font-weight: bold;\">All time weight history:</p>";
+	    echo "<p style=\"font-weight: bold; padding: 10px 0px;\">All time weight history:</p>";
+	    echo "<table id=\"weightHistory\"";
+		echo "<tr>
+		<th>Weight</th>
+		<th>Date</th>
+		</tr>";
 	    while($row = $result->fetch_assoc()) {
-	        echo "<span style=\"font-weight: bold;\">Weight: </span>" . $row["weight"] . "(kg) <span style=\"font-weight: bold;\">Updated:</span> " . $row["timee"] . "<br>";
+	        echo "<tr>" . 
+	        "<td>" . $row["weight"] . "(kg)</td>
+	        <td>" . $row["timee"] . "</td>
+	        </tr>";
 	    }
-	    echo "<br> Timezones are USA.<br><br>";
-	} else {
-	    echo "<p>You have no all time weight history.</p>";
+	    echo "</table>";
 	}
+
 	?>
 
 	<div class="pieChartContainer" style="width:500px;">
@@ -333,7 +359,8 @@ if(isset($_POST["editGoalW"])){
 	if ($result->num_rows > 0) {
 	    $row = $result->fetch_assoc();
 	    $oldestWeight = $row["weight"];
-	} 
+	}
+
 	?>
 
 	<h2>Change Profile Picture</h2>
@@ -596,6 +623,23 @@ if(isset($_POST["editGoalW"])){
 		echo "<p style=\"font-weight:600;\">You've not added any water today</p>";
 	}
 
+
+	$recentSignUp = "SELECT * FROM users WHERE id = $id AND created_at <= (CURDATE() - INTERVAL 5 DAY)";
+	$recentSignUpQ = $link->query($recentSignUp);
+	if ($recentSignUpQ->num_rows > 0) {
+	  	$newlySigned = false;
+    } else {
+        $newlySigned = true;
+    }
+
+    $wasWeightUpdated = "SELECT * FROM userWeight WHERE userID = $id AND timee >= (CURDATE() - INTERVAL 7 DAY)";
+	$wasWeightUpdatedQ = $link->query($wasWeightUpdated);
+	if ($wasWeightUpdatedQ->num_rows > 0) {
+	  	$weightUpdated = false;
+    } else {
+        $weightUpdated = true;
+    }
+
 	$link->close(); //Close the connection
 	?>
 
@@ -615,11 +659,33 @@ if(isset($_POST["editGoalW"])){
 		<div id="chart-container3">FusionCharts XT will load here!</div>
 	</div>
 
+	<h2>Tips</h2>
+	<h4 style="font-weight: 700;">Things you're doing well</h4>
+	<ul class="wellList" id="wellList">
+	</ul>
+	<h4 style="font-weight: 700;">Things to improve</h4>
+	<ul class="improveList" id="improveList">
+	</ul>
+
 	<p style="padding: 50px 0px;" >
         <a href="includes/logout.php" class="btn btn-danger">--- Sign Out of Your Account ---</a>
     </p>
 
 <script>
+	function addToWList(sentence) {
+	  var node = document.createElement("li");
+	  var textnode = document.createTextNode(sentence);
+	  node.appendChild(textnode);
+	  document.getElementById("wellList").appendChild(node);
+	}
+
+	function addToIList(sentence) {
+	  var node = document.createElement("li");
+	  var textnode = document.createTextNode(sentence);
+	  node.appendChild(textnode);
+	  document.getElementById("improveList").appendChild(node);
+	}
+
 	//first weight signed up with
 	 var oldestWeight = "<?php if(isset($oldestWeight)) {echo($oldestWeight);} ?>";
 	 console.log("First weight added to database: " + oldestWeight);
@@ -749,6 +815,43 @@ if(isset($_POST["editGoalW"])){
 		document.getElementById("withinLimitRemaining").style.backgroundColor = "#2ECC71";
 		document.getElementById("withinLimitRemaining").style.color = "#ffffff";
 	}
+
+
+	newlySigned = "<?php if(isset($newlySigned)) {echo($newlySigned);} ?>";
+
+    if (newlySigned == true) {
+		addToIList("We've noticed you've signed up recently - hooray. You can run our introductory tutorial here to get familiar with Ketogenetics.");
+		addToWList("Since you're new here, our systems will need a little time to learn about you. Meanwhile, keep using the app as normal =)");
+	}
+
+	weightUpdated = "<?php if(isset($weightUpdated)) {echo($weightUpdated);} ?>";
+
+    if (weightUpdated == false) {
+		addToWList("Nice! You've updated your weight for this week.");
+	} else {
+		addToIList("Try and update your weight every week so we can build a better picture of how you're doing.")
+	}
+
+
+	waterYesterday = "<?php if(isset($waterFrom1DaysAgoTotal)) {echo($waterFrom1DaysAgoTotal);} ?>";
+
+	console.log(waterYesterday);
+
+	if(newlySigned == false && waterYesterday < 8) {
+		addToIList("You didn't hit your water target yesterday - be sure to drink more water today!");
+	}
+
+	if(achievementPercentageRounded > 50) {
+		addToWList("You're doing great! We see that you're above half-way to your goal - keep going!");
+	}
+
+
+
+
+
+
+
+
 
     FusionCharts.ready(function(){
     var fusioncharts = new FusionCharts({

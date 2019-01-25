@@ -71,8 +71,8 @@ function addWater() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">How many glasses of water would you like to add? <br>We will assume a glass is 250ml.</p>' +
 	    '<div style="" >' +
-	    '<form method="post" action="" style="padding: 20px 0px;">' +
-	    '<select class="waterSelect">\
+	    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
+	    '<select class="waterSelect" name="water">\
 		<option value="1">1</option>\
 		<option value="2">2</option>\
 		<option value="3">3</option>\
@@ -101,7 +101,7 @@ function addWeight() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
 	    '<div style="" >' +
-	    '<form method="post" action="" style="padding: 20px 0px;">' +
+	    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
 	    '<input class="foodInputs weightInputs" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
 
 	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
@@ -126,9 +126,15 @@ function addFood() {
 	    '<div style="" >' +
 	    '<div style="padding: 20px 0px;"><input class="foodInputs foodSearchInput" type="text" name="intelligentFoodSearch" placeholder="Search (sorry I\'m disabled for now)" disabled></div>' +
 	    '<p class="foodInputBreak">- or -</p>' +
-	    '<form class="addFoodForm" method="post" action="">' +
+	    '<form class="addFoodForm" method="post" action="welcome.php">' +
 	    '<input class="foodInputs rName" type="text" name="rName" placeholder="Name of recipe/meal" autocomplete="off">' +
-	    '<input class="foodInputs mCat" type="text" name="mCat" placeholder="Meal category, e.g Lunch" autocomplete="off">' +
+	    '<select class="foodInputs mCat" type="text" name="mCat" placeholder="Meal category, e.g Lunch" autocomplete="off">' +
+	    	'<option value="" disabled selected>Meal category, e.g Lunch</option>' +
+			'<option value="Breakfast">Breakfast</option>' +
+			'<option value="Lunch">Lunch</option>' +
+			'<option value="Dinner">Dinner</option>' +
+			'<option value="Snack">Snack</option>' +
+	    '</select>' +
 	    '<input class="foodInputs foodFloatInputs caloriesInput" type="number" name="cal" min="0" placeholder="Calories" autocomplete="off">' +
 	    '<input class="foodInputs foodFloatInputs carbsInput" type="number" name="car" min="0" placeholder="Carbs" autocomplete="off">' +
 	    '<input class="foodInputs foodFloatInputs fatsInput" type="number" name="pro" min="0" placeholder="Fats" autocomplete="off">' +
@@ -154,14 +160,14 @@ function addPicture() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">Upload or remove profile picture.</p>' +
 	    '<div style="padding-top: 24px;" >' +
-	    '<form class="uploadPicture" method="post" action="" style="padding: 20px 0px;">' +
-	    '<div><input class="up" type="file">' +
+	    '<form class="uploadPicture" method="post" action="" enctype="multipart/form-data" style="padding: 20px 0px;">' +
+	    '<div><input class="up" type="file" name="file">' +
 		'<p class="dragText">Drag your files here or click in this area.</p></div>' +
 		'<div class="clearfix">' +
-		'<button class="uploadPicBtn" type="submit">Upload</button>' +
+		'<button class="uploadPicBtn" type="submit" name="submit2" name="removePicture">Upload</button></form>' +
 		'<p class="orSelection">- or -</p>'+
-		'<button class="removePicBtn" type="submit">Remove</button></div>' +
-	    '<div style="padding: 30px 0px;"><input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
+		'<form action="" method="post"><button class="removePicBtn" type="submit">Remove</button></form></div>' +
+	    '<div style="padding: 30px 0px;"><input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></div></div>', 
 
 	    showConfirmButton: false,
 	    onOpen: function(ele) {
@@ -169,6 +175,28 @@ function addPicture() {
 			$('.up').change(function () {
 				$('.dragText').text(this.files.length + " file(s) selected. Press the upload button!");
 			});
+	    }
+	});
+}
+
+function swalEditWeight() {
+	var options = {};
+
+	swal({
+	    title: "Edit Goal Weight",
+	    type: 'info',
+	    inputOptions: options,
+	    html: '<p class="modalHeader">Please enter your new target weight.</p>' +
+	    '<div style="" >' +
+	    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
+	    '<input class="foodInputs weightInputs" type="number" name="editGoalW" placeholder="Updated goal weight (kg)" required> <br />' +
+
+	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="updateWeight" value="Update"> ' +
+	    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
+
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
 	    }
 	});
 }
