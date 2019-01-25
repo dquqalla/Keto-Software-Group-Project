@@ -164,7 +164,7 @@ function addPicture() {
 	    '<div><input class="up" type="file" name="file">' +
 		'<p class="dragText">Drag your files here or click in this area.</p></div>' +
 		'<div class="clearfix">' +
-		'<button class="uploadPicBtn" type="submit" name="submit2" name="removePicture">Upload</button></form>' +
+		'<button class="uploadPicBtn" type="submit" name="submit2">Upload</button></form>' +
 		'<p class="orSelection">- or -</p>'+
 		'<form action="" method="post"><button class="removePicBtn" type="submit">Remove</button></form></div>' +
 	    '<div style="padding: 30px 0px;"><input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></div></div>', 
