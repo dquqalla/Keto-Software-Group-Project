@@ -614,7 +614,6 @@ g[class$='creditgroup'] {
     left: 0;
 }
 .uploadPicBtn, .removePicBtn {
-    margin: 24px 0px;
     color: #fff;
     border: none;
     width: 124px;
@@ -625,11 +624,12 @@ g[class$='creditgroup'] {
     transition: all .2s ease;
     outline: none;
     cursor: pointer;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 .uploadPicBtn {
     background: #2ecc71;
     border-bottom: 4px solid #27ae60;
+    margin: 24px 0px 10px 0px;
 }
 .uploadPicBtn:hover{
   background: #29b765;
@@ -641,6 +641,7 @@ g[class$='creditgroup'] {
 .removePicBtn {
     background: #e74c3c;
     border-bottom: 4px solid #c0392b;
+    margin: 0px 0px;
 }
 .removePicBtn:hover{
   background: #c0392b;
