@@ -159,14 +159,15 @@ function addPicture() {
 	    width: 600,
 	    inputOptions: options,
 	    html: '<p class="modalHeader">Upload or remove profile picture.</p>' +
-	    '<div style="padding-top: 24px;" >' +
-	    '<form class="uploadPicture" method="post" action="" enctype="multipart/form-data" style="padding: 20px 0px;">' +
+	    '<div style="margin-top: 24px;" class="uploadPicture">' +
+	    '<form method="post" action="welcome.php" enctype="multipart/form-data" style="padding: 20px 0px 0px 0px;">' +
 	    '<div><input class="up" type="file" name="file">' +
 		'<p class="dragText">Drag your files here or click in this area.</p></div>' +
-		'<div class="clearfix">' +
-		'<button class="uploadPicBtn" type="submit" name="submit2">Upload</button></form>' +
+
+		'<button class="uploadPicBtn" type="submit" name="submit2">Upload</button>' +
+		'</form>' +
 		'<p class="orSelection">- or -</p>'+
-		'<form action="" method="post"><button class="removePicBtn" type="submit">Remove</button></form></div>' +
+		'<form action="welcome.php" method="post" style="display: inline-block;"><button class="removePicBtn" name="removePicture" type="submit">Remove</button></form>' +
 	    '<div style="padding: 30px 0px;"><input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></div></div>', 
 
 	    showConfirmButton: false,
