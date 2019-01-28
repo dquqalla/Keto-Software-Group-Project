@@ -1,59 +1,73 @@
 #settings {
-    padding: 50px;
+    padding: 30px;
 }
 
 .row {
     display: flex;
-    padding: 10px;
+    padding: 18px;
     border-bottom: 1px solid #eee;
     
 }
 
 .column {
-    flex: 50%;
-    padding: 5px;
+    flex: 30%;
+/*    padding: 5px;*/
     text-align: left;
 }
 
 .column2 {
-    flex: 50%;
-    padding: 5px;
+    flex: 70%;
+/*    padding: 5px;*/
     text-align: right;
+}
 
+.colp {
+    color: #555 !important;
+    font-weight: 400;
+}
+
+.userName {
+    display: inline-block;
+    padding: 0px 8px;
 }
 
 #heading {
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 12px;
+    font-family: 'Open-Sans', sans-serif;
+    font-size: 13px;
     letter-spacing: 1.5px;
     width: 100%;
-    padding: 6px 8px;
+    padding: 8px 10px;
     border-radius: 3px;
-    color: #999;
-    background-color: #eee;
+    color: #888;
+    background-color: #F6F6F6;
+    font-weight: 600;
 }
 
 #edit {
     font-style: italic;
-    color: blue;
+    color: #2693FF;
+    display: inline-block;
+    cursor: pointer;
 }
 
 #delete {
-    background-color: red;
+    background-color: #FF4D4D;
     color: white;
-    padding: 10px;
-    border-radius: 15px;
+    padding: 10px 22px;
+    border-radius: 100px;
+    outline: 0;
+    cursor: pointer;
 }
 
 #del {
     font-style: italic;
 }
 
-#useremail {
+/*#useremail {
     overflow: scroll;
-}
+}*/
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 0px;
     background: transparent;
-}
+}*/

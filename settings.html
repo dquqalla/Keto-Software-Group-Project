@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="css/slick-theme.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/settings.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-
     <style>
     	/*Page specific styles*/
 		#grid {
@@ -256,30 +254,36 @@
         <div id="settings" class="item weightGraph animated bounceIn">
             <div class="table">
                 <p id="heading">BASICS</p>
-                <div class="row">
+                <div class="row clearfix">
                   <div class="column">
-                    Photo
+                    <p class="colp">Photo</p>
                   </div>
                   <div class="column2">
+					<div class="profileImageContainer">
+					<div class="profileImage">
+					<p id="nameLetter">D</p>
+					</div>
+					</div>
+                    <p id="edit" onclick="addPicture()">edit</p>
+                  </div>
+                </div>
+
+                <div class="row clearfix">
+                  <div class="column">
+                    <p class="colp">Name</p>
+                  </div>
+                  <div class="column2">
+                    <p class="userName">Dardan Quqalla</p>
                     <p id="edit">edit</p>
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row clearfix">
                   <div class="column">
-                    Name
-                  </div>
-                  <div class="column2">
-                    <p id="edit">edit</p>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="column">
-                    Email
+                    <p class="colp">Email</p>
                   </div>
                   <div class="column2" id="useremail">
-                    <p>dardan.quqalla@gmail.com</p>
+                    <p id="emailaddress">dardan.quqalla@gmail.com</p>
                   </div>
                 </div>
             </div>
@@ -288,27 +292,30 @@
                 <p id="heading">ADVANCED</p>
                 <div class="row">
                   <div class="column">
-                    Start Weight
+                    <p class="colp">Start Weight</p>
                   </div>
                   <div class="column2">
+                  	<p class="userName">50kg</p>
+                    <p id="edit" class="tooltip" title="Feature not available.">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    <p class="colp">Weight Goal</p>
+                  </div>
+                  <div class="column2">
+                  	<p class="userName">70kg</p>
                     <p id="edit">edit</p>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="column">
-                    Weight Goal
+                    <p class="colp">Calorie Budget</p>
                   </div>
                   <div class="column2">
-                    <p id="edit">edit</p>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="column">
-                    Calorie Budget
-                  </div>
-                  <div class="column2">
+                  	<p class="userName">2000</p>
                     <p id="edit">edit</p>
                   </div>
                 </div>
@@ -318,10 +325,11 @@
                 <p id="heading">MISC</p>
                 <div class="row">
                   <div class="column">
-                    Delete Account
+                    <p class="colp">Delete Account</p>
                   </div>
                   <div class="column2" id="del">
-                    If you delete your account, your data will be gone forever. <input type="button" id="delete" value="Delete">
+                    <p class="userName" id="acctDel">If you delete your account, your data will be gone forever.</p>
+                    <input type="submit" id="delete" value="Delete">
                   </div>
                 </div>
             </div>
@@ -342,8 +350,20 @@
 
 </body>
 <script src="js/globalScripts.js"></script>
-
 <script src="js/salvattore.min.js"></script>
+<script>
+if ($(window).width() < 850) {
+	document.getElementById("acctDel").style.display = "none";
+}
+if ($(window).width() < 500) {
+	var emailaddress = document.getElementById("emailaddress").innerHTML;
+	String.prototype.trunc = String.prototype.trunc ||
+	function(n){
+	  return (this.length > n) ? this.substr(0, n-1) + '..' : this;
+	};
+	var emailaddress = document.getElementById("emailaddress").innerHTML = emailaddress.trunc(14);
+}
+</script>
 <script type="text/javascript" src="js/tooltipster.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/tooltipster.css">
 </html>
