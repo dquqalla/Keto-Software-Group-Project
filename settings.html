@@ -22,6 +22,9 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="css/slick-theme.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
     <style>
     	/*Page specific styles*/
 		#grid {
@@ -250,8 +253,79 @@
     </div>
 
     <div class="clearfix" id="grid" data-columns>
-        <div class="item weightGraph animated bounceIn">
-            <p>Content goes here <br> Content goes here <br> Content goes here</p>
+        <div id="settings" class="item weightGraph animated bounceIn">
+            <div class="table">
+                <p id="heading">BASICS</p>
+                <div class="row">
+                  <div class="column">
+                    Photo
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Name
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Email
+                  </div>
+                  <div class="column2" id="useremail">
+                    <p>dardan.quqalla@gmail.com</p>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="table">
+                <p id="heading">ADVANCED</p>
+                <div class="row">
+                  <div class="column">
+                    Start Weight
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Weight Goal
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Calorie Budget
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="table">
+                <p id="heading">MISC</p>
+                <div class="row">
+                  <div class="column">
+                    Delete Account
+                  </div>
+                  <div class="column2" id="del">
+                    If you delete your account, your data will be gone forever. <input type="button" id="delete" value="Delete">
+                  </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
