@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noarchive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
+    <script src='js/superslide-std.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/js/jquery.circliful.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/circliful/1.2.0/css/jquery.circliful.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="css/slick-theme.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+    <style>
+    	/*Page specific styles*/
+		#grid {
+		    overflow: hidden;
+		    padding: 0px 18px;
+		    animation-duration: 1.5s;
+		    animation-delay: 0.3s;
+		}
+		@media only screen and (max-width: 767px) {
+		   #grid[data-columns]::before {
+		        content: '1 .column.size-1of1';
+		    }
+		    .column {
+		        width: 100% !important;
+		    }
+		    .item:nth-child(1) {
+		        margin-top: 18px !important;
+		    }
+		    #grid {
+		        padding: 0px 14px;
+		    }
+		}
+		@media screen and (min-width: 1200px) {
+		   #grid[data-columns]::before {
+		        content: '1 .column.size-1of1';
+		    }
+		}
+		.item:nth-child(1), .item:nth-child(2) {
+		    margin-top: 4px;
+		} 
+		.column {
+		    float: left;
+		}
+		.size-1of2 {
+		    width: 50%;
+		}
+		.size-1of1 {
+		    width: 100%;
+		}
+		.column:nth-child(1) {
+		    width: 100%;
+		}
+		.item {
+		    position: relative;
+		    /*padding: 15px;*/
+		    padding: 0px;
+		    background: #fff;
+		    margin: 18px;
+		    border-radius: 6px;
+		    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		    -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+		    margin: 30px 18px;
+		}
+		.item p {
+		    color: #999;
+		}
+		.itemTitle {
+		    font-size: 16px;
+		    font-weight: 700;
+		    color: #535353 !important;
+		    padding-bottom: 2px;
+		    padding: 32px 36px 0px 36px;
+		}
+		.weightGraph > .itemTitle:before {
+		    content: "";
+		    display: block;
+		    background: url("../images/icons/graphIcon1.png") no-repeat;
+		    width: 19px;
+		    height: 15px;
+		    float: left;
+		    margin: 3px 10px 0px 0px;
+		}
+		.macrosGraph > .itemTitle:before {
+		    content: "";
+		    display: block;
+		    background: url("../images/icons/graphIcon2.png") no-repeat;
+		    width: 16px;
+		    height: 16px;
+		    float: left;
+		    margin: 3px 10px 0px 0px;
+		}
+		.itemDescription {
+		    font-size: 14px;
+		    font-weight: 400;
+		    color: #999 !important;
+		}
+		.item:nth-child(1), .item:nth-child(2), .item:nth-child(3) {
+		    margin-top: 4px;
+		}
+		.pageTitle {
+    		min-width: 115px !important;
+		}
+    </style>
+    <title>Settings</title>
+</head>
+
+<body>
+<div id="menu">
+    <div>
+        <div class="mobileMenuProfile">
+            <div class="profileImageContainer">
+                <div class="profileImage">
+                    <p id="nameLetterM"></p>
+                </div>
+            </div>
+            <div class="menuProfileText">
+                <p>Mizna Uppal</p>
+                <p>Free Membership</p>
+            </div>
+        </div>
+        <div class="borderBreak"></div>
+        <div class="navlink">Logout</div>
+        <div class="navlink">Settings</div>
+        <div class="navlink">Account Upgrade</div>
+        <div class="navlink">Getting Started Guide</div>
+        <div class="navlink">FAQ</div>
+    </div>
+</div>
+<div id="mainContainer" class="mainContainer">
+    <div class="header">
+        <div class="headInner clearfix">
+            <div class="logo">
+                <a href="index.html"><img src="images/logoHolder.png" alt="Logo"></a>
+            </div>
+
+            <div class="right">
+                <div class="rightInner clearfix">
+                    <div class="profileInfo">
+                        <div class="drop"> 
+                            <div class="profileImageContainer" >
+                                <div class="profileImage" onclick="addPicture()">
+                                    <p id="nameLetter"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profileText">
+                            <p id="name">Mizna Uppal</p>
+                            <p>Free Membership</p>
+                        </div>
+                    </div>
+                    <div class="iconContainer">
+                        <div class="notifications tooltip" title="Notifications">
+                            <a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
+                        </div>
+                        <div class="settings tooltip" title="Settings">
+                            <a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+                        </div>
+                        <div class="logout tooltip" title="Logout">
+                            <a href="#"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
+                        </div>
+                        <div class="menuTrigger" onclick="openMenu()">
+                            <a href="#"><img src="images/icons/menuIcon.png" alt="Menu"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="navigation clearfix">
+        <div class="scrollContainer">
+            <div class="scrolling-wrapper-flexbox">
+                <a href="index.html">
+                    <div class="navItem" id="navItemO">
+                        <p class="navMainText">Dashboard</p>
+                        <p class="navSubText">Overview</p>
+                    </div>
+                </a>
+                <a href="log.html">
+                <div class="navItem" id="navItemT">
+                    <p class="navMainText">Daily Log</p>
+                    <p class="navSubText">Your Daily Tracking</p>
+                </div>
+                </a>
+                <a href="#">
+                <div class="navItem" id="navItemTh">
+                    <p class="navMainText">Diet Planning</p>
+                    <p class="navSubText">Meal Inspiration</p>
+                </div>
+                </a>
+                <a href="stats.html">
+                <div class="navItem" id="navItemF">
+                    <p class="navMainText">Statistics</p>
+                    <p class="navSubText">A Detailed View</p>
+                </div>
+                </a>
+                <a href="welcome.php">
+                    <div class="navItem">
+                        <p class="navMainText" style="color: red;">Development</p>
+                        <p class="navSubText">Dev Test Screen</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="addContainer clearfix">
+            <div class="addButtons addWater tooltip" title="Quick Add" onclick="addWater()">
+                <div class="addWaterI"></div>
+                <p>Add Water</p>
+            </div>
+            <div class="addButtons addFood tooltip" title="Quick Add" onclick="addFood()">
+                <div class="addFoodI"></div>
+                <p>Add Food</p>
+            </div>
+            <div class="addButtons addWeight tooltip" title="Quick Add" onclick="addWeight()">
+                <div class="addWeightI"></div>
+                <p>Add Weight</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mainBody">
+        <div class="titleCon clearfix">
+            <div class="pageTitle">
+                <p>User settings</p>
+            </div>
+            <div class="date">
+                <p>Today: <span id="currentDate"></span></p>
+            </div>
+            <div class="titleLineBreak">
+                <hr class="line">
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix" id="grid" data-columns>
+        <div id="settings" class="item weightGraph animated bounceIn">
+            <div class="table">
+                <p id="heading">BASICS</p>
+                <div class="row">
+                  <div class="column">
+                    Photo
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Name
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Email
+                  </div>
+                  <div class="column2" id="useremail">
+                    <p>dardan.quqalla@gmail.com</p>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="table">
+                <p id="heading">ADVANCED</p>
+                <div class="row">
+                  <div class="column">
+                    Start Weight
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Weight Goal
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    Calorie Budget
+                  </div>
+                  <div class="column2">
+                    <p id="edit">edit</p>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="table">
+                <p id="heading">MISC</p>
+                <div class="row">
+                  <div class="column">
+                    Delete Account
+                  </div>
+                  <div class="column2" id="del">
+                    If you delete your account, your data will be gone forever. <input type="button" id="delete" value="Delete">
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<div class="mobileMenuBall">
+    <i class="first"><img src="images/icons/weightIconWhite.png" width="40px" alt="Weight" onclick="addWeight()"></i>
+    <i class="second"><img src="images/icons/foodIconWhite.png" width="40px" alt="Food" onclick="addFood()"></i>
+    <i class="third"><img src="images/icons/waterIconWhite.png" width="34px" alt="Water" onclick="addWater()"></i>
+    <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve"> <polygon fill="#FFFFFF" points="30,14.5 15.5,14.5 15.5,0 14.5,0 14.5,14.5 0,14.5 0,15.5 14.5,15.5 14.5,30 15.5,30 15.5,15.5 
+    30,15.5 "/></svg>
+</div>  
+
+</body>
+<script src="js/globalScripts.js"></script>
+
+<script src="js/salvattore.min.js"></script>
+<script type="text/javascript" src="js/tooltipster.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tooltipster.css">
+</html>
