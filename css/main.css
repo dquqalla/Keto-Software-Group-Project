@@ -162,7 +162,7 @@ input[type="number"] {
 .profileImage p{
     font-size:22px;
     text-align:center;
-    color:#fff;
+    color:#fff !important;
     font-weight:600;
     padding-top:6px;
 }
