@@ -14,10 +14,12 @@ function openMenu() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+	if ($('#nameLetter').length > 0) {
 	//Controls the profile picture header
 	var firstLetterOfName = document.getElementById("name").innerHTML;
 	document.getElementById("nameLetter").innerHTML = firstLetterOfName.charAt(0);
 	document.getElementById("nameLetterM").innerHTML = firstLetterOfName.charAt(0);
+	}
 
 	//Functions controls the current date in dashboard
 	var objToday = new Date(),
@@ -71,7 +73,7 @@ function addWater() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">How many glasses of water would you like to add? <br>We will assume a glass is 250ml.</p>' +
 	    '<div style="" >' +
-	    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
+	    '<form method="post" action="" style="padding: 20px 0px;">' +
 	    '<select class="waterSelect" name="water">\
 		<option value="1">1</option>\
 		<option value="2">2</option>\
@@ -101,7 +103,7 @@ function addWeight() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">Please enter your weight below. We will automatically date-timestamp this for you and add it to your history.</p>' +
 	    '<div style="" >' +
-	    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
+	    '<form method="post" action="index.php" style="padding: 20px 0px;">' +
 	    '<input class="foodInputs weightInputs" type="number" name="weight" min="0" max="200" placeholder="Weight in kg"> <br />' +
 
 	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="submit" value="Add"> ' +
@@ -126,7 +128,7 @@ function addFood() {
 	    '<div style="" >' +
 	    '<div style="padding: 20px 0px;"><input class="foodInputs foodSearchInput" type="text" name="intelligentFoodSearch" placeholder="Search (sorry I\'m disabled for now)" disabled></div>' +
 	    '<p class="foodInputBreak">- or -</p>' +
-	    '<form class="addFoodForm" method="post" action="welcome.php">' +
+	    '<form class="addFoodForm" method="post" action="log.php">' +
 	    '<input class="foodInputs rName" type="text" name="rName" placeholder="Name of recipe/meal" autocomplete="off">' +
 	    '<select class="foodInputs mCat" type="text" name="mCat" placeholder="Meal category, e.g Lunch" autocomplete="off">' +
 	    	'<option value="" disabled selected>Meal category, e.g Lunch</option>' +
@@ -160,14 +162,14 @@ function addPicture() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">Upload or remove profile picture.</p>' +
 	    '<div style="margin-top: 24px;" class="uploadPicture">' +
-	    '<form method="post" action="welcome.php" enctype="multipart/form-data" style="padding: 20px 0px 0px 0px;">' +
+	    '<form method="post" action="" enctype="multipart/form-data" style="padding: 20px 0px 0px 0px;">' +
 	    '<div><input class="up" type="file" name="file">' +
 		'<p class="dragText">Drag your files here or click in this area.</p></div>' +
 
 		'<button class="uploadPicBtn" type="submit" name="submit2">Upload</button>' +
 		'</form>' +
 		'<p class="orSelection">- or -</p>'+
-		'<form action="welcome.php" method="post" style="display: inline-block;"><button class="removePicBtn" name="removePicture" type="submit">Remove</button></form>' +
+		'<form action="index.php" method="post" style="display: inline-block;"><button class="removePicBtn" name="removePicture" type="submit">Remove</button></form>' +
 	    '<div style="padding: 30px 0px;"><input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></div></div>', 
 
 	    showConfirmButton: false,
@@ -189,7 +191,7 @@ function swalEditWeight() {
 	    inputOptions: options,
 	    html: '<p class="modalHeader">Please enter your new target weight.</p>' +
 	    '<div style="" >' +
-	    '<form method="post" action="welcome.php" style="padding: 20px 0px;">' +
+	    '<form method="post" action="index.php" style="padding: 20px 0px;">' +
 	    '<input class="foodInputs weightInputs" type="number" name="editGoalW" placeholder="Updated goal weight (kg)" required> <br />' +
 
 	    '<div style="padding-top:30px;"><input class="addBut" type="submit" name="updateWeight" value="Update"> ' +

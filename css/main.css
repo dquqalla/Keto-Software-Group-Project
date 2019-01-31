@@ -122,6 +122,9 @@ input[type="number"] {
     font-weight:400;
     font-family:'Open Sans',sans-serif;
 }
+.navlink a {
+    color: #333;
+}
 .navlink:hover{
     background-color:#eee;
     webkit-transition:all .3s ease-out;

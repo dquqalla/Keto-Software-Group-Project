@@ -6,4 +6,4 @@ $id = (int)$_GET['id'];
 
 mysqli_query($link,"DELETE FROM userFood WHERE foodID='".$id."'");
 mysqli_close($link);
-header("Location: ../welcome.php");
+header("Location: ../log.php");
