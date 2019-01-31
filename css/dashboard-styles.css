@@ -249,13 +249,18 @@ circle:first-child {
 	padding: 22px 0px 36px 0px;
 }
 
-.raphael-group-161-plots text tspan:nth-child(2) {
+.raphael-group-167-plots text tspan:nth-child(2) {
 	font-size: 22px !important;
 	font-weight: 600 !important;
 }
-.raphael-group-161-plots text tspan {
+.raphael-group-167-plots text tspan {
 	font-size: 16px !important;
 	font-weight: 300 !important;
+}
+.raphael-group-11-messageGroup text {
+	font-size: 20px !important;
+	font-family: 'Open Sans', sans-serif !important;	
+
 }
 .pieChartContainer {
 	width: 100%;
