@@ -289,8 +289,8 @@ require_once "includes/main.php";
 	<?php
 
 	$id = $_SESSION["id"];
-
-	$breakfastOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Breakfast' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$currDate = date("Y-m-d");
+	$breakfastOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Breakfast' AND userID = $id AND DATE(`time`) = '$currDate'";
 	$breakfastOnlyResult = $link->query($breakfastOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">BREAKFAST</p></div>";
@@ -314,7 +314,8 @@ require_once "includes/main.php";
 		echo "<p style=\"font-style: italic;\">You've not added any breakfast!</p>";
 	}
 
-	$lunchOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Lunch' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$currDate = date("Y-m-d");
+	$lunchOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Lunch' AND userID = $id AND DATE(`time`) = '$currDate'";
 	$lunchOnlyResult = $link->query($lunchOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">LUNCH</p></div>";
@@ -338,7 +339,8 @@ require_once "includes/main.php";
 		echo "<p style=\"font-style: italic;\">You've not added any lunch!</p>";
 	}
 
-	$dinnerOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Dinner' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$currDate = date("Y-m-d");
+	$dinnerOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Dinner' AND userID = $id AND DATE(`time`) = '$currDate'";
 	$dinnerOnlyResult = $link->query($dinnerOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">DINNER</p></div>";
@@ -362,7 +364,8 @@ require_once "includes/main.php";
 		echo "<p style=\"font-style: italic;\">You've not added any dinner!</p>";
 	}
 
-	$snacksOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Snack' AND userID = $id AND DATE(`time`) = CURDATE()";
+	$currDate = date("Y-m-d");
+	$snacksOnly = "SELECT foodID, rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE mCat = 'Snack' AND userID = $id AND DATE(`time`) = '$currDate'";
 	$snacksOnlyResult = $link->query($snacksOnly);
 
 	echo "<div style=\"width:500px; margin: 10px 0px;\"><p style=\"padding: 6px 10px; background-color: #444; color:#fff;\">SNACKS</p></div>";
@@ -386,33 +389,36 @@ require_once "includes/main.php";
 		echo "<p style=\"font-style: italic;\">You've not added any snacks!</p>";
 	}
 
-	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$currDate = date("Y-m-d");
+
+	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id AND DATE(`time`) = '$currDate'";
 	$result = $link->query($sql);
 
 	if ($result->num_rows > 0) {
+		$currDate = date("Y-m-d");
 		//Add the total carbs for today for user and display it
-		$sql2 = "SELECT SUM(carbs) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$sql2 = "SELECT SUM(carbs) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = '$currDate'";
 		$result2 = $link->query($sql2);
 		$row = mysqli_fetch_assoc($result2); 
 		$sum = $row['total_value'];
 		echo "<p><br>Total carbs today: " . $sum . " (<span id=\"carbPercentage\"></span>%)<br></p>";
 
 		//Add the total protein for today for user and display it
-		$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$sql3 = "SELECT SUM(protein) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = '$currDate'";
 		$result3 = $link->query($sql3);
 		$row1 = mysqli_fetch_assoc($result3); 
 		$sum1 = $row1['total_value'];
 		echo "<p>Total protein today: " . $sum1 . " (<span id=\"proPercentage\"></span>%)<br></p>";
 
 		//Add the total fat for today for user and display it
-		$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$sql4 = "SELECT SUM(fat) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = '$currDate'";
 		$result4 = $link->query($sql4);
 		$row2 = mysqli_fetch_assoc($result4); 
 		$sum2 = $row2['total_value'];
 		echo "<p>Total fats today: " . $sum2 . " (<span id=\"fatPercentage\"></span>%)<br></p>";
 
 		//Add the total calories for today for user and display it
-		$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$sql5 = "SELECT SUM(calories) AS total_value FROM userFood WHERE userID = $id AND DATE(`time`) = '$currDate'";
 		$result5 = $link->query($sql5);
 		$row3 = mysqli_fetch_assoc($result5); 
 		$sum3 = $row3['total_value'];
@@ -456,14 +462,15 @@ require_once "includes/main.php";
 
 	<?php
 	$id = $_SESSION["id"];
-
+	$currDate = date("Y-m-d");
 	//Need this query to check if any results were returned (used in if statement)
-	$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
 	$water_t = $link->query($water_total);
 	
 	if($water_t->num_rows > 0) {
 		//Main query to retrive water data
-		$total_water2 = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND DATE(`time`) = CURDATE()";
+		$currDate = date("Y-m-d");
+		$total_water2 = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
 		$total_water_for_user = $link->query($total_water2);
 		$tot_water = mysqli_fetch_assoc($total_water_for_user); 
 		$sum_water = $tot_water['total_water'];

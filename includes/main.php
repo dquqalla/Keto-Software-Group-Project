@@ -123,8 +123,9 @@ if(isset($_POST["waterAddButton"])){
 //This function deals with deleting water via the delete button
 if(isset($_POST["waterAddDButton"])){
 	$id = $_SESSION["id"];
+	$currDate = date("Y-m-d");
 
-	$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = CURDATE()";
+	$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
 	$water_t = $link->query($water_total);
 	
 	if(!($water_t->num_rows == 0)) {
