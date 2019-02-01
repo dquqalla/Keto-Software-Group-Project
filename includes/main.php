@@ -62,7 +62,15 @@ if(isset($_POST["weight"])){
 
 		if ($link->query($sql2) === TRUE) { //Run the query to update the user table
 			//echo "Record updated successfully";
-			header("Refresh:0"); //Refresh the page
+			//header("Refresh:0"); //Refresh the page
+			echo '
+			<script>
+				var notyf = new Notyf({
+				  delay:3500
+				})
+				notyf.confirm(\'Weight was updated successfully!\');
+			</script>
+			';
 		} else {
 			echo "Error updating record: " . $link->error;
 		}
@@ -85,7 +93,14 @@ if(isset($_POST['rName'], $_POST['mCat'], $_POST['cal'], $_POST['car'], $_POST['
 	$sqlqw = "INSERT INTO userFood (userID,rName,mCat,calories,carbs,protein,fat,`time`) VALUES ($id, '$ttn', '$ttm', $ttc, $ttcr, $ttp, $ttf, now() + INTERVAL 7 HOUR)";
 
 	if ($link->query($sqlqw) === TRUE) {
-		header("Refresh:0");
+			echo '
+			<script>
+				var notyf = new Notyf({
+				  delay:3500
+				})
+				notyf.confirm(\'Food was added successfully!\');
+			</script>
+			';
 	} else {
 		echo "Error: " . $sqlqw . "<br>" . $link->error;
 	}
@@ -102,6 +117,14 @@ if(isset($_POST["water"])){
 		$sqlWater = "INSERT INTO userWater (userID,waterAmount,`time`) VALUES ($id, 1, now() + INTERVAL 7 HOUR)";
 
 		if ($link->query($sqlWater) === TRUE) {
+			echo '
+			<script>
+				var notyf = new Notyf({
+				  delay:3500
+				})
+				notyf.confirm(\'Water was added successfully!\');
+			</script>
+			';
 		} else {
 			echo "Error: " . $sqlWater . "<br>" . $link->error;
 		}
@@ -115,6 +138,14 @@ if(isset($_POST["waterAddButton"])){
 	$sqlWater = "INSERT INTO userWater (userID,waterAmount,`time`) VALUES ($id, 1, now() + INTERVAL 7 HOUR)";
 
 	if ($link->query($sqlWater) === TRUE) {
+			echo '
+			<script>
+				var notyf = new Notyf({
+				  delay:3500
+				})
+				notyf.confirm(\'Water was added successfully!\');
+			</script>
+			';
 	} else {
 		echo "Error: " . $sqlWater . "<br>" . $link->error;
 	}
@@ -132,6 +163,14 @@ if(isset($_POST["waterAddDButton"])){
 		$sqlWater = "DELETE FROM userWater WHERE userID=$id ORDER BY `time` DESC LIMIT 1";
 
 		if ($link->query($sqlWater) === TRUE) {
+			echo '
+			<script>
+				var notyf = new Notyf({
+				  delay:3500
+				})
+				notyf.confirm(\'Water was removed successfully!\');
+			</script>
+			';
 		} else {
 			echo "Error: " . $sqlWater . "<br>" . $link->error;
 		}
@@ -146,6 +185,14 @@ if(isset($_POST["editGoalW"])){
 
 	if ($link->query($sql) === TRUE) {
 		$_SESSION["gWeight"] = $updatedGoalWeight; //Cheeky way to update session variable on the sly
+		echo '
+		<script>
+			var notyf = new Notyf({
+			  delay:3500
+			})
+			notyf.confirm(\'Goal weight was updated successfully!\');
+		</script>
+		';
 	} else {
 		echo "Error: " . $sql . "<br>" . $link->error;
 	}

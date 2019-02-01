@@ -2,7 +2,6 @@
 // Initialize the session
 session_start();
 require_once "includes/config.php";
-require_once "includes/main.php";
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +29,14 @@ require_once "includes/main.php";
 	<link rel="stylesheet" href="css/slick-theme.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/dashboard-styles.css">
+	<link rel="stylesheet" href="css/notyf.min.css">
+	<script src="js/notyf.min.js"></script>
 	<title>Dashboard</title>
 </head>
 
 <body>
+<?php require_once "includes/main.php"; ?>
+<?php include 'includes/graphQueries.php';?>
 <?php
 	$currDate = date("Y-m-d");
 	$sql = "SELECT rName, mCat, calories, carbs, protein, fat, 'time' FROM userFood WHERE userID = $id AND DATE(`time`) = '$currDate'";
@@ -70,7 +73,6 @@ require_once "includes/main.php";
 		//echo "<p>Total calories today: " . $sum3 . "<br></p>";
 	}
 ?>
-<?php include 'includes/graphQueries.php';?>
 <div id="menu">
 	<div>
 		<div class="mobileMenuProfile">

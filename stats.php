@@ -2,7 +2,6 @@
 // Initialize the session
 session_start();
 require_once "includes/config.php";
-require_once "includes/main.php";
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +29,13 @@ require_once "includes/main.php";
     <link rel="stylesheet" href="css/slick-theme.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/stats-styles.css">
+    <link rel="stylesheet" href="css/notyf.min.css">
+    <script src="js/notyf.min.js"></script>
     <title>Statistics</title>
 </head>
 
 <body>
+<?php require_once "includes/main.php"; ?>
 <?php include 'includes/graphQueries.php';?>
 <div id="menu">
     <div>

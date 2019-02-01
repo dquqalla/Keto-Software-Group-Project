@@ -2,7 +2,6 @@
 // Initialize the session
 session_start();
 require_once "includes/config.php";
-require_once "includes/main.php";
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +28,8 @@ require_once "includes/main.php";
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<link rel="stylesheet" href="css/slick-theme.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/notyf.min.css">
+	<script src="js/notyf.min.js"></script>
 	<title>Daily Log</title>
 	<style>
     #grid {
@@ -521,6 +522,7 @@ require_once "includes/main.php";
 </head>
 
 <body>
+<?php require_once "includes/main.php"; ?>
 <?php include 'includes/graphQueries.php';?>
 <?php
 	$currDate = date("Y-m-d");
