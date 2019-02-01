@@ -49,7 +49,7 @@ if(isset($_POST["removePicture"])){
 }
 
 //This function deals with updating/adding weight
-if(isset($_POST["weight"])){
+if(isset($_POST["weight"]) && !empty($_POST["weight"])){
 	$tt = $_POST["weight"];
 	$id = $_SESSION["id"];
 
