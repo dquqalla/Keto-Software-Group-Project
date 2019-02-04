@@ -201,7 +201,7 @@ border-bottom-left-radius: 10px;
     		text-align: right;
     	}
     	.recipeDetail {
-    		padding: 8px 12px;
+    		padding: 8px 11px;
     		background-color: #27AC9D;
     		color: #fff;
     		font-size: 13px;
