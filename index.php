@@ -492,7 +492,7 @@ require_once "includes/config.php";
 						<div class="slickExtraP">
 							<div class="recipeContainer">
 								<div class="recipeContainerItem">
-									<img src="images/recipes/recipe1.png" alt="Recipe">
+									<img src="images/recipes/1.jpg" alt="Recipe">
 								</div>
 							</div>
 							<div class="recipeTitle">
@@ -505,7 +505,7 @@ require_once "includes/config.php";
 						<div class="slickExtraP">
 							<div class="recipeContainer">
 								<div class="recipeContainerItem">
-									<img src="images/recipes/recipe2.jpg" alt="Recipe">
+									<img src="images/recipes/2.jpg" alt="Recipe">
 								</div>
 							</div>
 							<div class="recipeTitle" style="background-color: #673AB7;">
@@ -518,7 +518,7 @@ require_once "includes/config.php";
 						<div class="slickExtraP">
 							<div class="recipeContainer">
 								<div class="recipeContainerItem">
-									<img src="images/recipes/recipe3.jpg" alt="Recipe">
+									<img src="images/recipes/3.png" alt="Recipe">
 								</div>
 							</div>
 							<div class="recipeTitle" style="background-color: #4CAF50;">
