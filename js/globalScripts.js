@@ -164,7 +164,7 @@ function addPicture() {
 	    '<div style="margin-top: 24px;" class="uploadPicture">' +
 	    '<form method="post" action="" enctype="multipart/form-data" style="padding: 20px 0px 0px 0px;">' +
 	    '<div><input class="up" type="file" name="file">' +
-		'<p class="dragText">Drag your files here or click in this area.</p></div>' +
+		'<p class="dragText">Drag your files here or click in this area. We recommend uploading a square image.</p></div>' +
 
 		'<button class="uploadPicBtn" type="submit" name="submit2">Upload</button>' +
 		'</form>' +
