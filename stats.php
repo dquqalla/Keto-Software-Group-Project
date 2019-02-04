@@ -184,7 +184,7 @@ require_once "includes/config.php";
                     <p class="navSubText">Your Daily Tracking</p>
                 </div>
                 </a>
-                <a href="#">
+                <a href="recipes.php">
                 <div class="navItem" id="navItemTh">
                     <p class="navMainText">Diet Planning</p>
                     <p class="navSubText">Meal Inspiration</p>
