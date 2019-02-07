@@ -273,14 +273,151 @@ border-bottom-left-radius: 10px;
         }
         .favouritesBtnContainer {
             position: relative !important;
-            height: 39px;
-            overflow: hidden;
+                height: 45px;
+    overflow: hidden;
+    padding-top: 6px;
         }
-        @media only screen and (max-width: 450px) {
-            .favouritesBtn {
-                margin-right: 32px;
-            }
-        }
+
+                .dropdown {
+  display: inline-block;
+  position: relative;
+
+      margin: 6px 3px;
+}
+
+.dd-button {
+display: inline-block;
+    /* border: 1px solid gray; */
+    border-radius: 100px;
+    padding: 10px 40px 10px 20px;
+    background-color: #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 13px;
+    color: #a0a0a0;
+        webkit-transition:all .3s ease-out;
+    -moz-transition:all .3s ease-out;
+    -o-transition:all .3s ease-out;
+    -ms-transition:all .3s ease-out;
+    transition:all .3s ease-out;
+}
+
+.arr {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 19px;
+  transform: translateY(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #a0a0a0;
+}
+.dd-button:hover > #arr, .dd-button:hover > #arr2, .dd-button:hover > #arr3, .dd-button:hover > #arr4 {
+    border-top: 5px solid #fff;
+}
+.dd-button:hover {
+  background-color: #2ECC71;
+  color: #fff;
+}
+
+
+.dd-input {
+  display: none;
+}
+
+.dd-menu {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 2px 0 0 0;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  list-style-type: none;
+  z-index: 55;
+}
+
+.dd-input + .dd-menu {
+  display: none;
+} 
+
+.dd-input:checked + .dd-menu {
+  display: block;
+} 
+
+.dd-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-menu li:hover {
+  background-color: #f6f6f6;
+}
+
+.dd-menu li a {
+  display: block;
+  margin: -10px -20px;
+  padding: 10px 20px;
+}
+
+.dd-menu li.divider{
+  padding: 0;
+  border-bottom: 1px solid #cccccc;
+}
+.sortfilter {
+	text-align: right;
+	margin-right: 40px;
+}
+@media only screen and (max-width: 450px) {
+    .favouritesBtn {
+        margin-right: 32px;
+    }
+    .sortfilter {
+        margin-right: 32px;
+    }
+}
+.down-arrow {
+	border-color: #dddddd transparent;
+    border-style: solid;
+    border-width: 7px 7px 0px 7px;
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    right: 17px;
+    top: 13px;
+}
+.up-arrow {
+	border-color: #dddddd transparent;
+	border-style: solid;
+	border-width: 0px 7px 7px 7px;
+	height: 0px;
+	width: 0px;
+	position: absolute;
+    right: 17px;
+    top: 13px; display: none;
+}
+.revealSort {
+	border-radius: 100px;
+	background-color: #F7F7F7;
+	position: relative;
+    height: 35px;
+    cursor: pointer;
+}
+.sortContainer {
+	padding: 18px 35px 10px 35px;
+}
+.revealSort p {
+	position: absolute;
+	left: 13px;
+    top: 7px; 
+    font-weight: 400; 
+    color: #BABABA; 
+    font-size: 14px;
+}
     </style>
     <title>Recipes</title>
 </head>
@@ -482,10 +619,89 @@ border-bottom-left-radius: 10px;
         </div>
     </div>
 
+    <div class="sortContainer">
+    	<div class="revealSort" id="revealSort">
+    	<p>FILTER AND SORT</p>
+    	<div class="down-arrow"></div>
+    <div class="up-arrow"></div>
+    	</div>
+    </div>
+
+    <div class="sortfilter" id="sortfilter" style="display: none;">
+        <label class="dropdown">
+
+            	<div class="dd-button" id="dd-button">
+            Meal Type<span class="arr" id="arr"></span>
+            </div>
+            <input type="checkbox" class="dd-input" id="test">
+
+            <ul class="dd-menu">
+                <li class="active btns" id="all">Show all</li>
+                <li class="btns" id="Breakfast">Breakfast only</li>
+                <li class="btns" id="Lunch">Lunch only</li>
+                <li class="btns" id="Dinner">Dinner only</li>
+                <li class="btns" id="Snacks">Snacks only</li>
+            </ul>
+        </label>
+
+        <label class="dropdown">
+            <div class="dd-button" id="dd-button2">
+            	Meat/Fish<span class="arr" id="arr2"></span>
+            </div>
+
+            <input type="checkbox" class="dd-input" id="test">
+
+            <ul class="dd-menu">
+                <li class="active btns2" id="all">Show all</li>
+                <li class="btns2" id="fish">Fish only</li>
+                <li class="btns2" id="chicken">Chicken only</li>
+                <li class="btns2" id="meat">Meat only</li>
+            </ul>
+        </label>
+
+        <label class="dropdown">
+            <div class="dd-button" id="dd-button3">
+            	Cuisine<span class="arr" id="arr3"></span>
+            </div>
+
+            <input type="checkbox" class="dd-input" id="test">
+
+            <ul class="dd-menu">
+            	<li class="active btns3" id="all">Show all</li>
+                <li class="btns3" id="American">American only</li>
+                <li class="btns3" id="British">British only</li>
+                <li class="btns3" id="Caribbean">Caribbean only</li>
+                <li class="btns3" id="Chinese">Chinese only</li>
+                <li class="btns3" id="French">French only</li>
+                <li class="btns3" id="Greek">Greek only</li>
+                <li class="btns3" id="Indian">Indian only</li>
+                <li class="btns3" id="Italian">Italian only</li>
+                <li class="btns3" id="Japanese">Japanese only</li>
+                <li class="btns3" id="Mexican">Mexican only</li>
+                <li class="btns3" id="Spanish">Spanish only</li>
+                <li class="btns3" id="Thai">Thai only</li>
+                <li class="btns3" id="Turkish">Turkish only</li>
+            </ul>
+        </label>
+
+        <label class="dropdown">
+            <div class="dd-button" id="dd-button4">
+            	Misc<span class="arr" id="arr4"></span>
+            </div>
+
+            <input type="checkbox" class="dd-input" id="test">
+
+            <ul class="dd-menu">
+            	<li class="active btns4" id="all">Show all</li>
+                <li class="btns4" id="quickRecipe">Under 30 mins</li>
+            </ul>
+        </label>
+
+    </div>
+
 	<div class="favouritesBtnContainer">
         <a href="favourites.php"><button class="favouritesBtn tooltip" title="Your favourite recipes"><i class="fas fa-star"></i></button></a>
     </div>
-
 
     <div class="clearfix" id="grid" data-columns>
     <?php 
@@ -494,12 +710,45 @@ border-bottom-left-radius: 10px;
 	$getRecipeResult = $link->query($getRecipe);
 
 	if ($getRecipeResult->num_rows > 0) {
-	    while($row = $getRecipeResult->fetch_assoc()) {
+	while($row = $getRecipeResult->fetch_assoc()) {
 	$userID = $_SESSION["id"];
 	$recipeID = $row["id"];
+	$cuisine = $row["cuisine"];
+	$contains_fish = $row["contains_fish"];
+	$contains_chicken = $row["contains_chicken"];
+	$contains_meat = $row["contains_meat"];
+
+	$meal_type = $row["meal_type"];
+	$duration = $row["duration"];
+	$fishResult; $chickenResult; $meatResult;
+	$quickRecipe;
+
+	if ($contains_fish) {
+		$fishResult = "fish";
+	} else {
+		$fishResult = "";
+	}
+
+	if ($contains_chicken) {
+		$chickenResult = "chicken";
+	} else {
+		$chickenResult = "";
+	}
+
+	if ($contains_meat) {
+		$meatResult = "meat";
+	} else {
+		$meatResult = "";
+	}
+
+	if ($duration < 30) {
+		$quickRecipe = "quickRecipe";
+	} else {
+		$quickRecipe = "";
+	}
 
 	        echo "
-			<div class=\"item weightGraph animated bounceIn\">
+			<div class=\"item weightGraph animated bounceIn $cuisine $meal_type $fishResult $meatResult $chickenResult $quickRecipe\">
 			<div style=\"display: none;\">" . $row["id"] . "</div>
             <a class=\"recipeLink\" href=".$row["url"]."><p class=\"recipeTitle\">".$row["title"]."</p></a>
             <div class=\"boxShad\">
@@ -513,7 +762,7 @@ border-bottom-left-radius: 10px;
 
 			if ($favTestResult->num_rows > 0) {
 			echo "
-			<a href=\"includes/addfavourite.php?id=".$row['id']."\"><button type=\"button\" class=\"recipeDetail favourite tooltip\" title=\"Add to favourites\" style=\"background-color: #FCCB7E;\"><i class=\"fas fa-star\"></i></button></a>
+			<a href=\"includes/addfavourite.php?id=".$row['id']."\"><button type=\"button\" class=\"recipeDetail favourite tooltip\" title=\"Already added to favourites\" style=\"background-color: #FCCB7E;\"><i class=\"fas fa-star\"></i></button></a>
 			"; } else {
 			echo "
 				<a href=\"includes/addfavourite.php?id=".$row['id']."\"><button type=\"button\" class=\"recipeDetail favourite tooltip\" title=\"Add to favourites\"><i class=\"fas fa-star\"></i></button></a>
@@ -553,6 +802,136 @@ border-bottom-left-radius: 10px;
 </div>  
 
 </body>
+<script type="text/javascript">
+var $btns = $('.btns').click(function() {
+  if (this.id == 'all') {
+    $('#grid > div > div').fadeIn(450);
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button").style.color = "#a0a0a0";
+    document.getElementById("arr").style.borderTop = "5px solid #a0a0a0";
+  } else {
+    var $el = $('.' + this.id).fadeIn(450);
+    $('#grid > div > div').not($el).hide();
+    document.getElementById("dd-button").style.backgroundColor = "#2ECC71";
+    document.getElementById("dd-button").style.color = "#ffffff";
+    document.getElementById("arr").style.borderTop = "5px solid #fff";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.color = "#a0a0a0";
+    document.getElementById("arr2").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button3").style.color = "#a0a0a0";
+    document.getElementById("arr3").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button4").style.color = "#a0a0a0";
+    document.getElementById("arr4").style.borderTop = "5px solid #a0a0a0";
+  }
+  $btns.removeClass('active');
+  $(this).addClass('active');
+})
+
+var $btns2 = $('.btns2').click(function() {
+  if (this.id == 'all') {
+    $('#grid > div > div').fadeIn(450);
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.color = "#a0a0a0";
+    document.getElementById("arr2").style.borderTop = "5px solid #a0a0a0";
+  } else {
+    var $el = $('.' + this.id).fadeIn(450);
+    $('#grid > div > div').not($el).hide();
+    document.getElementById("dd-button2").style.backgroundColor = "#2ECC71";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.color = "#ffffff";
+    document.getElementById("arr2").style.borderTop = "5px solid #fff";
+    document.getElementById("dd-button").style.color = "#a0a0a0";
+    document.getElementById("arr").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button3").style.color = "#a0a0a0";
+    document.getElementById("arr3").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button4").style.color = "#a0a0a0";
+    document.getElementById("arr4").style.borderTop = "5px solid #a0a0a0";
+  }
+  $btns.removeClass('active');
+  $(this).addClass('active');
+})
+
+var $btns3 = $('.btns3').click(function() {
+  if (this.id == 'all') {
+    $('#grid > div > div').fadeIn(450);
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.color = "#a0a0a0";
+    document.getElementById("arr3").style.borderTop = "5px solid #a0a0a0";
+  } else {
+    var $el = $('.' + this.id).fadeIn(450);
+    $('#grid > div > div').not($el).hide();
+    document.getElementById("dd-button3").style.backgroundColor = "#2ECC71";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.color = "#ffffff";
+    document.getElementById("arr3").style.borderTop = "5px solid #fff";
+    document.getElementById("dd-button").style.color = "#a0a0a0";
+    document.getElementById("arr").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button2").style.color = "#a0a0a0";
+    document.getElementById("arr2").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button4").style.color = "#a0a0a0";
+    document.getElementById("arr4").style.borderTop = "5px solid #a0a0a0";
+  }
+  $btns.removeClass('active');
+  $(this).addClass('active');
+})
+
+var $btns4 = $('.btns4').click(function() {
+  if (this.id == 'all') {
+    $('#grid > div > div').fadeIn(450);
+    document.getElementById("dd-button4").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button4").style.color = "#a0a0a0";
+    document.getElementById("arr4").style.borderTop = "5px solid #a0a0a0";
+  } else {
+    var $el = $('.' + this.id).fadeIn(450);
+    $('#grid > div > div').not($el).hide();
+    document.getElementById("dd-button4").style.backgroundColor = "#2ECC71";
+    document.getElementById("dd-button").style.backgroundColor = "white";
+    document.getElementById("dd-button2").style.backgroundColor = "white";
+    document.getElementById("dd-button3").style.backgroundColor = "white";
+	document.getElementById("dd-button4").style.color = "#ffffff";
+    document.getElementById("arr4").style.borderTop = "5px solid #fff";
+    document.getElementById("dd-button").style.color = "#a0a0a0";
+    document.getElementById("arr").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button2").style.color = "#a0a0a0";
+    document.getElementById("arr2").style.borderTop = "5px solid #a0a0a0";
+    document.getElementById("dd-button3").style.color = "#a0a0a0";
+    document.getElementById("arr3").style.borderTop = "5px solid #a0a0a0";
+
+  }
+  $btns.removeClass('active');
+  $(this).addClass('active');
+})
+
+$('.revealSort').click(function() {
+      $('.sortfilter').fadeToggle('slow', function() {
+        // Animation complete.
+      });
+      $('.up-arrow').fadeToggle('slow', function() {
+        // Animation complete.
+      });
+       $('.down-arrow').fadeToggle('slow', function() {
+        // Animation complete.
+      });
+    });
+</script>
 <script src="js/globalScripts.js"></script>
 
 <script src="js/salvattore.min.js"></script>
