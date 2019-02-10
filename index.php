@@ -120,7 +120,7 @@ require_once "includes/config.php";
 		</div>
 		<div class="borderBreak"></div>
 		<div class="navlink"><a href="includes/logout.php">Logout</a></div>
-		<div class="navlink">Settings</div>
+		<div class="navlink"><a href="settings.php">Settings</a></div>
 		<div class="navlink">Account Upgrade</div>
 		<div class="navlink">Getting Started Guide</div>
 		<div class="navlink">FAQ</div>
@@ -186,10 +186,10 @@ require_once "includes/config.php";
 					</div>
 					<div class="iconContainer">
 						<div class="notifications tooltip" title="Notifications">
-							<a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
+							<a href="#"><img class="tooltip" title="Sorry feature not available yet" src="images/icons/notificationIcon.png" alt="Notifications"></a>
 						</div>
 						<div class="settings tooltip" title="Settings">
-							<a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+							<a href="settings.php"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
 						</div>
 						<div class="logout tooltip" title="Logout">
 							<a href="includes/logout.php"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
@@ -320,7 +320,30 @@ require_once "includes/config.php";
 
             <div class="item waterCon animated bounceIn"> 
 				<p class="itemTitle">Water Intake Today</p>
-				<p class="itemDescription">You have <span>[ ]</span> met your target for today.</p>
+				<?php
+					$id = $_SESSION["id"];
+					$currDate = date("Y-m-d");
+					//Need this query to check if any results were returned (used in if statement)
+					$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
+					$water_t = $link->query($water_total);
+					
+					if($water_t->num_rows > 0) {
+						$currDate = date("Y-m-d");
+						//Main query to retrive water data
+						$total_water2 = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
+						$total_water_for_user = $link->query($total_water2);
+						$tot_water = mysqli_fetch_assoc($total_water_for_user); 
+						$sum_water = $tot_water['total_water'];
+						if ($sum_water >= 8) {
+							echo "<p class=\"itemDescription\">You have met your target for today.</p>";
+						} else {
+							echo "<p class=\"itemDescription\">You have <span style=\"color: #F2535F;font-weight: 700;font-style: italic;\">not</span> met your target for today.</p>";
+						}
+
+					} else {
+							echo "<p class=\"itemDescription\">You have <span style=\"color: #F2535F;font-weight: 700;font-style: italic;\">not</span> met your target for today.</p>";
+					}
+				?>
 				<div class="glassesContainer">
 					<div class="gC">
 						<p class="glassSText">You've drank</p>
@@ -528,7 +551,9 @@ require_once "includes/config.php";
 					</div>
 				</div>
 				<div class="detailRecButtonContainer">
-					<button type="button" class="hvr-pop">Detailed Recipe</button>
+					<form action="recipes.php">
+						<button type="submit" class="hvr-pop">View More</button>
+					</form>
 				</div>
             </div>  
 
