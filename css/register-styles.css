@@ -1,0 +1,240 @@
+/*DO NOT PUT THIS CSS WITH THE DASHBOARD CSS OR YOU WILL GET COLLISIONS AND MESS UP THE DASHBOARD*/
+::placeholder {
+	color: #cccccc;
+	opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #cccccc;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: #cccccc;
+}
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+body {
+	display: flex;
+	background-image: url("images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("images/bg.png"), -webkit-linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("images/bg.png"), -o-linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
+}	
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+.mainContainerL {
+	margin: auto;
+}
+.oCon {
+  /*  background: red;*/
+	width: 442px;
+}
+.imageCon {
+	text-align: center;
+	padding-bottom: 34px;
+}
+.loginFormCon form input, .loginFormCon form select {
+	padding: 16px 20px;
+	width: 211px;
+	margin: 9px 0px;
+			-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.signInText {
+	background-color: transparent;
+	text-align: center;
+	/*padding: 34px;*/
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+.signInText p {
+	font-size: 23px;
+	font-weight: 600;
+	/*text-transform: uppercase;*/
+	color: #fff;
+	/*letter-spacing: 2px;*/
+}
+.loginFormCon {
+	text-align: center;
+	background-color: transparent;
+	-webkit-border-bottom-right-radius: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-moz-border-radius-bottomleft: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	padding-top: 10px;
+}
+.signIn {
+	font-size: 15px;
+	color: #fff;
+	font-weight: 400;
+	padding: 20px 0px 60px 0px;
+}
+.subText p, .subText span {
+	font-size: 16px !important;
+	color: #fff !important;
+	font-weight: 400 !important;
+	text-decoration: none !important;
+	padding: 0px 0px 20px 0px;
+}
+.email-input {
+	width: 100% !important;
+}
+.loginFormCon form span {
+	font-size: 15px;
+	color: #999;
+	font-weight: 400;
+	text-decoration: underline;
+}
+.nextbtn {
+	background-color: #86C559;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border-radius: 100px !important;
+	 width: 145px !important;
+	padding: 14px 18px !important;
+	cursor: pointer;
+	webkit-transition:all .3s ease-in;
+	-moz-transition:all .3s ease-in;
+	-o-transition:all .3s ease-in;
+	-ms-transition:all .3s ease-in;
+	transition:all .3s ease-in;
+	webkit-transition:all .3s ease-out;
+	-moz-transition:all .3s ease-out;
+	-o-transition:all .3s ease-out;
+	-ms-transition:all .3s ease-out;
+	transition:all .3s ease-out;
+	outline: 0;
+}
+.nextbtn:hover {
+	background-color:#78b150;
+}
+.regbtn {
+	background-color: #86C559;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border-radius: 4px; !important;
+	 width: 100% !important;
+	padding: 14px 18px !important;
+	cursor: pointer;
+	webkit-transition:all .3s ease-in;
+	-moz-transition:all .3s ease-in;
+	-o-transition:all .3s ease-in;
+	-ms-transition:all .3s ease-in;
+	transition:all .3s ease-in;
+	webkit-transition:all .3s ease-out;
+	-moz-transition:all .3s ease-out;
+	-o-transition:all .3s ease-out;
+	-ms-transition:all .3s ease-out;
+	transition:all .3s ease-out;
+	outline: 0;
+}
+
+.help-block {
+	font-size: 15px !important;
+	color: #F3C76A !important;
+	font-weight: 600 !important;
+	text-decoration: underline !important;
+}
+.errorMessages {
+	padding-top: 22px;
+	padding-bottom: 22px;
+}
+.empty {
+	height: 80px;
+}
+.form-group-float {
+	float: left;
+}
+.clearfix::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+.form-group-left {
+	padding-right: 10px;
+}
+.form-group-right {
+	padding-left: 10px;
+}
+.form-group-next {
+	text-align: right;
+	padding-top: 10px;
+}
+select,select option:disabled {
+	background-color: #fff !important;
+	color: #000;
+}
+select option{
+	color: #000;
+}
+select:invalid {
+	color: #ccc !important;
+}
+.regMessage {
+	padding: 20px 0px 10px 0px;
+}
+.regMessage p {
+	color: #fff;
+	font-weight: 400;
+	font-size: 14px;
+	font-family:'Open Sans',sans-serif;
+}
+@media only screen and (max-width: 442px) {
+	.mainContainerL {
+		width: 90%;
+	}
+	.oCon {
+		width: 100%;
+	}
+	.imageCon {
+		padding-top: 45px;
+	}
+	.signInText p {
+	    font-size: 23px;
+	}
+	.imageCon img {
+		width: 150px;
+	}
+	.form-group-float {
+		width: 50%;
+	}
+	.loginFormCon form input, .loginFormCon form select {
+	    width: 100%;
+	}
+	.form-group-left {
+	    padding-right: 5px;
+	}
+	.form-group-right {
+	    padding-left: 5px;
+	}
+	.notyf {
+	    position: fixed;
+	    bottom: 0;
+	    right: 0;
+	    left: 0; 
+	    width: 100%;
+	    color: #fff;
+	    z-index: 1;
+	    padding: 20px;
+	}
+}
