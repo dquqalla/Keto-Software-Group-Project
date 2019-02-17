@@ -469,7 +469,7 @@ display: inline-block;
         </div>
         <div class="borderBreak"></div>
         <div class="navlink"><a href="includes/logout.php">Logout</a></div>
-        <div class="navlink">Settings</div>
+        <div class="navlink"><a href="settings.php">Settings</a></div>
         <div class="navlink">Account Upgrade</div>
         <div class="navlink">Getting Started Guide</div>
         <div class="navlink">FAQ</div>
@@ -537,7 +537,7 @@ display: inline-block;
                             <a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
                         </div>
                         <div class="settings tooltip" title="Settings">
-                            <a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+                            <a href="settings.php"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
                         </div>
                         <div class="logout tooltip" title="Logout">
                             <a href="includes/logout.php"><img src="images/icons/logoutIcon.png" alt="Logout"></a>

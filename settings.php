@@ -241,11 +241,41 @@ require_once "includes/config.php";
                     <p class="colp">Photo</p>
                   </div>
                   <div class="column2">
-					<div class="profileImageContainer">
-					<div class="profileImage">
-					<p id="nameLetter">D</p>
-					</div>
-					</div>
+				<?php
+					$sql = "SELECT profilePicture FROM users WHERE id = $id";
+					$result = $link->query($sql);
+
+					    while($row = $result->fetch_assoc()){
+					        if($row['profilePicture'] == ""){
+					        	if($_SESSION["gender"] == "Male"){
+					                echo "
+										<div class=\"profileImageContainer\">
+										<div class=\"profileImage profileImageM\" onclick=\"addPicture()\">
+										<p id=\"nameLetterC\"></p>
+										</div>
+										</div>
+					                ";
+					            } else {
+					            	echo "
+										<div class=\"profileImageContainer\">
+										<div class=\"profileImage\" onclick=\"addPicture()\">
+										<p id=\"nameLetterC\"></p>
+										</div>
+										</div>
+					                ";
+					            }
+
+					        } else {
+									echo "
+									<div class=\"profileImageContainer\">
+									<div class=\"profileImage\" onclick=\"addPicture()\">
+									<img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
+									</div>
+									</div>
+					                ";
+					        }
+					    }
+				?>
                     <p id="edit" onclick="addPicture()">edit</p>
                   </div>
                 </div>
@@ -350,6 +380,16 @@ require_once "includes/config.php";
 <script src="js/globalScripts.js"></script>
 <script src="js/salvattore.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+	if ($('#nameLetter').length > 0) {
+	//Controls the profile picture header
+	var firstLetterOfName = document.getElementById("name").innerHTML;
+	document.getElementById("nameLetter").innerHTML = firstLetterOfName.charAt(0);
+	document.getElementById("nameLetterM").innerHTML = firstLetterOfName.charAt(0);
+	document.getElementById("nameLetterC").innerHTML = firstLetterOfName.charAt(0);
+	}
+});
+
 if ($(window).width() < 850) {
 	document.getElementById("acctDel").style.display = "none";
 }
