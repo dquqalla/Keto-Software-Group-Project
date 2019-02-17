@@ -1,3 +1,9 @@
+<?php
+// Initialize the session
+session_start();
+require_once "includes/config.php";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,58 +33,128 @@
 </head>
 
 <body>
+<?php require_once "includes/main.php"; ?>
+<?php include 'includes/graphQueries.php';?>
 <div id="menu">
     <div>
-        <div class="mobileMenuProfile">
-            <div class="profileImageContainer">
-                <div class="profileImage">
-                    <p id="nameLetterM"></p>
-                </div>
-            </div>
-            <div class="menuProfileText">
-                <p>Mizna Uppal</p>
-                <p>Free Membership</p>
-            </div>
-        </div>
-        <div class="borderBreak"></div>
-        <div class="navlink">Logout</div>
-        <div class="navlink">Settings</div>
-        <div class="navlink">Account Upgrade</div>
-        <div class="navlink">Getting Started Guide</div>
-        <div class="navlink">FAQ</div>
+		<div class="mobileMenuProfile">
+
+				<?php
+					$sql = "SELECT profilePicture FROM users WHERE id = $id";
+					$result = $link->query($sql);
+
+					    while($row = $result->fetch_assoc()){
+					        if($row['profilePicture'] == ""){
+					        	if($_SESSION["gender"] == "Male"){
+					                echo "
+										<div class=\"profileImageContainer\">
+										<div class=\"profileImage profileImageM\" onclick=\"addPicture()\">
+										<p id=\"nameLetter\"></p>
+										</div>
+										</div>
+					                ";
+					            } else {
+					            	echo "
+										<div class=\"profileImageContainer\">
+										<div class=\"profileImage\" onclick=\"addPicture()\">
+										<p id=\"nameLetterM\"></p>
+										</div>
+										</div>
+					                ";
+					            }
+
+					        } else {
+									echo "
+									<div class=\"profileImageContainer\">
+									<div class=\"profileImage\" onclick=\"addPicture()\">
+									<img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
+									</div>
+									</div>
+					                ";
+					        }
+					    }
+				?>
+
+			<div class="menuProfileText">
+				<p><?php echo ($_SESSION["firstName"]); ?> <?php echo ($_SESSION["lastName"]); ?></p>
+				<p>Free Membership</p>
+			</div>
+		</div>
+		<div class="borderBreak"></div>
+		<div class="navlink"><a href="includes/logout.php">Logout</a></div>
+		<div class="navlink"><a href="settings.php">Settings</a></div>
+		<div class="navlink">Account Upgrade</div>
+		<div class="navlink">Getting Started Guide</div>
+		<div class="navlink">FAQ</div>
     </div>
 </div>
 <div id="mainContainer" class="mainContainer">
     <div class="header">
         <div class="headInner clearfix">
             <div class="logo">
-                <a href="index.html"><img src="images/logoHolder.png" alt="Logo"></a>
+                <a href="index.php"><img src="images/logoHolder.png" alt="Logo"></a>
             </div>
 
             <div class="right">
                 <div class="rightInner clearfix">
-                    <div class="profileInfo">
-                        <div class="drop"> 
-                            <div class="profileImageContainer" >
-                                <div class="profileImage" onclick="addPicture()">
-                                    <p id="nameLetter"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profileText">
-                            <p id="name">Mizna Uppal</p>
-                            <p>Free Membership</p>
-                        </div>
-                    </div>
+					<div class="profileInfo">
+
+								<?php
+									$sql = "SELECT profilePicture FROM users WHERE id = $id";
+									$result = $link->query($sql);
+
+									    while($row = $result->fetch_assoc()){
+									        if($row['profilePicture'] == ""){
+									        	if($_SESSION["gender"] == "Male"){
+									                echo "
+														<div class=\"drop\"> 
+														<div class=\"profileImageContainer\">
+														<div class=\"profileImage profileImageM\" onclick=\"addPicture()\">
+														<p id=\"nameLetterM\"></p>
+														</div>
+														</div>
+														</div>
+									                ";
+									            } else {
+									            	echo "
+														<div class=\"drop\"> 
+														<div class=\"profileImageContainer\">
+														<div class=\"profileImage\" onclick=\"addPicture()\">
+														<p id=\"nameLetter\"></p>
+														</div>
+														</div>
+														</div>
+									                ";
+									            }
+
+									        } else {
+													echo "
+													<div class=\"drop\"> 
+													<div class=\"profileImageContainer\">
+													<div class=\"profileImage\" onclick=\"addPicture()\">
+													<img src='images/profilePictures/".$row['profilePicture']."' alt='Profile Pic'>
+													</div>
+													</div>
+													</div>
+									                ";
+									        }
+									    }
+								?>
+
+						<div class="profileText">
+							<p id="name"><?php echo ($_SESSION["firstName"]); ?> <?php echo ($_SESSION["lastName"]); ?></p>
+							<p>Free Membership</p>
+						</div>
+					</div>
                     <div class="iconContainer">
                         <div class="notifications tooltip" title="Notifications">
                             <a href="#"><img src="images/icons/notificationIcon.png" alt="Notifications"></a>
                         </div>
                         <div class="settings tooltip" title="Settings">
-                            <a href="#"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
+                            <a href="settings.php"><img src="images/icons/settingsIcon.png" alt="Settings"></a>
                         </div>
                         <div class="logout tooltip" title="Logout">
-                            <a href="#"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
+                            <a href="includes/logout.php"><img src="images/icons/logoutIcon.png" alt="Logout"></a>
                         </div>
                         <div class="menuTrigger" onclick="openMenu()">
                             <a href="#"><img src="images/icons/menuIcon.png" alt="Menu"></a>
@@ -93,25 +169,25 @@
     <div class="navigation clearfix">
         <div class="scrollContainer">
             <div class="scrolling-wrapper-flexbox">
-                <a href="index.html">
+                <a href="index.php">
                     <div class="navItem" id="navItemO">
                         <p class="navMainText">Dashboard</p>
                         <p class="navSubText">Overview</p>
                     </div>
                 </a>
-                <a href="log.html">
+                <a href="log.php">
                 <div class="navItem" id="navItemT">
                     <p class="navMainText">Daily Log</p>
                     <p class="navSubText">Your Daily Tracking</p>
                 </div>
                 </a>
-                <a href="#">
+                <a href="recipes.php">
                 <div class="navItem" id="navItemTh">
                     <p class="navMainText">Diet Planning</p>
                     <p class="navSubText">Meal Inspiration</p>
                 </div>
                 </a>
-                <a href="stats.html">
+                <a href="stats.php">
                 <div class="navItem" id="navItemF">
                     <p class="navMainText">Statistics</p>
                     <p class="navSubText">A Detailed View</p>
@@ -179,7 +255,7 @@
                     <p class="colp">Name</p>
                   </div>
                   <div class="column2">
-                    <p class="emailaddress">Dardan Quqalla</p>
+                    <p class="emailaddress"><?php echo ($_SESSION["firstName"]); ?> <?php echo ($_SESSION["lastName"]); ?></p>
                   </div>
                 </div>
 
@@ -188,7 +264,7 @@
                     <p class="colp">Email</p>
                   </div>
                   <div class="column2" id="useremail">
-                    <p id="emailaddress">dardan.quqalla@gmail.com</p>
+                    <p id="emailaddress"><?php echo ($_SESSION["email"]); ?></p>
                   </div>
                 </div>
             </div>
@@ -200,7 +276,24 @@
                     <p class="colp">Start Weight</p>
                   </div>
                   <div class="column2">
-                  	<p class="userName">50kg</p>
+      				<?php
+						$id = $_SESSION["id"];
+						
+						//gets weight entries of all time
+						$sql = "SELECT weight, timee FROM userWeight WHERE userID = $id ORDER BY timee ASC LIMIT 1";
+						$result = $link->query($sql);
+
+						if ($result->num_rows > 0) {
+
+						    while($row = $result->fetch_assoc()) {
+						        echo "<p class=\"userName\">".$row["weight"]."kg</p>";
+						    }
+						}
+
+						$link->close(); //Close the connection
+
+					?>
+                  	
                     <!-- <p id="edit" class="tooltip" title="Feature not available.">edit</p> -->
                   </div>
                 </div>
@@ -210,7 +303,7 @@
                     <p class="colp">Weight Goal</p>
                   </div>
                   <div class="column2">
-                  	<p class="userName">70kg</p>
+                  	<p class="userName"><?php echo ($_SESSION["gWeight"]); ?>kg</p>
                     <p id="edit" onclick="swalEditWeight()">edit</p>
                   </div>
                 </div>
@@ -220,7 +313,7 @@
                     <p class="colp">Calorie Budget</p>
                   </div>
                   <div class="column2">
-                  	<p class="userName">2000</p>
+                  	<p class="userName" id="calories"></p>
                     <p id="edit" class="tooltip" title="Feature not available yet.">edit</p>
                   </div>
                 </div>
@@ -268,6 +361,105 @@ if ($(window).width() < 500) {
 	};
 	var emailaddress = document.getElementById("emailaddress").innerHTML = emailaddress.trunc(14);
 }
+
+	function addToWList(sentence) {
+	  var node = document.createElement("li");
+	  var textnode = document.createTextNode(sentence);
+	  node.appendChild(textnode);
+	  document.getElementById("wellList").appendChild(node);
+	}
+
+	function addToIList(sentence) {
+	  var node = document.createElement("li");
+	  var textnode = document.createTextNode(sentence);
+	  node.appendChild(textnode);
+	  document.getElementById("improveList").appendChild(node);
+	}
+//first weight signed up with
+	 var oldestWeight = "<?php if(isset($oldestWeight)) {echo($oldestWeight);} ?>";
+	 console.log("First weight added to database: " + oldestWeight);
+
+	 //current weight
+	 var latestWeight = "<?php echo($_SESSION["cWeight"]); ?>";
+	 console.log("Latest weight: " + latestWeight);
+
+	 //goal weight 
+	 var goalWeight = "<?php echo($_SESSION["gWeight"]); ?>";
+
+	 var anyFoodAddedToday = "<?php if(isset($sum)) {echo($sum);} ?>";
+
+	if (!(anyFoodAddedToday == "")) {
+		var totalCarb = "<?php if(isset($sum)) {echo($sum);} ?>";
+		var totalFats = "<?php if(isset($sum2)) {echo($sum2);} ?>";
+		var totalPro = "<?php if(isset($sum1)) {echo($sum1);} ?>";
+		console.log("Total carbs " + totalCarb); 
+		console.log("Total fats " + totalFats); 
+		console.log("Total protein " + totalPro);
+		var totalNutritionForToday = parseInt(totalCarb) + parseInt(totalFats) + parseInt(totalPro);
+		console.log("Total total nutrition for today: " + totalNutritionForToday);
+		document.getElementById("carbPercentage").innerHTML = Math.round((totalCarb/totalNutritionForToday)*100) +"%";
+		document.getElementById("fatPercentage").innerHTML = Math.round((totalFats/totalNutritionForToday)*100) +"%";
+		document.getElementById("proPercentage").innerHTML = Math.round((totalPro/totalNutritionForToday)*100) +"%";
+	}
+
+	 //Percetange diff between first weight and current weight
+	weightDiff = Math.round(((latestWeight/oldestWeight)-1)*100);
+
+	//CANNOT BE USED UNTIL TRELLO BUG IS FIXED
+	 achievementPercentage = ((latestWeight - oldestWeight) * 100) / (goalWeight - oldestWeight);
+	 achievementPercentageRounded = Math.round(achievementPercentage * 10) / 10;
+	 //document.getElementById("percentageToGoal").innerHTML = "That is a " + weightDiff + "% difference vs when you started.";
+
+	// document.getElementById("percentage").innerHTML = achievementPercentageRounded;
+
+
+	 var gender = "<?php echo($_SESSION["gender"]); ?>";
+	 var heightFeet = "<?php echo($_SESSION["heightFeet"]); ?>";
+	 var heightInch = "<?php echo($_SESSION["heightInch"]); ?>";
+	 var birthYear = "<?php echo($_SESSION["birthYear"]); ?>";
+	 var currentYear = (new Date()).getFullYear();
+	 var age = currentYear - birthYear;
+	 var activityLevel = "<?php echo($_SESSION["activityLevel"]); ?>";
+	 //var weightInPounds = latestWeight*2.205;
+	 var totalHeight = (heightFeet/1) + (heightInch/10);
+	 var heightInInches = totalHeight*12;
+	 var heightInCM = heightInInches*2.54;
+	 var carbsGoal = 20;
+	 var leanBodyMass = 0.407*latestWeight + 0.267*heightInCM- 19.2;
+	 var rProteinIntake = 1.8*leanBodyMass;
+
+	 //Currently using Mifflin St Jeor Equation
+	 if (gender == "Male") {
+	 	console.log("This account is male");
+	 	//This is the base TDEE
+	 	var calorieGoal = (10 * (latestWeight)) + (6.25 * (heightInCM)) - (5 * age) + 5;
+	 } else {
+	 	console.log("This account is female");
+	 	//This is the base TDEE
+	 	var calorieGoal = 10 * (latestWeight) + 6.25 * (heightInCM) - 5 * age - 161;
+
+	 }
+
+
+	if (activityLevel.trim() === "Sedentary") {
+		//Add 10% for Sedentary to Base Metabolic Rate
+ 		calorieGoal = (calorieGoal / 10) + calorieGoal;
+ 		console.log("Sedentary");
+	} else if (activityLevel.trim() === "Lightly Active") {
+		//Lightly active
+ 		calorieGoal = (calorieGoal / 4.2) + calorieGoal;
+ 		console.log("Lightly Active");
+	} else if (activityLevel.trim() === "Active") {
+		//Active
+ 		calorieGoal = (calorieGoal / 2.6) + calorieGoal;
+ 		console.log("Active");
+	} else {
+ 		//Very Active
+ 		calorieGoal = (calorieGoal / 1.65) + calorieGoal;
+ 		console.log("Very Active");
+	}
+ 	
+ 	document.getElementById("calories").innerHTML = Math.round(calorieGoal);
 </script>
 <script type="text/javascript" src="js/tooltipster.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/tooltipster.css">
