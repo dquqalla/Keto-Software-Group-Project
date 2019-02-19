@@ -204,6 +204,27 @@ function swalEditWeight() {
 	});
 }
 
+function deleteAccount() {
+	var options = {};
+
+	swal({
+	    title: "Are you sure you want to delete your account?",
+	    type: 'info',
+	    inputOptions: options,
+	    html: '<p class="modalHeader">All your data will be deleted and you will never be able to recover and/or restore your account.</p>' +
+	    '<div style="" >' +
+	    '<form method="post" action="" style="padding: 20px 0px;">' +
+	    '<input type="submit" id="delete" value="Yes I know what I\'m doing. Please delete my account" name="deletea" style="margin-bottom: 28px;"> <br />' +
+
+	    '<input class="cancelBut" value="Cancel" type="button" id="btnC" onclick="swal.close();"></input></form></div></div>', 
+
+	    showConfirmButton: false,
+	    onOpen: function(ele) {
+	        $(ele).find('.swal2-select').insertBefore($(ele).find('.swal2-content div'));
+	    }
+	});
+}
+
 $(document).ready(function() {
 	$('.mobileMenuBall').click(function() {
 		$(this).toggleClass('active');
