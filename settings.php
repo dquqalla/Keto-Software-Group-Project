@@ -35,6 +35,17 @@ require_once "includes/config.php";
 <body>
 <?php require_once "includes/main.php"; ?>
 <?php include 'includes/graphQueries.php';?>
+<?php
+if(isset($_POST["deletea"])){
+    $id = $_SESSION["id"];
+    $sql = "DELETE FROM users WHERE id=$id";
+    $link->query($sql);
+
+    session_destroy();
+    header("location: login.php");
+    exit;
+}
+?>
 <div id="menu">
     <div>
 		<div class="mobileMenuProfile">
@@ -357,7 +368,9 @@ require_once "includes/config.php";
                   </div>
                   <div class="column2" id="del">
                     <p class="userName" id="acctDel">If you delete your account, your data will be gone forever.</p>
-                    <input type="submit" id="delete" value="Delete">
+            
+                        <input type="button" id="delete" value="Delete" name="delete" onclick="deleteAccount()">
+            
                   </div>
                 </div>
             </div>
