@@ -515,11 +515,11 @@ require_once "includes/config.php";
 						<div class="slickExtraP">
 							<div class="recipeContainer">
 								<div class="recipeContainerItem">
-									<img src="images/recipes/1.jpg" alt="Recipe">
+									<img src="images/recipes/4.jpg" alt="Recipe">
 								</div>
 							</div>
 							<div class="recipeTitle">
-								<p class="recipeTitleP"><span>Featured Recipe</span><br>Simple grilled chicken with almond courgetti salad</p>
+								<p class="recipeTitleP"><span>Featured Recipe</span><br>Coconut porridge with fresh berries</p>
 							</div>
 						</div>
 					</div>
@@ -532,7 +532,7 @@ require_once "includes/config.php";
 								</div>
 							</div>
 							<div class="recipeTitle" style="background-color: #673AB7;">
-								<p class="recipeTitleP"><span>New Recipe</span><br>Lemon roasted mackerel fillets with apple tzatziki</p>
+								<p class="recipeTitleP"><span>New Recipe</span><br>Pancakes with berries and whipped cream</p>
 							</div>
 						</div>
 					</div>
@@ -541,11 +541,11 @@ require_once "includes/config.php";
 						<div class="slickExtraP">
 							<div class="recipeContainer">
 								<div class="recipeContainerItem">
-									<img src="images/recipes/3.png" alt="Recipe">
+									<img src="images/recipes/7.jpg" alt="Recipe">
 								</div>
 							</div>
 							<div class="recipeTitle" style="background-color: #4CAF50;">
-								<p class="recipeTitleP"><span>New Recipe</span><br>Rainbow soba salad with ginger and miso dressing</p>
+								<p class="recipeTitleP"><span>New Recipe</span><br>Battered hotdogs</p>
 							</div>
 						</div>
 					</div>
