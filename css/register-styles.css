@@ -16,10 +16,10 @@ html, body {
 }
 body {
 	display: flex;
-	background-image: url("images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
-	background-image: url("images/bg.png"), -webkit-linear-gradient(90deg, #3682A7, #22B396);
-	background-image: url("images/bg.png"), -o-linear-gradient(90deg, #3682A7, #22B396);
-	background-image: url("images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("../images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("../images/bg.png"), -webkit-linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("../images/bg.png"), -o-linear-gradient(90deg, #3682A7, #22B396);
+	background-image: url("../images/bg.png"), linear-gradient(90deg, #3682A7, #22B396);
 }	
 select {
     -webkit-appearance: none;

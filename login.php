@@ -199,6 +199,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		-webkit-border-radius: 4px;
 		-moz-border-radius: 4px;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 	.loginFormCon form input {
 		-webkit-border-radius: 4px;
