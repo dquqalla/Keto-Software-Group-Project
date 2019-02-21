@@ -479,7 +479,30 @@ require_once "includes/config.php";
         <div class="item weightGraph animated bounceIn columnHidden"></div>
         <div class="item waterGraph animated bounceIn">
             <p class="itemTitle">Today - Water Intake Overview</p>
-			<p class="itemDescription">You have <span>[ ]</span> met your target for today.</p>
+				<?php
+					$id = $_SESSION["id"];
+					$currDate = date("Y-m-d");
+					//Need this query to check if any results were returned (used in if statement)
+					$water_total = "SELECT waterAmount FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
+					$water_t = $link->query($water_total);
+					
+					if($water_t->num_rows > 0) {
+						$currDate = date("Y-m-d");
+						//Main query to retrive water data
+						$total_water2 = "SELECT SUM(waterAmount) AS total_water FROM userWater WHERE userID = $id AND DATE(`time`) = '$currDate'";
+						$total_water_for_user = $link->query($total_water2);
+						$tot_water = mysqli_fetch_assoc($total_water_for_user); 
+						$sum_water = $tot_water['total_water'];
+						if ($sum_water >= 8) {
+							echo "<p class=\"itemDescription\">You have met your target for today.</p>";
+						} else {
+							echo "<p class=\"itemDescription\">You have <span style=\"color: #F2535F;font-weight: 700;font-style: italic;\">not</span> met your target for today.</p>";
+						}
+
+					} else {
+							echo "<p class=\"itemDescription\">You have <span style=\"color: #F2535F;font-weight: 700;font-style: italic;\">not</span> met your target for today.</p>";
+					}
+				?>
 			<div class="glassesContainer">
 				<div class="gC">
 					<p class="glassSText">You've drank</p>
