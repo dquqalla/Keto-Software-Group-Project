@@ -218,6 +218,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							</div>
 						</div>
 						<div class="regMessage">
+							<p style="padding-bottom: 20px;">Having trouble estimating your body fat percentage? <br><a target="_blank" style="color: inherit; background: #495C6F;padding: 3px 10px;border-radius: 50px;display: inline-block;margin-top: 5px;" href="images/bodyfatestimate.png">Click here for a visual guide.</a></p>
 							<p>We will automatically calculate your macro goals.</p>
 						</div>
 						<div class="form-group form-group-next">
