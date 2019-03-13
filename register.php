@@ -189,10 +189,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						</div>
 						<div class="clearfix">
 							<div class="form-group form-group-float form-group-left <?php echo (!empty($general_err)) ? 'has-error' : ''; ?>">
-								<input step="0.5" type="number" name="cWeight" class="form-control" value="<?php echo $cWeight; ?>" placeholder="Current Weight" required>
+								<input step="0.5" type="number" id="cWeight" name="cWeight" class="form-control" value="<?php echo $cWeight; ?>" placeholder="Current Weight" required>
 							</div>
 							<div class="form-group form-group-float form-group-right <?php echo (!empty($general_err)) ? 'has-error' : ''; ?>">
-								<input step="0.5" type="number" name="gWeight" class="form-control" value="<?php echo $gWeight; ?>" placeholder="Goal Weight" required>
+								<input step="0.5" type="number" id="gWeight" name="gWeight" class="form-control" value="<?php echo $gWeight; ?>" placeholder="Goal Weight" required>
 							</div>
 						</div>
 						<div class="clearfix">
@@ -236,6 +236,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </body>
 <script>
+$('form').submit(function() {
+  if (document.getElementById("cWeight").value == document.getElementById("gWeight").value) {
+	var notyf = new Notyf({
+	  delay:3000
+	})
+	notyf.alert('Your current weight and goal weight cannot be the same!');
+    return false;
+  }
+  else{
+    return true;
+  }
+});
+
+
 $(function(){
 	for (i = new Date().getFullYear(); i > 1900; i--){
 		$('#birthYear').append($('<option />').val(i).html(i));
