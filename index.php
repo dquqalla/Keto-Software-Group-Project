@@ -619,9 +619,20 @@ require_once "includes/config.php";
 	weightDiff = Math.round(((latestWeight/oldestWeight)-1)*100);
 
 	//CANNOT BE USED UNTIL TRELLO BUG IS FIXED
-	 achievementPercentage = ((latestWeight - oldestWeight) * 100) / (goalWeight - oldestWeight);
+
+	if (latestWeight === oldestWeight && latestWeight === goalWeight) {
+		achievementPercentage = 100;
+	} else {
+		achievementPercentage = ((latestWeight - oldestWeight) * 100) / (goalWeight - oldestWeight);
+	}
+	 
+	 console.log("New Latest weight: " + latestWeight);
+	 console.log("New Oldest weight: " + oldestWeight);
+	 console.log("NewGoal weight: " + goalWeight);
+	 console.log("New Achievement percentage: " + achievementPercentage);
 	 achievementPercentageRounded = Math.round(achievementPercentage * 10) / 10;
 	 //document.getElementById("percentageToGoal").innerHTML = "That is a " + weightDiff + "% difference vs when you started.";
+	 console.log("New Achievement percentage: " + achievementPercentageRounded);
 
 	 document.getElementById("percentage").innerHTML = achievementPercentageRounded;
 
@@ -775,7 +786,7 @@ $("#test-circle2").circliful({
 	fillColor: '#27A59E',
 	fontColor: '#fff',
 	foregroundColor: '#27A59E',
-	percent: achievementPercentageRounded-1,
+	percent: achievementPercentageRounded,
 	// replacePercentageByText: 'test',
 	percentageY: 108,
 	progressColor: { 50: '#23B396', 50: '#28AB9E', 70: '#2A9EA3', 90: '#2C8FA9', 100: '#2E88AC'}
